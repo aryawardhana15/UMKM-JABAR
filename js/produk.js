@@ -84,10 +84,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Dua produk terdepan diberi class featured
         const featuredClass = (idx === 0 || idx === 1) ? 'produk-card-featured' : '';
         const badgePos = (product.sold % 2 === 0) ? 'left-4' : 'right-4';
+        const imgSrc = product.image ? product.image : 'assets/img/default-product.jpg';
         return `
         <div class="produk-card group relative ${featuredClass}" data-aos="fade-up">
             <div class="relative">
-                <img src="${product.image}" alt="${product.name}" class="produk-img group-hover:scale-105 transition-transform duration-500" loading="lazy">
+                <img src="${imgSrc}" alt="${product.name}" class="produk-img group-hover:scale-105 transition-transform duration-500" loading="lazy">
                 <div class="absolute top-4 ${badgePos}">${badge}</div>
                 <div class="absolute inset-0 bg-gradient-to-t from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-80 transition-all duration-300 rounded-2xl flex flex-col justify-end p-4 pointer-events-none">
                     <div class="text-white text-lg font-bold drop-shadow-lg mb-2">${product.name}</div>
