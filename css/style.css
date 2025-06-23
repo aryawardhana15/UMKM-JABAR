@@ -1,0 +1,797 @@
+/* Custom CSS untuk JabarUMKM Hub - Enhanced Version */
+
+/* Custom Animations */
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200px 0;
+    }
+    100% {
+        background-position: calc(200px + 100%) 0;
+    }
+}
+
+@keyframes gradientShift {
+    0%, 100% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+}
+
+@keyframes pulseGlow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(160, 90, 44, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(160, 90, 44, 0.6);
+    }
+}
+
+/* Loading Screen */
+#loading-screen {
+    animation: fadeIn 0.5s ease-out;
+}
+
+/* Navbar Enhancements */
+#navbar {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+#navbar.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Hero Section Enhancements */
+.hero-gradient-text {
+    background: linear-gradient(45deg, #A05A2C, #6B8E23, #F9C74F, #A05A2C);
+    background-size: 400% 400%;
+    animation: gradientShift 3s ease infinite;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Product Card Enhancements */
+.product-card {
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.product-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s;
+}
+
+.product-card:hover::before {
+    left: 100%;
+}
+
+.product-card:hover {
+    transform: translateY(-8px) scale(1.02);
+    box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+}
+
+.product-card .product-image {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card:hover .product-image {
+    transform: scale(1.1);
+}
+
+/* Button Enhancements */
+.btn-primary {
+    background: linear-gradient(45deg, #A05A2C, #6B8E23);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    transition: left 0.5s;
+}
+
+.btn-primary:hover::before {
+    left: 100%;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px rgba(160, 90, 44, 0.3);
+}
+
+/* Map Enhancements */
+.map-region {
+    transition: transform 0.3s cubic-bezier(0.25, 0.8, 0.25, 1), 
+                filter 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+    cursor: pointer;
+}
+
+.map-region:hover {
+    transform: translateY(-4px) scale(1.03);
+    filter: url(#dropShadow) brightness(1.1);
+}
+
+.map-region.visited {
+    fill: #6B8E23 !important; /* Warna hijau untuk daerah yang sudah dikunjungi */
+    stroke: #5a7d1a !important;
+}
+
+.map-region.visited:hover {
+    filter: url(#dropShadow) brightness(1.2);
+}
+
+#labels text {
+    paint-order: stroke;
+    stroke: rgba(255, 255, 255, 0.7);
+    stroke-width: 3px;
+    stroke-linecap: butt;
+    stroke-linejoin: miter;
+}
+
+/* Chatbot Enhancements */
+#chatbot-btn {
+    animation: float 3s ease-in-out infinite;
+}
+
+#chatbot-btn:hover {
+    animation: none;
+    transform: scale(1.1) rotate(5deg);
+}
+
+.chatbot-enter {
+    transform: translateY(0) !important;
+    animation: slideUp 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Badge Enhancements */
+.badge-item {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.badge-item::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(249, 199, 79, 0.2), transparent);
+    transition: left 0.6s;
+}
+
+.badge-item:hover::before {
+    left: 100%;
+}
+
+.badge-item:hover {
+    transform: rotate(3deg) scale(1.08);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.badge-item.locked {
+    filter: grayscale(100%);
+    opacity: 0.6;
+}
+
+.badge-item.unlocked {
+    animation: badgeUnlock 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes badgeUnlock {
+    0% {
+        transform: scale(0.8) rotate(-15deg);
+        opacity: 0;
+    }
+    50% {
+        transform: scale(1.2) rotate(5deg);
+    }
+    100% {
+        transform: scale(1) rotate(0deg);
+        opacity: 1;
+    }
+}
+
+/* Badge Popup Enhancements */
+.badge-popup-enter {
+    transform: scale(1) !important;
+    animation: scaleIn 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Confetti Animation Enhanced */
+.confetti {
+    position: fixed;
+    width: 12px;
+    height: 12px;
+    background: linear-gradient(45deg, #F9C74F, #A05A2C, #6B8E23);
+    animation: confetti-fall 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    z-index: 1000;
+    border-radius: 50%;
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-100vh) rotate(0deg) scale(0);
+        opacity: 1;
+    }
+    50% {
+        transform: translateY(50vh) rotate(360deg) scale(1);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg) scale(0);
+        opacity: 0;
+    }
+}
+
+/* Scroll Reveal Enhanced */
+.js-reveal {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.js-reveal.revealed {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Custom Scrollbar Enhanced */
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(45deg, #A05A2C, #6B8E23);
+    border-radius: 10px;
+    border: 2px solid #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(45deg, #8B4513, #556B2F);
+}
+
+/* Loading Animation Enhanced */
+.loading {
+    display: inline-block;
+    width: 24px;
+    height: 24px;
+    border: 3px solid #f3f3f3;
+    border-top: 3px solid #A05A2C;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Tooltip Styles Enhanced */
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 220px;
+    background: linear-gradient(45deg, #333, #555);
+    color: #fff;
+    text-align: center;
+    border-radius: 12px;
+    padding: 12px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%;
+    left: 50%;
+    margin-left: -110px;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    font-size: 13px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    transform: translateY(10px);
+}
+
+.tooltip .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: #333 transparent transparent transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Stats Counter Animation */
+.stats-counter {
+    animation: countUp 2s ease-out;
+}
+
+@keyframes countUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Background Patterns */
+.bg-pattern {
+    background-image: 
+        radial-gradient(circle at 25% 25%, rgba(160, 90, 44, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, rgba(107, 142, 35, 0.1) 0%, transparent 50%);
+}
+
+/* Glassmorphism Effect */
+.glass {
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+}
+
+/* Hover Effects for Links */
+.nav-link {
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background: linear-gradient(45deg, #F9C74F, #A05A2C);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Card Hover Effects */
+.card-hover {
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+}
+
+/* Text Gradient Effects */
+.text-gradient-primary {
+    background: linear-gradient(45deg, #A05A2C, #6B8E23);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.text-gradient-highlight {
+    background: linear-gradient(45deg, #F9C74F, #FF6B6B);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* Responsive Design Enhancements */
+@media (max-width: 768px) {
+    .js-reveal {
+        transform: translateY(20px);
+    }
+    
+    .product-card:hover {
+        transform: translateY(-2px);
+    }
+    
+    .badge-item:hover {
+        transform: scale(1.05);
+    }
+    
+    .map-region:hover {
+        transform: scale(1.02);
+    }
+}
+
+/* Dark Mode Support Enhanced */
+@media (prefers-color-scheme: dark) {
+    .dark-mode {
+        background-color: #1a1a1a;
+        color: #ffffff;
+    }
+    
+    .dark-mode .bg-white {
+        background-color: #2d2d2d;
+    }
+    
+    .dark-mode .text-gray-600 {
+        color: #cccccc;
+    }
+    
+    .dark-mode .glass {
+        background: rgba(45, 45, 45, 0.25);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+}
+
+/* Print Styles */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+    
+    body {
+        background: white !important;
+        color: black !important;
+    }
+    
+    .product-card {
+        break-inside: avoid;
+        box-shadow: none !important;
+        border: 1px solid #ddd !important;
+    }
+}
+
+/* Accessibility Enhancements */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* Focus States for Accessibility */
+button:focus,
+a:focus,
+input:focus {
+    outline: 2px solid #F9C74F;
+    outline-offset: 2px;
+}
+
+/* High Contrast Mode Support */
+@media (prefers-contrast: high) {
+    .product-card {
+        border: 2px solid #333;
+    }
+    
+    .btn-primary {
+        border: 2px solid #000;
+    }
+}
+
+/* Command Palette Styles */
+#command-palette {
+    transition: opacity 0.2s ease-in-out;
+}
+
+#command-palette-content {
+    transition: all 0.2s ease-in-out;
+    transform: translateY(-20px) scale(0.98);
+    opacity: 0;
+}
+
+#command-palette.open {
+    opacity: 1;
+}
+
+#command-palette.open #command-palette-content {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+}
+
+#command-results .result-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+#command-results .result-item:hover,
+#command-results .result-item.selected {
+    background-color: #f3f4f6; /* bg-gray-100 */
+}
+
+#command-results .result-item .result-category {
+    font-size: 0.75rem; /* text-xs */
+    color: #6b7280; /* text-gray-500 */
+    background-color: #e5e7eb; /* bg-gray-200 */
+    padding: 2px 6px;
+    border-radius: 99px;
+}
+
+/* --- Enhanced UI/UX & Micro-interactions --- */
+
+/* 1. 3D Button Press Effect */
+.btn-3d {
+    transition: all 0.15s ease-out;
+    box-shadow: 0 4px 0 0 var(--tw-shadow-color, #a16207); /* Example: using a darker shade of yellow-600 */
+}
+
+.btn-3d:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 0 0 var(--tw-shadow-color, #a16207);
+}
+
+.btn-3d:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 var(--shadow-color);
+}
+
+
+/* 2. Navigation Link Underline Animation */
+.nav-link-animated::after {
+    content: '';
+    position: absolute;
+    bottom: -4px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--color-highlight, #F9C74F);
+    transition: width 0.3s ease-in-out;
+}
+
+.nav-link-animated:hover::after,
+.nav-link-animated.active::after {
+    width: 100%;
+}
+
+
+/* 3. Card Tilt Effect (Preparation) */
+.tilt-card {
+    transform-style: preserve-3d;
+    transition: transform 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+
+/* Timeline Section */
+<section class="py-20 bg-white">
+    <div class="container mx-auto px-4">
+        <div class="text-center mb-16">
+            <!-- ... section title ... -->
+        </div>
+        
+        <div class="relative wrap overflow-hidden p-10 h-full">
+            <!-- Vertical Line -->
+            <div class="border-2-2 absolute border-opacity-20 border-primary/50 h-full border" style="left: 50%"></div>
+
+            <!-- Right Timeline Item -->
+            <div class="mb-8 flex justify-between items-center w-full right-timeline">
+                <div class="order-1 w-5/12"></div>
+                <div class="z-20 flex items-center order-1 bg-primary shadow-xl w-12 h-12 rounded-full">
+                    <h1 class="mx-auto font-semibold text-lg text-white">1</h1>
+                </div>
+                <div class="order-1 bg-primary/10 rounded-lg shadow-xl w-5/12 px-6 py-4" data-aos="fade-left">
+                    <h3 class="font-bold text-primary text-xl">2023 - Awal</h3>
+                    <p class="text-sm leading-snug tracking-wide text-gray-600">Ide awal JabarUMKM Hub terbentuk dari keprihatinan terhadap digitalisasi UMKM.</p>
+                </div>
+            </div>
+
+            <!-- Left Timeline Item -->
+            <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
+                <div class="order-1 w-5/12"></div>
+                <div class="z-20 flex items-center order-1 bg-accent shadow-xl w-12 h-12 rounded-full">
+                    <h1 class="mx-auto text-white font-semibold text-lg">2</h1>
+                </div>
+                <div class="order-1 bg-accent/10 rounded-lg shadow-xl w-5/12 px-6 py-4" data-aos="fade-right">
+                    <h3 class="font-bold text-accent text-xl">2023 - Pertengahan</h3>
+                    <p class="text-sm leading-snug tracking-wide text-gray-600">Riset mendalam dan validasi ide kepada para pelaku UMKM di Jawa Barat.</p>
+                </div>
+            </div>
+            
+            <!-- Right Timeline Item -->
+            <div class="mb-8 flex justify-between items-center w-full right-timeline">
+                <div class="order-1 w-5/12"></div>
+                <div class="z-20 flex items-center order-1 bg-highlight shadow-xl w-12 h-12 rounded-full">
+                    <h1 class="mx-auto font-semibold text-lg text-primary">3</h1>
+                </div>
+                <div class="order-1 bg-highlight/10 rounded-lg shadow-xl w-5/12 px-6 py-4" data-aos="fade-left">
+                    <h3 class="font-bold text-yellow-600 text-xl">2024 - Awal</h3>
+                    <p class="text-sm leading-snug tracking-wide text-gray-600">Pengembangan platform versi beta dan peluncuran awal ke publik.</p>
+                </div>
+            </div>
+
+             <!-- Left Timeline Item -->
+             <div class="mb-8 flex justify-between flex-row-reverse items-center w-full left-timeline">
+                <div class="order-1 w-5/12"></div>
+                <div class="z-20 flex items-center order-1 bg-primary shadow-xl w-12 h-12 rounded-full">
+                    <h1 class="mx-auto text-white font-semibold text-lg">4</h1>
+                </div>
+                <div class="order-1 bg-primary/10 rounded-lg shadow-xl w-5/12 px-6 py-4" data-aos="fade-right">
+                    <h3 class="font-bold text-primary text-xl">2024 - Sekarang</h3>
+                    <p class="text-sm leading-snug tracking-wide text-gray-600">Iterasi berkelanjutan berdasarkan feedback dan penambahan fitur-fitur inovatif.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+/* Responsive Timeline */
+@media (max-width: 768px) {
+    .timeline-container .timeline-vertical-line {
+        left: 24px; /* Adjust based on icon size */
+        margin-left: 0;
+    }
+    .timeline-container .timeline-item {
+        margin-bottom: 2rem;
+        width: 100%;
+        padding-left: 60px; /* Space for icon */
+        padding-right: 15px;
+    }
+    .timeline-container .timeline-item.right-timeline,
+    .timeline-container .timeline-item.left-timeline {
+        justify-content: flex-start;
+    }
+    .timeline-container .timeline-item .order-1:not(.rounded-lg) {
+        display: none;
+    }
+    .timeline-container .timeline-item .z-20 {
+        position: absolute;
+        left: 0;
+    }
+    .timeline-container .timeline-item .order-1.rounded-lg {
+        width: 100%;
+    }
+} 
+
+/* Custom Scrollbar Hide */
+.scrollbar-hide {
+    -ms-overflow-style: none;  /* Internet Explorer 10+ */
+    scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;  /* Safari and Chrome */
+}
+
+/* Timeline Responsive Fix */
+@media (max-width: 768px) {
+    .timeline-container {
+        padding: 1rem;
+    }
+    
+    .timeline-item {
+        margin-bottom: 2rem;
+    }
+    
+    .timeline-vertical-line {
+        left: 1rem !important;
+        transform: none !important;
+    }
+    
+    .timeline-item .order-1 {
+        width: 100% !important;
+        margin-left: 3rem;
+    }
+    
+    .timeline-item .order-1:first-child {
+        display: none;
+    }
+}
+
+/* FAQ Responsive Fix */
+@media (max-width: 768px) {
+    .faq-toggle {
+        padding: 1rem 1.5rem;
+    }
+    
+    .faq-content {
+        padding: 0 1.5rem 1.5rem;
+    }
+}
+
+/* Map Responsive Fix */
+@media (max-width: 768px) {
+    #map-container {
+        margin-bottom: 2rem;
+    }
+    
+    #daerah-info {
+        min-height: 250px;
+        margin-bottom: 2rem;
+    }
+}
+
+/* Command Palette Responsive Fix */
+@media (max-width: 768px) {
+    #command-palette {
+        padding-top: 1rem;
+    }
+    
+    #command-palette-content {
+        margin: 0 1rem;
+        max-width: calc(100% - 2rem);
+    }
+} 

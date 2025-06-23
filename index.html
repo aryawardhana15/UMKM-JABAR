@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JabarUMKM Hub - Digitalisasi UMKM Jawa Barat</title>
+    <meta name="description" content="Website edukatif dan eksploratif untuk mendukung digitalisasi produk UMKM dari berbagai kabupaten/kota di Jawa Barat">
+    
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#A05A2C',
+                        accent: '#6B8E23',
+                        highlight: '#F9C74F',
+                        background: '#FAF9F6',
+                        text: '#333333'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 2s infinite',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'slide-down': 'slideDown 0.8s ease-out',
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'scale-in': 'scaleIn 0.6s ease-out',
+                        'rotate-slow': 'rotate 20s linear infinite',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-inter bg-background text-text overflow-x-hidden">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 bg-gradient-to-br from-primary via-accent to-highlight z-[9999] flex items-center justify-center">
+        <div class="text-center">
+            <div class="w-20 h-20 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <h2 class="text-white text-2xl font-poppins font-bold mb-2">JabarUMKM Hub</h2>
+            <p class="text-white/80">Memuat pengalaman terbaik...</p>
+        </div>
+    </div>
+
+    <!-- Header/Navbar -->
+    <header class="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-lg z-50 transition-all duration-300" id="navbar">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3 group cursor-pointer" onclick="window.location.href='index.html'">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-white font-bold text-lg">J</span>
+                    </div>
+                    <span class="font-poppins font-bold text-2xl text-primary group-hover:text-accent transition-colors duration-300">JabarUMKM Hub</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link-animated text-primary font-semibold relative active">Beranda</a>
+                    <a href="tentang.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300 relative">Tentang</a>
+                    <a href="badge.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300 relative">Badge</a>
+                    <a href="produk.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Produk</a>
+                    <a href="kontak.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300 relative">Kontak</a>
+                    <!-- New Command Palette trigger -->
+                    <button id="command-palette-trigger-desktop" class="ml-6 p-2 rounded-full hover:bg-gray-200 transition-colors duration-300 group" aria-label="Buka Command Palette">
+                        <svg class="w-6 h-6 text-gray-500 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center space-x-2">
+                    <!-- Mobile Search Trigger -->
+                    <button id="command-palette-trigger-mobile" class="p-2 rounded-full hover:bg-gray-200 transition-colors duration-300 group" aria-label="Buka Pencarian">
+                        <svg class="w-6 h-6 text-gray-500 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </button>
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4">
+                <div class="flex flex-col space-y-4 bg-white rounded-xl p-4 shadow-lg">
+                    <a href="index.html" class="text-primary font-semibold py-2 px-4 rounded-lg bg-primary/10">Beranda</a>
+                    <a href="tentang.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Tentang</a>
+                    <a href="badge.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Badge</a>
+                    <a href="produk.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Produk</a>
+                    <a href="kontak.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Kontak</a>
+                    <button class="bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-full font-medium mt-2">
+                        Mulai Eksplorasi
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 bg-gradient-to-br from-primary/5 via-accent/5 to-highlight/5 relative overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-20 left-10 w-20 h-20 bg-highlight/20 rounded-full animate-float"></div>
+            <div class="absolute top-40 right-20 w-16 h-16 bg-primary/20 rounded-full animate-float" style="animation-delay: 2s;"></div>
+            <div class="absolute bottom-20 left-1/4 w-12 h-12 bg-accent/20 rounded-full animate-float" style="animation-delay: 4s;"></div>
+            <div class="absolute top-1/2 right-1/3 w-24 h-24 bg-highlight/15 rounded-full animate-pulse-slow"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center max-w-5xl mx-auto">
+                <div class="mb-8" data-aos="fade-down" data-aos-delay="200">
+                    <div class="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 shadow-lg mb-6">
+                        <span class="text-2xl">🌟</span>
+                        <span class="text-sm font-medium text-primary">Platform UMKM Jawa Barat Terdepan</span>
+                    </div>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-poppins font-black text-primary mb-8 leading-tight" data-aos="fade-up" data-aos-delay="400">
+                    Jelajahi <span class="bg-gradient-to-r from-highlight via-accent to-primary bg-clip-text text-transparent animate-pulse-slow">Cita Rasa</span><br>
+                    <span class="text-4xl md:text-6xl">Khas Jawa Barat</span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="600">
+                    Temukan dan dukung produk UMKM berkualitas dari berbagai kabupaten/kota di Jawa Barat. 
+                    Dari kerajinan tangan hingga kuliner tradisional, semuanya ada di sini!
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center" data-aos="fade-up" data-aos-delay="800">
+                    <a href="#peta" class="btn-3d shadow-primary/40 bg-gradient-to-r from-primary to-accent text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-lg transition-all duration-300 transform">
+                        <span class="flex items-center space-x-2">
+                            <span>Mulai Eksplorasi Peta</span>
+                            <span class="transform group-hover:translate-x-1 transition-transform duration-300">🚀</span>
+                        </span>
+                    </a>
+                    <a href="tentang.html" class="btn-3d shadow-highlight/40 bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:shadow-lg transition-all duration-300 transform">
+                        <span class="flex items-center space-x-2">
+                            <span>Tentang Kami</span>
+                            <span class="transform group-hover:rotate-12 transition-transform duration-300">ℹ️</span>
+                        </span>
+                    </a>
+                </div>
+                
+                <!-- Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16" data-aos="fade-up" data-aos-delay="1000">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-primary mb-2" id="stats-regions">19</div>
+                        <div class="text-gray-600">Kabupaten/Kota</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-accent mb-2" id="stats-products">50+</div>
+                        <div class="text-gray-600">Produk UMKM</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-highlight mb-2" id="stats-badges">12</div>
+                        <div class="text-gray-600">Badge Koleksi</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Produk Unggulan Section -->
+    <section class="py-24 bg-gray-50/50">
+        <div class="container mx-auto px-4">
+            <!-- Section Header -->
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full px-6 py-3 mb-6" data-aos="fade-down">
+                    <span class="text-2xl">🛍️</span>
+                    <span class="font-semibold text-primary">Produk Unggulan</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-poppins font-bold text-primary mb-6" data-aos="fade-up">
+                    Temukan <span class="bg-gradient-to-r from-highlight to-accent bg-clip-text text-transparent">Produk UMKM</span> Terbaik
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                    Koleksi produk unggulan dari UMKM terpilih di Jawa Barat. Kualitas terjamin dengan harga terbaik.
+                </p>
+            </div>
+
+            <!-- Product Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
+                <!-- Batik Garut -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transform transition-all duration-300 hover:-translate-y-1" data-aos="fade-up">
+                    <div class="relative h-64 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-brown-600 to-brown-800 group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-black/20"></div>
+                        </div>
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-yellow-400 text-gray-900 text-xs font-semibold px-3 py-1.5 rounded-full shadow-md">Terlaris</span>
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <h3 class="text-3xl font-bold text-white text-center px-4 transform transition-all duration-300 group-hover:scale-110">Batik Garut</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Batik Garut</h4>
+                                <p class="text-2xl font-semibold text-primary">Rp 150.000</p>
+                            </div>
+                            <div class="flex gap-0.5 text-yellow-400">
+                                <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6 line-clamp-2">Batik tradisional Garut dengan motif khas yang menggambarkan kekayaan budaya Jawa Barat</p>
+                        <button class="w-full bg-gradient-to-r from-primary to-accent text-white font-semibold py-3 px-6 rounded-xl shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transform transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-primary/20">
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Keripik Singkong -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transform transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative h-64 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-green-600 to-green-800 group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-black/20"></div>
+                        </div>
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-green-400 text-gray-900 text-xs font-semibold px-3 py-1.5 rounded-full shadow-md">Baru</span>
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <h3 class="text-3xl font-bold text-white text-center px-4 transform transition-all duration-300 group-hover:scale-110">Keripik Singkong</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Keripik Singkong</h4>
+                                <p class="text-2xl font-semibold text-primary">Rp 25.000</p>
+                            </div>
+                            <div class="flex gap-0.5 text-yellow-400">
+                                <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6 line-clamp-2">Keripik singkong renyah dengan berbagai varian rasa dari UMKM Bandung</p>
+                        <button class="w-full bg-gradient-to-r from-primary to-accent text-white font-semibold py-3 px-6 rounded-xl shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transform transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-primary/20">
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Tas Rajut -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transform transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative h-64 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-amber-400 to-amber-600 group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-black/20"></div>
+                        </div>
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-amber-300 text-gray-900 text-xs font-semibold px-3 py-1.5 rounded-full shadow-md">Handmade</span>
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <h3 class="text-3xl font-bold text-white text-center px-4 transform transition-all duration-300 group-hover:scale-110">Tas Rajut</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Tas Rajut</h4>
+                                <p class="text-2xl font-semibold text-primary">Rp 200.000</p>
+                            </div>
+                            <div class="flex gap-0.5 text-yellow-400">
+                                <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6 line-clamp-2">Tas rajut handmade dengan desain unik dan berkualitas tinggi dari pengrajin lokal</p>
+                        <button class="w-full bg-gradient-to-r from-primary to-accent text-white font-semibold py-3 px-6 rounded-xl shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transform transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-primary/20">
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Kopi Arabika -->
+                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transform transition-all duration-300 hover:-translate-y-1" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative h-64 overflow-hidden">
+                        <div class="absolute inset-0 bg-gradient-to-br from-brown-700 to-brown-900 group-hover:scale-105 transition-transform duration-500">
+                            <div class="absolute inset-0 bg-black/20"></div>
+                        </div>
+                        <div class="absolute top-4 left-4">
+                            <span class="bg-yellow-500 text-gray-900 text-xs font-semibold px-3 py-1.5 rounded-full shadow-md">Premium</span>
+                        </div>
+                        <div class="absolute inset-0 flex items-center justify-center">
+                            <h3 class="text-3xl font-bold text-white text-center px-4 transform transition-all duration-300 group-hover:scale-110">Kopi Arabika</h3>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <div>
+                                <h4 class="text-xl font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">Kopi Arabika</h4>
+                                <p class="text-2xl font-semibold text-primary">Rp 85.000</p>
+                            </div>
+                            <div class="flex gap-0.5 text-yellow-400">
+                                <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+                            </div>
+                        </div>
+                        <p class="text-gray-600 mb-6 line-clamp-2">Kopi arabika premium dari perkebunan di Jawa Barat dengan cita rasa yang khas</p>
+                        <button class="w-full bg-gradient-to-r from-primary to-accent text-white font-semibold py-3 px-6 rounded-xl shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transform transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-primary/20">
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- View All Button -->
+            <div class="text-center mt-12">
+                <a href="produk.html" class="inline-flex items-center space-x-2 bg-white px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transform transition-all duration-300 hover:-translate-y-0.5 group">
+                    <span class="font-semibold text-primary group-hover:text-accent transition-colors">Lihat Semua Produk</span>
+                    <span class="text-primary group-hover:translate-x-1 transform transition-transform">→</span>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonial Section -->
+    <section class="py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full px-6 py-3 mb-6" data-aos="fade-down">
+                    <span class="text-2xl">💬</span>
+                    <span class="font-semibold text-primary">Testimonial</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-poppins font-bold text-primary mb-6" data-aos="fade-up">
+                    Apa Kata <span class="bg-gradient-to-r from-highlight to-accent bg-clip-text text-transparent">Mereka</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                    Pendapat dari berbagai pihak tentang platform JabarUMKM Hub
+                </p>
+            </div>
+            
+            <!-- Testimonial Cards -->
+            <div class="flex overflow-x-auto md:grid md:grid-cols-3 gap-6 md:gap-8 pb-4 md:pb-0 scrollbar-hide">
+                <!-- Testimonial 1 -->
+                <div class="flex-shrink-0 w-80 md:w-auto group bg-white rounded-3xl shadow-xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white text-2xl">👨‍💼</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-primary">Ahmad Suryadi</h4>
+                            <p class="text-accent text-sm">Pemilik UMKM Batik</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        "Platform ini sangat membantu dalam memperkenalkan produk batik kami ke pasar yang lebih luas. Fitur interaktifnya membuat pengalaman belajar menjadi menyenangkan."
+                    </p>
+                    <div class="flex text-highlight">
+                        <span class="text-xl">⭐</span>
+                        <span class="text-xl">⭐</span>
+                        <span class="text-xl">⭐</span>
+                        <span class="text-xl">⭐</span>
+                        <span class="text-xl">⭐</span>
+                    </div>
+                </div>
+
+                <!-- Testimonial 2 -->
+                <div class="flex-shrink-0 w-80 md:w-auto group bg-white rounded-3xl shadow-xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-accent to-highlight rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white text-2xl">👩‍🎓</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-accent">Siti Nurhaliza</h4>
+                            <p class="text-highlight text-sm">Mahasiswa Ekonomi</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        "Sebagai mahasiswa, platform ini memberikan insight yang berharga tentang UMKM Jawa Barat. Sistem badge-nya membuat belajar menjadi lebih engaging."
+                    </p>
+                    <div class="flex text-highlight">
+                        <span class="text-xl">⭐</span>
+                        <span class="text-xl">⭐</span>
+                        <span class="text-xl">⭐</span>
+                        <span class="text-xl">⭐</span>
+                        <span class="text-xl">⭐</span>
+                    </div>
+                </div>
+
+                <!-- Testimonial 3 -->
+                <div class="flex-shrink-0 w-80 md:w-auto group bg-white rounded-3xl shadow-xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="flex items-center mb-6">
+                        <div class="w-16 h-16 bg-gradient-to-br from-highlight to-primary rounded-full flex items-center justify-center mr-4">
+                            <span class="text-white text-2xl">👨‍🏫</span>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-lg text-highlight">Dr. Bambang Sutejo</h4>
+                            <p class="text-primary text-sm">Dosen Universitas</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-600 leading-relaxed mb-4">
+                        "Platform yang sangat inovatif dalam mendukung digitalisasi UMKM. Kombinasi edukasi dan teknologi yang tepat untuk era digital."
+                    </p>
+                    <div class="flex text-highlight">
+                        <span class="text-xl">⭐</span>
+                        <span class="text-xl">⭐</span>
+                        <span class="text-xl">⭐</span>
+                        <span class="text-xl">⭐</span>
+                        <span class="text-xl">⭐</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Peta Interaktif -->
+    <section id="peta" class="py-24 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full px-6 py-3 mb-6" data-aos="fade-down">
+                    <span class="text-2xl">🗺️</span>
+                    <span class="font-semibold text-primary">Peta Interaktif</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-poppins font-bold text-primary mb-6" data-aos="fade-up">
+                    Jelajahi Kekayaan <span class="bg-gradient-to-r from-highlight to-accent bg-clip-text text-transparent">UMKM Jawa Barat</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                    Klik pada sebuah daerah di peta untuk melihat potensi UMKM dan produk unggulannya.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8 lg:gap-12 items-center mb-16">
+                <!-- Peta SVG -->
+                <div id="map-container" class="lg:col-span-4 w-full" data-aos="fade-right">
+                    <div id="jabar-map" class="w-full h-auto cursor-pointer"></div>
+                </div>
+
+                <!-- Informasi Daerah
+                <div id="daerah-info" class="lg:col-span-2 p-8 bg-gray-50 rounded-2xl shadow-inner min-h-[350px] flex flex-col justify-center transition-all duration-500" data-aos="fade-left">
+                    <div id="daerah-info-content" class="text-center lg:text-left">
+                        <h3 id="daerah-title" class="text-2xl font-bold text-primary mb-3">Pilih Sebuah Daerah</h3>
+                        <p id="daerah-description" class="text-gray-600 mb-6">Klik pada salah satu area di peta untuk menampilkan informasi detail di sini.</p>
+                        <a href="#" id="daerah-link" class="btn-3d shadow-accent/40 bg-gradient-to-r from-accent to-primary text-white font-bold py-3 px-6 rounded-lg inline-block opacity-0 invisible transition-all duration-300">
+                            Lihat Detail
+                        </a>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </section>
+    
+    <!-- Call to Action Section -->
+    <section class="py-24 bg-primary/5">
+        <!-- ... CTA content ... -->
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-br from-primary to-accent text-white py-16 relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 30px 30px;"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">J</span>
+                        </div>
+                        <span class="font-poppins font-bold text-2xl">JabarUMKM Hub</span>
+                    </div>
+                    <p class="text-white/90 text-lg leading-relaxed mb-6">
+                        Platform edukatif untuk mendukung digitalisasi UMKM Jawa Barat. 
+                        Mari bersama-sama melestarikan dan mengembangkan produk lokal dengan teknologi modern.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                            <span class="text-lg">📧</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                            <span class="text-lg">📱</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                            <span class="text-lg">💬</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Tautan</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-white/80 hover:text-white transition-colors">Beranda</a></li>
+                        <li><a href="tentang.html" class="text-white/80 hover:text-white transition-colors">Tentang</a></li>
+                        <li><a href="badge.html" class="text-white/80 hover:text-white transition-colors">Badge</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Kontak</h4>
+                    <ul class="space-y-3 text-white/80">
+                        <li class="flex items-center space-x-2">
+                            <span>📧</span>
+                            <span>info@jabarumkmhub.com</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <span>📱</span>
+                            <span>@jabarumkmhub</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <span>💬</span>
+                            <span>JabarUMKM Hub</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/20 mt-12 pt-8 text-center text-white/60">
+                <p>&copy; 2024 JabarUMKM Hub. Dibuat dengan ❤️ untuk UMKM Jawa Barat.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
+    <script src="js/main.js" defer></script>
+    <script src="js/map.js" defer></script>
+    <script src="js/command-palette.js" defer></script>
+
+    <!-- Command Palette -->
+    <div id="command-palette" class="fixed inset-0 bg-gray-900 bg-opacity-75 z-[9999] hidden items-start justify-center pt-20">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg transform transition-all opacity-0 scale-95" id="command-palette-content">
+            <div class="relative">
+                <div class="absolute top-3.5 left-4">
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </div>
+                <input type="text" id="command-palette-input" placeholder="Ketik perintah atau cari..." class="w-full pl-12 pr-4 py-4 text-lg border-b border-gray-200 focus:outline-none rounded-t-xl">
+                <div class="absolute top-0 right-0 p-3">
+                    <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-400 bg-gray-100 border border-gray-200 rounded-lg">ESC</kbd>
+                </div>
+            </div>
+            <div id="command-palette-results" class="max-h-96 overflow-y-auto p-2">
+                <!-- Search results will be injected here -->
+            </div>
+            <div class="p-3 border-t border-gray-200 text-xs text-gray-500 flex justify-between bg-gray-50 rounded-b-xl">
+                <div>Gunakan <kbd class="px-1.5 py-1 text-xs font-semibold text-gray-800 bg-white border border-gray-200 rounded-md">↑</kbd> <kbd class="px-1.5 py-1 text-xs font-semibold text-gray-800 bg-white border border-gray-200 rounded-md">↓</kbd> untuk navigasi dan <kbd class="px-1.5 py-1 text-xs font-semibold text-gray-800 bg-white border border-gray-200 rounded-md">Enter</kbd> untuk memilih.</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Region Info Modal -->
+    <div id="region-modal" class="fixed inset-0 bg-gray-900 bg-opacity-60 z-[9998] hidden items-center justify-center transition-opacity duration-300">
+        <div id="region-modal-content" class="bg-white rounded-2xl shadow-2xl w-full max-w-md transform transition-all duration-300 scale-95 opacity-0 p-8 text-center">
+            <div class="relative">
+                <button id="close-modal-btn" class="absolute -top-4 -right-4 w-10 h-10 bg-red-500 text-white rounded-full text-xl hover:bg-red-600 transition-colors flex items-center justify-center shadow-lg">&times;</button>
+                <div id="modal-region-icon" class="text-6xl mb-4">🗺️</div>
+                <h3 id="modal-region-name" class="text-3xl font-poppins font-bold text-primary mb-3">Nama Daerah</h3>
+                <p id="modal-region-description" class="text-gray-600 mb-8">Deskripsi singkat mengenai potensi UMKM di daerah ini.</p>
+                <a href="#" id="modal-region-link" class="btn-3d shadow-accent/40 bg-gradient-to-r from-accent to-primary text-white font-bold py-3 px-8 rounded-full inline-block transition-all duration-300 transform hover:scale-105">
+                    Lihat Produk Unggulan
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <style>
+    @keyframes slideInRight {
+      from { transform: translateX(100%); opacity: 0; }
+      to { transform: translateX(0); opacity: 1; }
+    }
+    .animate-slideInRight { animation: slideInRight 0.4s cubic-bezier(0.4,0,0.2,1); }
+    </style>
+
+    <script>
+    // Drawer hamburger menu (standar dari produk.html/js/cart.js)
+    function openDrawer() {
+        const drawer = document.getElementById('mobile-drawer');
+        if (drawer) { drawer.classList.remove('hidden'); drawer.classList.add('flex'); }
+    }
+    function closeDrawer() {
+        const drawer = document.getElementById('mobile-drawer');
+        if (drawer) { drawer.classList.add('hidden'); drawer.classList.remove('flex'); }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const closeDrawerBtn = document.getElementById('close-drawer');
+        if (hamburgerBtn) hamburgerBtn.onclick = openDrawer;
+        if (closeDrawerBtn) closeDrawerBtn.onclick = closeDrawer;
+    });
+    </script>
+
+    <!-- Chatbot Bubble -->
+    <button id="chatbot-btn" class="fixed bottom-20 right-6 w-12 h-12 bg-gradient-to-r from-primary to-accent rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform z-50">
+        <span class="text-xl text-white">💬</span>
+    </button>
+
+    <!-- Chatbot Modal -->
+    <div id="chatbot-modal" class="fixed bottom-[88px] right-6 z-[9999] hidden">
+        <div id="chatbot-content" class="bg-white w-[280px] h-[400px] rounded-2xl shadow-xl flex flex-col transform transition-all duration-300 origin-bottom-right">
+            <!-- Header -->
+            <div class="px-3 py-2.5 bg-gradient-to-r from-primary to-accent rounded-t-2xl flex items-center justify-between border-b border-white/10">
+                <div class="flex items-center space-x-2">
+                    <div class="w-7 h-7 bg-white/15 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                        <span class="text-base">🤖</span>
+                    </div>
+                    <div class="text-white">
+                        <h3 class="font-bold text-sm">AI Assistant</h3>
+                        <p class="text-[10px] text-white/90">Online</p>
+                    </div>
+                </div>
+                <button id="close-chatbot" class="w-6 h-6 flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/20 text-white/90 hover:text-white transition-all">
+                    <span class="text-sm leading-none">&times;</span>
+                </button>
+            </div>
+            
+            <!-- Chat Messages -->
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-3 space-y-2 bg-gray-50/50">
+                <!-- Messages will be added here by JavaScript -->
+            </div>
+            
+            <!-- Input Area -->
+            <div class="p-2 bg-white border-t border-gray-100">
+                <div class="flex items-center space-x-2">
+                    <div class="flex-1 bg-gray-100 rounded-lg flex items-center transition-all duration-300">
+                        <input type="text" id="chat-input" class="flex-1 bg-transparent px-3 py-2 text-sm focus:outline-none text-gray-700" placeholder="Ketik pesan...">
+                    </div>
+                    <button id="send-chat" class="w-8 h-8 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center text-white hover:shadow-md hover:scale-105 active:scale-95 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform rotate-90" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <style>
+    /* Custom scrollbar untuk chat messages */
+    #chat-messages::-webkit-scrollbar {
+        width: 3px;
+    }
+    #chat-messages::-webkit-scrollbar-track {
+        background: transparent;
+    }
+    #chat-messages::-webkit-scrollbar-thumb {
+        background: #CBD5E1;
+        border-radius: 1.5px;
+    }
+    #chat-messages::-webkit-scrollbar-thumb:hover {
+        background: #94A3B8;
+    }
+    
+    /* Animasi smooth untuk chat messages */
+    .chat-message-in {
+        animation: messageSlideIn 0.2s ease-out;
+    }
+    @keyframes messageSlideIn {
+        from {
+            opacity: 0;
+            transform: translateY(5px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    /* Animasi untuk chatbot modal */
+    #chatbot-modal.show {
+        display: block !important;
+        animation: chatbotShow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    @keyframes chatbotShow {
+        0% {
+            opacity: 0;
+            transform: scale(0.95) translateY(10px);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+    </style>
+
+    <!-- Scripts -->
+    <script src="js/chatbot.js"></script>
+    <script>
+        // Initialize chatbot
+        document.addEventListener('DOMContentLoaded', () => {
+            window.chatbot = new EnhancedChatbot();
+        });
+    </script>
+
+    <style>
+    .product-card {
+        @apply bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1;
+    }
+    
+    .product-image {
+        @apply relative h-64 overflow-hidden;
+    }
+    
+    .product-gradient {
+        @apply absolute inset-0 transition-transform duration-500;
+    }
+    
+    .product-card:hover .product-gradient {
+        transform: scale(1.05);
+    }
+    
+    .product-title {
+        @apply absolute inset-0 flex items-center justify-center;
+        backdrop-filter: blur(0px);
+        transition: backdrop-filter 0.3s ease;
+    }
+    
+    .product-card:hover .product-title {
+        backdrop-filter: blur(2px);
+    }
+    
+    .product-badge {
+        @apply absolute top-4 left-4 text-xs font-semibold px-3 py-1.5 rounded-full shadow-md;
+    }
+    
+    .product-content {
+        @apply p-6;
+    }
+    
+    .product-name {
+        @apply text-xl font-bold text-gray-900 mb-2 transition-colors;
+    }
+    
+    .product-card:hover .product-name {
+        @apply text-primary;
+    }
+    
+    .product-price {
+        @apply text-2xl font-semibold text-primary;
+    }
+    
+    .product-description {
+        @apply text-gray-600 mb-6 line-clamp-2;
+    }
+    
+    .product-button {
+        @apply w-full bg-gradient-to-r from-primary to-accent text-white font-semibold py-3 px-6 rounded-xl shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transform transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-primary/20;
+    }
+    </style>
+</body>
+</html>

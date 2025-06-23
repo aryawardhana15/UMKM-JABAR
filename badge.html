@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Badge Koleksi - JabarUMKM Hub</title>
+    <meta name="description" content="Kumpulkan badge dengan menjelajahi produk UMKM Jawa Barat">
+    
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#A05A2C',
+                        accent: '#6B8E23',
+                        highlight: '#F9C74F',
+                        background: '#FAF9F6',
+                        text: '#333333'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif']
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                        'bounce-slow': 'bounce 2s infinite',
+                        'slide-up': 'slideUp 0.8s ease-out',
+                        'slide-down': 'slideDown 0.8s ease-out',
+                        'fade-in': 'fadeIn 1s ease-out',
+                        'scale-in': 'scaleIn 0.6s ease-out',
+                        'rotate-slow': 'rotate 20s linear infinite',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-inter bg-background text-text overflow-x-hidden">
+    <!-- Loading Screen -->
+    <div id="loading-screen" class="fixed inset-0 bg-gradient-to-br from-primary via-accent to-highlight z-[9999] flex items-center justify-center">
+        <div class="text-center">
+            <div class="w-20 h-20 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <h2 class="text-white text-2xl font-poppins font-bold mb-2">JabarUMKM Hub</h2>
+            <p class="text-white/80">Memuat koleksi badge...</p>
+        </div>
+    </div>
+
+    <!-- Header/Navbar -->
+    <header class="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-lg z-50 transition-all duration-300" id="navbar">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3 group cursor-pointer">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-white font-bold text-lg">J</span>
+                    </div>
+                    <span class="font-poppins font-bold text-2xl text-primary group-hover:text-accent transition-colors duration-300">JabarUMKM Hub</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300 relative">
+                        Beranda
+                    </a>
+                    <a href="tentang.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300 relative">
+                        Tentang
+                    </a>
+                    <a href="badge.html" class="nav-link-animated text-primary font-semibold relative active">
+                        Badge
+                    </a>
+                    <a href="kontak.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300 relative">Kontak</a>
+
+                    <!-- New Command Palette trigger -->
+                    <button id="command-palette-trigger-desktop" class="ml-6 p-2 rounded-full hover:bg-gray-200 transition-colors duration-300 group" aria-label="Buka Command Palette">
+                        <svg class="w-6 h-6 text-gray-500 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </button>
+                </div>
+                
+                <div class="md:hidden flex items-center space-x-2">
+                    <!-- Mobile Search Trigger -->
+                     <button id="command-palette-trigger-mobile" class="p-2 rounded-full hover:bg-gray-200 transition-colors duration-300 group" aria-label="Buka Pencarian">
+                        <svg class="w-6 h-6 text-gray-500 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </button>
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4">
+                <div class="flex flex-col space-y-4 bg-white rounded-xl p-4 shadow-lg">
+                    <a href="index.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Beranda</a>
+                    <a href="tentang.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Tentang</a>
+                    <a href="badge.html" class="text-primary font-semibold py-2 px-4 rounded-lg bg-primary/10">Badge</a>
+                    <a href="kontak.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Kontak</a>
+                    <button class="bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-full font-medium mt-2">
+                        Mulai Eksplorasi
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 bg-gradient-to-br from-primary/5 via-accent/5 to-highlight/5 relative overflow-hidden">
+        <!-- Animated Background Elements -->
+        <div class="absolute inset-0 overflow-hidden">
+            <div class="absolute top-20 left-10 w-20 h-20 bg-highlight/20 rounded-full animate-float"></div>
+            <div class="absolute top-40 right-20 w-16 h-16 bg-primary/20 rounded-full animate-float" style="animation-delay: 2s;"></div>
+            <div class="absolute bottom-20 left-1/4 w-12 h-12 bg-accent/20 rounded-full animate-float" style="animation-delay: 4s;"></div>
+            <div class="absolute top-1/2 right-1/3 w-24 h-24 bg-highlight/15 rounded-full animate-pulse-slow"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center max-w-5xl mx-auto">
+                <div class="mb-8" data-aos="fade-down" data-aos-delay="200">
+                    <div class="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 shadow-lg mb-6">
+                        <span class="text-2xl">🏆</span>
+                        <span class="text-sm font-medium text-primary">Sistem Badge Interaktif</span>
+                    </div>
+                </div>
+                
+                <h1 class="text-5xl md:text-7xl font-poppins font-black text-primary mb-8 leading-tight" data-aos="fade-up" data-aos-delay="400">
+                    Kumpulkan <span class="bg-gradient-to-r from-highlight via-accent to-primary bg-clip-text text-transparent animate-pulse-slow">Badge</span><br>
+                    <span class="text-4xl md:text-6xl">Jawa Barat</span>
+                </h1>
+                
+                <p class="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="600">
+                    Jelajahi produk UMKM Jawa Barat dan kumpulkan badge eksklusif. 
+                    Setiap badge menandakan pencapaian dan pengetahuan Anda tentang kekayaan lokal!
+                </p>
+                
+                <!-- Progress Overview -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16" data-aos="fade-up" data-aos-delay="800">
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-primary mb-2" id="total-badges">0</div>
+                        <div class="text-gray-600">Total Badge</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-accent mb-2" id="unlocked-badges">0</div>
+                        <div class="text-gray-600">Badge Terbuka</div>
+                    </div>
+                    <div class="text-center">
+                        <div class="text-4xl font-bold text-highlight mb-2" id="progress-percentage">0%</div>
+                        <div class="text-gray-600">Progress</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Filter Section -->
+    <section class="py-12 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-wrap justify-center gap-4" data-aos="fade-up">
+                <button class="filter-btn active bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300 transform" data-filter="all">
+                    Semua Badge
+                </button>
+                <button class="filter-btn bg-gray-100 text-gray-700 px-6 py-3 rounded-full font-semibold hover:bg-primary hover:text-white transition-all duration-300 transform" data-filter="exploration">
+                    🗺️ Eksplorasi
+                </button>
+                <button class="filter-btn bg-gray-100 text-gray-700 px-6 py-3 rounded-full font-semibold hover:bg-primary hover:text-white transition-all duration-300 transform" data-filter="product">
+                    🛍️ Produk
+                </button>
+                <button class="filter-btn bg-gray-100 text-gray-700 px-6 py-3 rounded-full font-semibold hover:bg-primary hover:text-white transition-all duration-300 transform" data-filter="special">
+                    ⭐ Khusus
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Badge Grid -->
+    <section class="py-20 bg-gradient-to-br from-gray-50 to-white">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Badge 1: First Visit -->
+                <div class="badge-item unlocked group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4" data-category="special" data-aos="fade-up" data-aos-delay="100">
+                    <div class="relative h-48 bg-gradient-to-br from-highlight/20 to-primary/20 flex items-center justify-center overflow-hidden">
+                        <div class="text-8xl transform group-hover:scale-110 transition-transform duration-500">🎉</div>
+                        <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">✅ Terbuka</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-3 group-hover:text-primary transition-colors">First Visit</h3>
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">Kunjungan pertama Anda ke JabarUMKM Hub</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-accent font-semibold">Khusus</span>
+                            <span class="text-xs text-gray-500">Dibuka: 1 Jan 2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Badge 2: Explorer -->
+                <div class="badge-item unlocked group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4" data-category="exploration" data-aos="fade-up" data-aos-delay="200">
+                    <div class="relative h-48 bg-gradient-to-br from-accent/20 to-highlight/20 flex items-center justify-center overflow-hidden">
+                        <div class="text-8xl transform group-hover:scale-110 transition-transform duration-500">🗺️</div>
+                        <div class="absolute top-4 right-4 bg-green-500 text-white px-3 py-1 rounded-full text-sm font-semibold">✅ Terbuka</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-3 group-hover:text-primary transition-colors">Eksplorator</h3>
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">Mengunjungi 3 kabupaten/kota berbeda</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-accent font-semibold">Eksplorasi</span>
+                            <span class="text-xs text-gray-500">Dibuka: 5 Jan 2024</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Badge 3: Handmade Lover -->
+                <div class="badge-item locked group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 opacity-60" data-category="product" data-aos="fade-up" data-aos-delay="300">
+                    <div class="relative h-48 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center overflow-hidden">
+                        <div class="text-8xl transform group-hover:scale-110 transition-transform duration-500 filter grayscale">🧵</div>
+                        <div class="absolute top-4 right-4 bg-gray-500 text-white px-3 py-1 rounded-full text-sm font-semibold">🔒 Terkunci</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-3 group-hover:text-primary transition-colors">Handmade Lover</h3>
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">Melihat 5 produk handmade</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-accent font-semibold">Produk</span>
+                            <span class="text-xs text-gray-500">Progress: 2/5</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mt-3">
+                            <div class="bg-accent h-2 rounded-full" style="width: 40%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Badge 4: Halal Hunter -->
+                <div class="badge-item locked group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 opacity-60" data-category="product" data-aos="fade-up" data-aos-delay="400">
+                    <div class="relative h-48 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center overflow-hidden">
+                        <div class="text-8xl transform group-hover:scale-110 transition-transform duration-500 filter grayscale">✅</div>
+                        <div class="absolute top-4 right-4 bg-gray-500 text-white px-3 py-1 rounded-full text-sm font-semibold">🔒 Terkunci</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-3 group-hover:text-primary transition-colors">Halal Hunter</h3>
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">Melihat 3 produk halal</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-accent font-semibold">Produk</span>
+                            <span class="text-xs text-gray-500">Progress: 1/3</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mt-3">
+                            <div class="bg-accent h-2 rounded-full" style="width: 33%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Badge 5: Culinary Explorer -->
+                <div class="badge-item locked group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 opacity-60" data-category="product" data-aos="fade-up" data-aos-delay="500">
+                    <div class="relative h-48 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center overflow-hidden">
+                        <div class="text-8xl transform group-hover:scale-110 transition-transform duration-500 filter grayscale">🍽️</div>
+                        <div class="absolute top-4 right-4 bg-gray-500 text-white px-3 py-1 rounded-full text-sm font-semibold">🔒 Terkunci</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-3 group-hover:text-primary transition-colors">Culinary Explorer</h3>
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">Mencoba 10 produk kuliner</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-accent font-semibold">Produk</span>
+                            <span class="text-xs text-gray-500">Progress: 0/10</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mt-3">
+                            <div class="bg-accent h-2 rounded-full" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Badge 6: Craft Master -->
+                <div class="badge-item locked group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 opacity-60" data-category="product" data-aos="fade-up" data-aos-delay="600">
+                    <div class="relative h-48 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center overflow-hidden">
+                        <div class="text-8xl transform group-hover:scale-110 transition-transform duration-500 filter grayscale">🎨</div>
+                        <div class="absolute top-4 right-4 bg-gray-500 text-white px-3 py-1 rounded-full text-sm font-semibold">🔒 Terkunci</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-3 group-hover:text-primary transition-colors">Craft Master</h3>
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">Melihat 8 produk kerajinan</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-accent font-semibold">Produk</span>
+                            <span class="text-xs text-gray-500">Progress: 1/8</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mt-3">
+                            <div class="bg-accent h-2 rounded-full" style="width: 12%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Badge 7: Regional Expert -->
+                <div class="badge-item locked group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 opacity-60" data-category="exploration" data-aos="fade-up" data-aos-delay="700">
+                    <div class="relative h-48 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center overflow-hidden">
+                        <div class="text-8xl transform group-hover:scale-110 transition-transform duration-500 filter grayscale">🏛️</div>
+                        <div class="absolute top-4 right-4 bg-gray-500 text-white px-3 py-1 rounded-full text-sm font-semibold">🔒 Terkunci</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-3 group-hover:text-primary transition-colors">Regional Expert</h3>
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">Mengunjungi 10 kabupaten/kota</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-accent font-semibold">Eksplorasi</span>
+                            <span class="text-xs text-gray-500">Progress: 2/10</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mt-3">
+                            <div class="bg-accent h-2 rounded-full" style="width: 20%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Badge 8: Completionist -->
+                <div class="badge-item locked group bg-white rounded-3xl shadow-xl overflow-hidden hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4 opacity-60" data-category="special" data-aos="fade-up" data-aos-delay="800">
+                    <div class="relative h-48 bg-gradient-to-br from-gray-200 to-gray-300 flex items-center justify-center overflow-hidden">
+                        <div class="text-8xl transform group-hover:scale-110 transition-transform duration-500 filter grayscale">👑</div>
+                        <div class="absolute top-4 right-4 bg-gray-500 text-white px-3 py-1 rounded-full text-sm font-semibold">🔒 Terkunci</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-bold text-xl mb-3 group-hover:text-primary transition-colors">Completionist</h3>
+                        <p class="text-gray-600 text-sm mb-4 leading-relaxed">Membuka semua badge</p>
+                        <div class="flex items-center justify-between">
+                            <span class="text-sm text-accent font-semibold">Khusus</span>
+                            <span class="text-xs text-gray-500">Progress: 2/12</span>
+                        </div>
+                        <div class="w-full bg-gray-200 rounded-full h-2 mt-3">
+                            <div class="bg-accent h-2 rounded-full" style="width: 16%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievement Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <div class="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full px-6 py-3 mb-6" data-aos="fade-down">
+                    <span class="text-2xl">🎯</span>
+                    <span class="font-semibold text-primary">Pencapaian Terbaru</span>
+                </div>
+                <h2 class="text-4xl md:text-5xl font-poppins font-bold text-primary mb-6" data-aos="fade-up">
+                    Pencapaian <span class="bg-gradient-to-r from-highlight to-accent bg-clip-text text-transparent">Anda</span>
+                </h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                    Lihat statistik dan pencapaian Anda dalam menjelajahi UMKM Jawa Barat
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <div class="bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl p-8 text-center" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-6xl mb-4">🗺️</div>
+                    <div class="text-3xl font-bold text-primary mb-2">2</div>
+                    <div class="text-gray-600">Daerah Dikunjungi</div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-accent/10 to-highlight/10 rounded-3xl p-8 text-center" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-6xl mb-4">🛍️</div>
+                    <div class="text-3xl font-bold text-accent mb-2">8</div>
+                    <div class="text-gray-600">Produk Dilihat</div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-highlight/10 to-primary/10 rounded-3xl p-8 text-center" data-aos="fade-up" data-aos-delay="300">
+                    <div class="text-6xl mb-4">🏆</div>
+                    <div class="text-3xl font-bold text-highlight mb-2">2</div>
+                    <div class="text-gray-600">Badge Terbuka</div>
+                </div>
+                
+                <div class="bg-gradient-to-br from-primary/10 to-highlight/10 rounded-3xl p-8 text-center" data-aos="fade-up" data-aos-delay="400">
+                    <div class="text-6xl mb-4">⭐</div>
+                    <div class="text-3xl font-bold text-primary mb-2">16%</div>
+                    <div class="text-gray-600">Progress Total</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-gradient-to-br from-primary to-accent text-white relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 30px 30px;"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10 text-center">
+            <div class="max-w-4xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-poppins font-bold mb-8" data-aos="fade-up">
+                    Siap Mengumpulkan <span class="bg-gradient-to-r from-highlight to-white bg-clip-text text-transparent">Badge</span> Lainnya?
+                </h2>
+                <p class="text-xl mb-12 text-white/90 leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                    Jelajahi lebih banyak produk UMKM Jawa Barat dan buka badge eksklusif lainnya. 
+                    Setiap kunjungan membawa Anda lebih dekat ke pencapaian berikutnya!
+                </p>
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center" data-aos="fade-up" data-aos-delay="400">
+                    <a href="index.html" class="group bg-white text-primary px-10 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 transform">
+                        <span class="flex items-center space-x-2">
+                            <span>Mulai Eksplorasi</span>
+                            <span class="text-2xl group-hover:translate-x-1 transition-transform">🚀</span>
+                        </span>
+                    </a>
+                    <a href="tentang.html" class="group border-2 border-white text-white px-10 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-primary transition-all duration-300 transform hover:scale-105">
+                        <span class="flex items-center space-x-2">
+                            <span>Pelajari Lebih Lanjut</span>
+                            <span class="text-2xl group-hover:rotate-12 transition-transform">📚</span>
+                        </span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gradient-to-br from-primary to-accent text-white py-16 relative overflow-hidden">
+        <!-- Background Pattern -->
+        <div class="absolute inset-0 opacity-10">
+            <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 30px 30px;"></div>
+        </div>
+        
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div class="md:col-span-2">
+                    <div class="flex items-center space-x-3 mb-6">
+                        <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
+                            <span class="text-white font-bold text-xl">J</span>
+                        </div>
+                        <span class="font-poppins font-bold text-2xl">JabarUMKM Hub</span>
+                    </div>
+                    <p class="text-white/90 text-lg leading-relaxed mb-6">
+                        Platform edukatif untuk mendukung digitalisasi UMKM Jawa Barat. 
+                        Mari bersama-sama melestarikan dan mengembangkan produk lokal dengan teknologi modern.
+                    </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                            <span class="text-lg">📧</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                            <span class="text-lg">📱</span>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                            <span class="text-lg">💬</span>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Tautan</h4>
+                    <ul class="space-y-3">
+                        <li><a href="index.html" class="text-white/80 hover:text-white transition-colors">Beranda</a></li>
+                        <li><a href="tentang.html" class="text-white/80 hover:text-white transition-colors">Tentang</a></li>
+                        <li><a href="badge.html" class="text-white font-semibold">Badge</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-bold text-lg mb-6">Kontak</h4>
+                    <ul class="space-y-3 text-white/80">
+                        <li class="flex items-center space-x-2">
+                            <span>📧</span>
+                            <span>info@jabarumkmhub.com</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <span>📱</span>
+                            <span>@jabarumkmhub</span>
+                        </li>
+                        <li class="flex items-center space-x-2">
+                            <span>💬</span>
+                            <span>JabarUMKM Hub</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/20 mt-12 pt-8 text-center text-white/60">
+                <p>&copy; 2024 JabarUMKM Hub. Dibuat dengan ❤️ untuk UMKM Jawa Barat.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/badge.js"></script>
+    <script src="js/command-palette.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true,
+        });
+    </script>
+
+    <!-- Command Palette -->
+    <div id="command-palette" class="fixed inset-0 bg-gray-900 bg-opacity-75 z-[9999] hidden items-start justify-center pt-20">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg transform transition-all opacity-0 scale-95" id="command-palette-content">
+            <div class="relative">
+                <div class="absolute top-3.5 left-4">
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </div>
+                <input type="text" id="command-palette-input" placeholder="Ketik perintah atau cari..." class="w-full pl-12 pr-4 py-4 text-lg border-b border-gray-200 focus:outline-none rounded-t-xl">
+                <div class="absolute top-0 right-0 p-3">
+                    <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-400 bg-gray-100 border border-gray-200 rounded-lg">ESC</kbd>
+                </div>
+            </div>
+            <div id="command-palette-results" class="max-h-96 overflow-y-auto p-2">
+                <!-- Search results will be injected here -->
+            </div>
+            <div class="p-3 border-t border-gray-200 text-xs text-gray-500 flex justify-between bg-gray-50 rounded-b-xl">
+                <div>Gunakan <kbd class="px-1.5 py-1 text-xs font-semibold text-gray-800 bg-white border border-gray-200 rounded-md">↑</kbd> <kbd class="px-1.5 py-1 text-xs font-semibold text-gray-800 bg-white border border-gray-200 rounded-md">↓</kbd> untuk navigasi dan <kbd class="px-1.5 py-1 text-xs font-semibold text-gray-800 bg-white border border-gray-200 rounded-md">Enter</kbd> untuk memilih.</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

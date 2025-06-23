@@ -1,0 +1,265 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <!-- Topographic-style gradient -->
+    <linearGradient id="landGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#e8f1f2;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#b8d8d8;stop-opacity:1" />
+    </linearGradient>
+    
+    <!-- Water gradient -->
+    <linearGradient id="waterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#7eb9e8;stop-opacity:0.7" />
+      <stop offset="100%" style="stop-color:#3a7bd5;stop-opacity:0.9" />
+    </linearGradient>
+    
+    <!-- Mountain pattern -->
+    <pattern id="mountainPattern" patternUnits="userSpaceOnUse" width="30" height="30">
+      <path d="M0,30 L15,0 L30,30 Z" fill="#8d8d8d" opacity="0.3"/>
+    </pattern>
+    
+    <!-- Forest pattern -->
+    <pattern id="forestPattern" patternUnits="userSpaceOnUse" width="20" height="20">
+      <circle cx="5" cy="15" r="4" fill="#2d6a4f" opacity="0.4"/>
+      <circle cx="10" cy="10" r="4" fill="#2d6a4f" opacity="0.4"/>
+      <circle cx="15" cy="15" r="4" fill="#2d6a4f" opacity="0.4"/>
+    </pattern>
+    
+    <!-- Urban pattern -->
+    <pattern id="urbanPattern" patternUnits="userSpaceOnUse" width="10" height="10">
+      <rect x="2" y="2" width="6" height="6" fill="#555" opacity="0.2"/>
+    </pattern>
+    
+    <!-- Custom filters -->
+    <filter id="regionShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+      <feOffset dx="2" dy="3"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.2"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    
+    <filter id="textOutline" color-interpolation-filters="sRGB">
+      <feMorphology in="SourceAlpha" operator="dilate" radius="1"/>
+      <feComposite in="SourceGraphic" operator="over"/>
+    </filter>
+    
+    <!-- Style definitions -->
+    <style>
+      .region-label {
+        font-family: 'Poppins', sans-serif;
+        font-size: 10px;
+        font-weight: 600;
+        fill: #2d3748;
+        text-anchor: middle;
+        filter: url(#textOutline);
+        paint-order: stroke;
+        stroke: white;
+        stroke-width: 2px;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+      }
+      .city-label {
+        font-family: 'Poppins', sans-serif;
+        font-size: 8px;
+        font-weight: 500;
+        fill: #2d3748;
+        text-anchor: middle;
+      }
+      .title {
+        font-family: 'Poppins', sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        fill: #2d3748;
+        text-anchor: middle;
+      }
+    </style>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="600" fill="url(#landGradient)"/>
+  
+  <!-- Water bodies -->
+  <path d="M100,500 Q250,450 400,550 Q550,600 700,500 L800,600 L0,600 Z" fill="url(#waterGradient)"/>
+  
+  <!-- Mountain ranges -->
+  <path d="M150,300 Q200,200 250,250 Q300,150 350,200 Q400,100 450,250 Q500,180 550,300" fill="#a5a5a5" fill-opacity="0.2" stroke="#6b7280" stroke-width="1" stroke-dasharray="3,2"/>
+  <path d="M200,350 Q250,250 300,300 Q350,200 400,250 Q450,150 500,300" fill="url(#mountainPattern)" opacity="0.6"/>
+  
+  <!-- Forest areas -->
+  <path d="M250,400 Q300,350 350,400 Q400,380 450,450" fill="url(#forestPattern)"/>
+  
+  <!-- Urban areas -->
+  <circle cx="300" cy="200" r="25" fill="url(#urbanPattern)"/>
+  <circle cx="500" cy="180" r="20" fill="url(#urbanPattern)"/>
+  <circle cx="600" cy="200" r="22" fill="url(#urbanPattern)"/>
+  
+  <!-- Region boundaries (simplified West Java shape) -->
+  <g id="regions" filter="url(#regionShadow)">
+    <!-- Bandung area (mountainous) -->
+    <path d="M280,180 L320,160 L350,180 L330,200 L300,220 L280,200 Z" fill="#4a6fa5" stroke="#3a5a80" stroke-width="1.5" fill-opacity="0.8" data-region-id="bandung">
+      <title>Bandung</title>
+    </path>
+    
+    <!-- Sumedang -->
+    <path d="M420,240 L460,220 L480,240 L460,260 L440,280 L420,260 Z" fill="#6b9080" stroke="#5a7d6d" stroke-width="1.5" fill-opacity="0.8" data-region-id="sumedang">
+      <title>Sumedang</title>
+    </path>
+    
+    <!-- Tasikmalaya -->
+    <path d="M380,280 L420,260 L460,280 L480,300 L440,320 L400,300 Z" fill="#83b692" stroke="#6d9a7a" stroke-width="1.5" fill-opacity="0.8" data-region-id="tasikmalaya">
+      <title>Tasikmalaya</title>
+    </path>
+    
+    <!-- Majalengka -->
+    <path d="M480,280 L520,260 L540,280 L520,300 L500,320 L480,300 Z" fill="#bde0fe" stroke="#a4c7e5" stroke-width="1.5" fill-opacity="0.8" data-region-id="majalengka">
+      <title>Majalengka</title>
+    </path>
+    
+    <!-- Kuningan -->
+    <path d="M520,320 L560,300 L580,320 L560,340 L540,360 L520,340 Z" fill="#ffc8dd" stroke="#e6afc4" stroke-width="1.5" fill-opacity="0.8" data-region-id="kuningan">
+      <title>Kuningan</title>
+    </path>
+    
+    <!-- Karawang -->
+    <path d="M580,240 L620,220 L640,240 L620,260 L600,280 L580,260 Z" fill="#b7b7a4" stroke="#9d9d8a" stroke-width="1.5" fill-opacity="0.8" data-region-id="karawang">
+      <title>Karawang</title>
+    </path>
+    
+    <!-- Indramayu -->
+    <path d="M560,280 L600,260 L620,280 L600,300 L580,320 L560,300 Z" fill="#ffe8d6" stroke="#e6cfb5" stroke-width="1.5" fill-opacity="0.8" data-region-id="indramayu">
+      <title>Indramayu</title>
+    </path>
+    
+    <!-- Pangandaran (coastal) -->
+    <path d="M500,360 L540,340 L560,360 L540,380 L520,400 L500,380 Z" fill="#ffafcc" stroke="#e696b3" stroke-width="1.5" fill-opacity="0.8" data-region-id="pangandaran">
+      <title>Pangandaran</title>
+    </path>
+    
+    <!-- Bogor -->
+    <path d="M400,120 L440,100 L460,120 L440,140 L420,160 L400,140 Z" fill="#264653" stroke="#1a343e" stroke-width="1.5" fill-opacity="0.8" data-region-id="bogor">
+      <title>Bogor</title>
+    </path>
+    
+    <!-- Depok -->
+    <path d="M460,140 L500,120 L520,140 L500,160 L480,180 L460,160 Z" fill="#7f5539" stroke="#64412a" stroke-width="1.5" fill-opacity="0.8" data-region-id="depok">
+      <title>Depok</title>
+    </path>
+    
+    <!-- Subang -->
+    <path d="M540,160 L580,140 L600,160 L580,180 L560,200 L540,180 Z" fill="#ddbea9" stroke="#c4a590" stroke-width="1.5" fill-opacity="0.8" data-region-id="subang">
+      <title>Subang</title>
+    </path>
+    
+    <!-- Cirebon -->
+    <path d="M500,180 L550,160 L580,180 L560,200 L520,220 L500,200 Z" fill="#a68a64" stroke="#8a6f4a" stroke-width="1.5" fill-opacity="0.8" data-region-id="cirebon">
+      <title>Cirebon</title>
+    </path>
+    
+    <!-- Sukabumi -->
+    <path d="M200,300 L240,280 L280,300 L260,320 L220,340 L200,320 Z" fill="#f4a261" stroke="#d98b4a" stroke-width="1.5" fill-opacity="0.8" data-region-id="sukabumi">
+      <title>Sukabumi</title>
+    </path>
+    
+    <!-- Bekasi -->
+    <path d="M600,200 L640,180 L660,200 L640,220 L620,240 L600,220 Z" fill="#e76f51" stroke="#c95a3a" stroke-width="1.5" fill-opacity="0.8" data-region-id="bekasi">
+      <title>Bekasi</title>
+    </path>
+    
+    <!-- Cikarang -->
+    <path d="M620,160 L660,140 L680,160 L660,180 L640,200 L620,180 Z" fill="#8d99ae" stroke="#748093" stroke-width="1.5" fill-opacity="0.8" data-region-id="cikarang">
+      <title>Cikarang</title>
+    </path>
+  </g>
+  
+  <!-- Major roads -->
+  <path d="M300,200 L400,240 L460,280 L520,320" fill="none" stroke="#2d3748" stroke-width="2" stroke-dasharray="5,3"/>
+  <path d="M500,180 L520,220 L540,280 L560,320" fill="none" stroke="#2d3748" stroke-width="2" stroke-dasharray="5,3"/>
+  <path d="M600,200 L580,240 L560,280 L540,320" fill="none" stroke="#2d3748" stroke-width="2" stroke-dasharray="5,3"/>
+  
+  <!-- River -->
+  <path d="M250,250 Q300,280 350,260 Q400,290 450,270 Q500,300 550,280" fill="none" stroke="#3a86ff" stroke-width="1.5" stroke-linecap="round"/>
+  
+  <!-- Region labels -->
+  <text x="330" y="215" class="region-label">Bandung</text>
+  <text x="450" y="250" class="region-label">Sumedang</text>
+  <text x="420" y="300" class="region-label">Tasikmalaya</text>
+  <text x="510" y="300" class="region-label">Majalengka</text>
+  <text x="550" y="330" class="region-label">Kuningan</text>
+  <text x="610" y="255" class="region-label">Karawang</text>
+  <text x="590" y="295" class="region-label">Indramayu</text>
+  <text x="530" y="375" class="region-label">Pangandaran</text>
+  <text x="430" y="135" class="region-label">Bogor</text>
+  <text x="490" y="155" class="region-label">Depok</text>
+  <text x="570" y="175" class="region-label">Subang</text>
+  <text x="535" y="195" class="region-label">Cirebon</text>
+  <text x="240" y="315" class="region-label">Sukabumi</text>
+  <text x="630" y="215" class="region-label">Bekasi</text>
+  <text x="650" y="175" class="region-label">Cikarang</text>
+  
+  <!-- City markers -->
+  <g id="city-markers">
+    <circle cx="300" cy="200" r="4" fill="#e63946" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="500" cy="180" r="3" fill="#e63946" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="600" cy="200" r="3" fill="#e63946" stroke="#fff" stroke-width="1.5"/>
+    <circle cx="400" cy="240" r="3" fill="#e63946" stroke="#fff" stroke-width="1.5"/>
+  </g>
+  
+  <!-- City labels -->
+  <text x="300" y="190" class="city-label">Kota Bandung</text>
+  <text x="500" y="170" class="city-label">Kota Cirebon</text>
+  <text x="600" y="190" class="city-label">Kota Bekasi</text>
+  
+  <!-- Title -->
+  <text x="400" y="50" class="title">Peta UMKM Jawa Barat</text>
+  
+  <!-- Legend -->
+  <g transform="translate(30, 450)">
+    <rect x="0" y="0" width="200" height="150" fill="white" fill-opacity="0.8" stroke="#dee2e6" stroke-width="1" rx="8"/>
+    <text x="100" y="25" font-family="Poppins" font-size="14" font-weight="600" text-anchor="middle" fill="#2d3748">Keterangan</text>
+    
+    <rect x="15" y="40" width="15" height="15" fill="#4a6fa5" stroke="#3a5a80" stroke-width="1" rx="3"/>
+    <text x="40" y="52" font-family="Poppins" font-size="10" font-weight="500" fill="#2d3748">Kabupaten/Kota</text>
+    
+    <circle cx="22" cy="75" r="4" fill="#e63946" stroke="#fff" stroke-width="1"/>
+    <text x="40" y="77" font-family="Poppins" font-size="10" font-weight="500" fill="#2d3748">Kota Utama</text>
+    
+    <path d="M15,90 L30,90" stroke="#2d3748" stroke-width="2" stroke-dasharray="5,3"/>
+    <text x="40" y="92" font-family="Poppins" font-size="10" font-weight="500" fill="#2d3748">Jalan Raya</text>
+    
+    <path d="M15,105 L30,105" stroke="#3a86ff" stroke-width="1.5" stroke-linecap="round"/>
+    <text x="40" y="107" font-family="Poppins" font-size="10" font-weight="500" fill="#2d3748">Sungai</text>
+    
+    <rect x="15" y="120" width="15" height="15" fill="url(#mountainPattern)" opacity="0.6" stroke="#6b7280" stroke-width="1" rx="3"/>
+    <text x="40" y="132" font-family="Poppins" font-size="10" font-weight="500" fill="#2d3748">Daerah Pegunungan</text>
+  </g>
+  
+  <!-- Scale bar -->
+  <g transform="translate(600, 520)">
+    <rect x="0" y="0" width="120" height="8" fill="#2d3748" rx="2"/>
+    <rect x="0" y="0" width="30" height="8" fill="#e63946" rx="2"/>
+    <text x="60" y="25" font-family="Poppins" font-size="10" font-weight="500" text-anchor="middle" fill="#2d3748">100 km</text>
+  </g>
+  
+  <!-- Compass -->
+  <g transform="translate(700, 100)">
+    <circle cx="0" cy="0" r="30" fill="white" fill-opacity="0.8" stroke="#adb5bd" stroke-width="1"/>
+    <path d="M0 -20 L5 0 L0 10 L-5 0 Z" fill="#e63946"/>
+    <text x="0" y="-12" text-anchor="middle" font-family="Poppins" font-size="8" font-weight="bold" fill="#2d3748">N</text>
+    <text x="0" y="25" text-anchor="middle" font-family="Poppins" font-size="8" font-weight="bold" fill="#2d3748">S</text>
+    <text x="-25" y="5" text-anchor="middle" font-family="Poppins" font-size="8" font-weight="bold" fill="#2d3748">W</text>
+    <text x="25" y="5" text-anchor="middle" font-family="Poppins" font-size="8" font-weight="bold" fill="#2d3748">E</text>
+  </g>
+  
+  <!-- Weather info (matching your screenshot) -->
+  <g transform="translate(650, 30)">
+    <rect x="0" y="0" width="120" height="80" fill="white" fill-opacity="0.8" stroke="#dee2e6" stroke-width="1" rx="8"/>
+    <text x="60" y="20" font-family="Poppins" font-size="14" font-weight="600" text-anchor="middle" fill="#2d3748">28°C</text>
+    <text x="60" y="40" font-family="Poppins" font-size="12" font-weight="500" text-anchor="middle" fill="#4a5568">Cerah</text>
+    <text x="60" y="60" font-family="Poppins" font-size="10" font-weight="500" text-anchor="middle" fill="#4a5568">11.54 23/06/2025</text>
+  </g>
+</svg>

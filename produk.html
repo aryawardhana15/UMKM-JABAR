@@ -1,0 +1,853 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Produk UMKM Jawa Barat - JabarUMKM Hub</title>
+    <meta name="description" content="Jelajahi produk UMKM terbaik dari berbagai daerah di Jawa Barat.">
+
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- AOS Animation Library -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* Badge Styles */
+        .badge {
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 0.25rem 0.75rem;
+            border-radius: 9999px;
+            display: inline-block;
+            transform: rotate(-10deg);
+            transition: transform 0.3s ease;
+        }
+        .badge-popular { background: linear-gradient(90deg, #F9C74F, #A05A2C); color: #fff; }
+        .badge-new { background: linear-gradient(90deg, #6B8E23, #F9C74F); color: #fff; }
+        .badge-best { background: linear-gradient(90deg, #A05A2C, #6B8E23); color: #fff; }
+
+        /* Smooth Button Effect */
+        .smooth-btn {
+            transition: all 0.3s ease;
+        }
+        .smooth-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-8px); }
+            100% { transform: translateY(0px); }
+        }
+        .floating {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #A05A2C;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6B8E23;
+        }
+
+        /* Chat Bubble */
+        .chat-bubble {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: #6B8E23;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        .chat-bubble:hover {
+            transform: scale(1.1);
+            background: #A05A2C;
+        }
+
+        /* Product Card Styles */
+        .produk-card {
+            background: white;
+            border-radius: 1.5rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        .produk-card:hover {
+            transform: translateY(-5px) scale(1.02);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+        }
+        .produk-card:nth-child(4n+1) { background: linear-gradient(135deg, #fff 70%, #F9C74F10 100%); }
+        .produk-card:nth-child(4n+2) { background: linear-gradient(135deg, #fff 70%, #6B8E2310 100%); }
+        .produk-card:nth-child(4n+3) { background: linear-gradient(135deg, #fff 70%, #A05A2C10 100%); }
+        .produk-card .produk-img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            border-radius: 1.5rem 1.5rem 0 0;
+            transition: transform 0.4s ease;
+        }
+        .produk-card:hover .produk-img {
+            transform: scale(1.05);
+        }
+        .produk-card .produk-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            z-index: 3;
+        }
+        .produk-card .produk-info {
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            flex-grow: 1;
+        }
+        .produk-card .produk-title {
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #A05A2C;
+        }
+        .produk-card .produk-price {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #6B8E23;
+        }
+        .produk-card .produk-desc {
+            font-size: 0.875rem;
+            color: #555;
+            line-height: 1.4;
+            flex-grow: 1;
+        }
+        .produk-card .produk-rating {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.875rem;
+        }
+        .produk-card .produk-action {
+            margin-top: auto;
+            display: flex;
+            gap: 0.5rem;
+        }
+        /* Responsive Styles */
+        @media (max-width: 640px) {
+            .produk-card {
+                border-radius: 1rem;
+            }
+            .produk-card .produk-img {
+                aspect-ratio: 3/2;
+            }
+            .produk-card .produk-info {
+                padding: 1rem;
+            }
+            .produk-card .produk-title {
+                font-size: 1rem;
+            }
+            .produk-card .produk-price {
+                font-size: 0.875rem;
+            }
+            .produk-card .produk-desc {
+                font-size: 0.75rem;
+            }
+        }
+        .produk-card-featured {
+            box-shadow: 0 12px 40px 0 #A05A2C30, 0 2px 8px 0 #F9C74F20;
+            border: 2px solid #F9C74F;
+            transform: scale(1.04);
+            z-index: 2;
+            background: linear-gradient(135deg, #fff 60%, #F9C74F20 100%);
+        }
+        @media (max-width: 640px) {
+            .produk-card-featured {
+                transform: scale(1.01);
+                border-width: 1.5px;
+            }
+        }
+
+        /* Custom scrollbar untuk chat messages */
+        #chat-messages::-webkit-scrollbar {
+            width: 3px;
+        }
+        #chat-messages::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        #chat-messages::-webkit-scrollbar-thumb {
+            background: #CBD5E1;
+            border-radius: 1.5px;
+        }
+        #chat-messages::-webkit-scrollbar-thumb:hover {
+            background: #94A3B8;
+        }
+        
+        /* Animasi smooth untuk chat messages */
+        .chat-message-in {
+            animation: messageSlideIn 0.2s ease-out;
+        }
+        @keyframes messageSlideIn {
+            from {
+                opacity: 0;
+                transform: translateY(5px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Animasi untuk chatbot modal */
+        #chatbot-modal.show {
+            display: block !important;
+            animation: chatbotShow 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes chatbotShow {
+            0% {
+                opacity: 0;
+                transform: scale(0.95) translateY(10px);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
+        }
+    </style>
+
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#A05A2C',
+                        accent: '#6B8E23',
+                        highlight: '#F9C74F',
+                        background: '#FAF9F6',
+                        text: '#333333'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif']
+                    },
+                    boxShadow: {
+                        'soft': '0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.025)',
+                        'soft-lg': '0 20px 25px -5px rgba(0, 0, 0, 0.05), 0 10px 10px -5px rgba(0, 0, 0, 0.02)'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-background font-inter min-h-screen">
+
+    <!-- Header/Navbar -->
+    <header class="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-lg z-50 transition-all duration-300" id="navbar">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3 group cursor-pointer" onclick="window.location.href='index.html'">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-white font-bold text-lg">J</span>
+                    </div>
+                    <span class="font-poppins font-bold text-2xl text-primary group-hover:text-accent transition-colors duration-300">JabarUMKM Hub</span>
+                </div>
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300 relative">Beranda</a>
+                    <a href="tentang.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300 relative">Tentang</a>
+                    <a href="badge.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300 relative">Badge</a>
+                    <a href="kontak.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300 relative">Kontak</a>
+                    <!-- New Command Palette trigger -->
+                    <button id="command-palette-trigger-desktop" class="ml-6 p-2 rounded-full hover:bg-gray-200 transition-colors duration-300 group" aria-label="Buka Command Palette">
+                        <svg class="w-6 h-6 text-gray-500 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </button>
+                </div>
+                <div class="md:hidden flex items-center space-x-2">
+                    <!-- Mobile Search Trigger -->
+                    <button id="command-palette-trigger-mobile" class="p-2 rounded-full hover:bg-gray-200 transition-colors duration-300 group" aria-label="Buka Pencarian">
+                        <svg class="w-6 h-6 text-gray-500 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    </button>
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                </div>
+            </div>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4">
+                <div class="flex flex-col space-y-4 bg-white rounded-xl p-4 shadow-lg">
+                    <a href="index.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Beranda</a>
+                    <a href="tentang.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Tentang</a>
+                    <a href="badge.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Badge</a>
+                    <a href="kontak.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Kontak</a>
+                    <button class="bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-full font-medium mt-2">
+                        Mulai Eksplorasi
+                    </button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="py-12 mb-3 pt-20">
+        <div class="container mx-auto px-4 text-center">
+            <h1 class="text-4xl md:text-5xl font-poppins font-bold text-primary mb-2" data-aos="fade-down">
+                Produk UMKM <span id="nama-daerah" class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Semua</span>
+            </h1>
+            <p class="text-lg text-gray-600 max-w-2xl mx-auto mb-6" data-aos="fade-up">
+                Temukan produk-produk unggulan dari berbagai daerah di Jawa Barat. Dukung UMKM lokal dan rasakan kualitas terbaik dari produk asli daerah!
+            </p>
+        </div>
+    </section>
+
+    <!-- Filter & Sorting -->
+    <section class="container mx-auto px-4 mb-8">
+        <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4 bg-white p-4 rounded-xl shadow-sm">
+            <div class="flex gap-2 flex-wrap items-center">
+                <div class="relative flex-1 min-w-[200px]">
+                    <i class="fas fa-search absolute left-3 top-3 text-gray-400"></i>
+                    <input type="text" id="search-product" placeholder="Cari produk..." 
+                           class="pl-10 pr-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary focus:outline-none w-full bg-gray-50" 
+                           aria-label="Cari produk">
+                </div>
+                <div class="relative">
+                    <i class="fas fa-map-marker-alt absolute left-3 top-3 text-gray-400"></i>
+                    <select id="filter-daerah" class="pl-10 pr-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary focus:outline-none bg-gray-50" aria-label="Filter daerah">
+                        <option value="">Semua Daerah</option>
+                    </select>
+                </div>
+            </div>
+            <div class="flex gap-2 items-center">
+                <label for="sort-product" class="text-gray-600 flex items-center">
+                    <i class="fas fa-sort-amount-down mr-2"></i> Urutkan:
+                </label>
+                <select id="sort-product" class="px-4 py-2 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary focus:outline-none bg-gray-50">
+                    <option value="popular">Paling Populer</option>
+                    <option value="newest">Terbaru</option>
+                    <option value="price-asc">Harga Terendah</option>
+                    <option value="price-desc">Harga Tertinggi</option>
+                </select>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main Content - Product Display -->
+    <main class="container mx-auto px-4 pb-12 mt-28">
+        <div id="no-product-message" class="hidden text-center text-xl text-gray-500 py-24">
+            <img src="https://placehold.co/200x200/cccccc/fff?text=No+Product" alt="Tidak ada produk" class="mx-auto mb-4 rounded-full">
+            <div class="text-4xl mb-2">😔</div>
+            Tidak ada produk untuk pencarian/filter ini.
+        </div>
+        
+        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+            <!-- Produk akan di-generate oleh JS -->
+        </div>
+        
+        <!-- Loading Skeleton -->
+        <div id="loading-skeleton" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-8">
+            <div class="animate-pulse bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="w-full aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200"></div>
+                <div class="p-4">
+                    <div class="h-6 bg-gray-200 rounded w-3/4 mb-2"></div>
+                    <div class="h-4 bg-gray-200 rounded w-1/2 mb-4"></div>
+                    <div class="h-4 bg-gray-200 rounded w-full mb-2"></div>
+                    <div class="h-4 bg-gray-200 rounded w-5/6 mb-4"></div>
+                    <div class="flex gap-2">
+                        <div class="h-8 bg-gray-200 rounded-lg w-1/2"></div>
+                        <div class="h-8 bg-gray-200 rounded-lg w-1/2"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Repeat skeleton cards -->
+            <div class="animate-pulse bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="w-full aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200"></div>
+                <div class="p-4">
+                    <div class="h-6 bg-gray-200 rounded w-3/4 mb-2"></div>
+                    <div class="h-4 bg-gray-200 rounded w-1/2 mb-4"></div>
+                    <div class="h-4 bg-gray-200 rounded w-full mb-2"></div>
+                    <div class="h-4 bg-gray-200 rounded w-5/6 mb-4"></div>
+                    <div class="flex gap-2">
+                        <div class="h-8 bg-gray-200 rounded-lg w-1/2"></div>
+                        <div class="h-8 bg-gray-200 rounded-lg w-1/2"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="animate-pulse bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="w-full aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200"></div>
+                <div class="p-4">
+                    <div class="h-6 bg-gray-200 rounded w-3/4 mb-2"></div>
+                    <div class="h-4 bg-gray-200 rounded w-1/2 mb-4"></div>
+                    <div class="h-4 bg-gray-200 rounded w-full mb-2"></div>
+                    <div class="h-4 bg-gray-200 rounded w-5/6 mb-4"></div>
+                    <div class="flex gap-2">
+                        <div class="h-8 bg-gray-200 rounded-lg w-1/2"></div>
+                        <div class="h-8 bg-gray-200 rounded-lg w-1/2"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="animate-pulse bg-white rounded-xl shadow-sm overflow-hidden">
+                <div class="w-full aspect-[4/3] bg-gradient-to-br from-gray-100 to-gray-200"></div>
+                <div class="p-4">
+                    <div class="h-6 bg-gray-200 rounded w-3/4 mb-2"></div>
+                    <div class="h-4 bg-gray-200 rounded w-1/2 mb-4"></div>
+                    <div class="h-4 bg-gray-200 rounded w-full mb-2"></div>
+                    <div class="h-4 bg-gray-200 rounded w-5/6 mb-4"></div>
+                    <div class="flex gap-2">
+                        <div class="h-8 bg-gray-200 rounded-lg w-1/2"></div>
+                        <div class="h-8 bg-gray-200 rounded-lg w-1/2"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Pagination -->
+        <div class="mt-12 flex justify-center">
+            <nav class="inline-flex rounded-md shadow-sm">
+                <button class="px-3 py-2 rounded-l-md border border-gray-200 bg-white text-gray-500 hover:bg-gray-50">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="px-4 py-2 border-t border-b border-gray-200 bg-white text-primary font-semibold">1</button>
+                <button class="px-4 py-2 border-t border-b bg-gray-200 text-gray-500 hover:bg-gray-50">2</button>
+                <button class="px-4 py-2 border-t border-b bg-gray-200 text-gray-500 hover:bg-gray-50">3</button>
+                <button class="px-3 py-2 rounded-r-md border bg-gray-200 text-gray-500 hover:bg-gray-50">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </nav>
+        </div>
+    </main>
+
+    <!-- Newsletter Section -->
+    <section class="bg-gradient-to-br from-primary/10 to-accent/10 py-12 mt-8">
+        <div class="container mx-auto px-4 text-center">
+            <h2 class="text-2xl font-poppins font-bold mb-4 text-primary">Dapatkan Info Produk Terbaru</h2>
+            <p class="max-w-2xl mx-auto mb-6 text-gray-600">Berlangganan newsletter kami untuk mendapatkan info produk baru dan penawaran spesial.</p>
+            <div class="max-w-md mx-auto flex">
+                <input type="email" placeholder="Alamat email Anda" class="flex-1 px-4 py-3 rounded-l-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-primary">
+                <button class="bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-r-lg font-medium smooth-btn">
+                    <i class="fas fa-paper-plane mr-2"></i> Daftar
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-white py-8 border-t border-gray-200">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <h3 class="font-poppins font-bold text-lg text-primary mb-4">JabarUMKM Hub</h3>
+                    <p class="text-gray-600 text-sm mb-4">Platform e-commerce untuk produk UMKM Jawa Barat yang berkualitas.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="text-lg text-gray-500 hover:text-primary transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="text-lg text-gray-500 hover:text-primary transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="text-lg text-gray-500 hover:text-primary transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-poppins font-semibold text-gray-800 mb-4">Produk</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Makanan</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Kerajinan</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Fashion</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Kecantikan</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-poppins font-semibold text-gray-800 mb-4">Bantuan</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Pusat Bantuan</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Cara Belanja</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Pengembalian</a></li>
+                        <li><a href="#" class="text-gray-600 hover:text-primary transition-colors">Kontak Kami</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-poppins font-semibold text-gray-800 mb-4">Kontak</h4>
+                    <ul class="space-y-2 text-sm">
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-map-marker-alt mr-2 text-primary"></i> Bandung, Jawa Barat
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-phone-alt mr-2 text-primary"></i> (022) 1234 5678
+                        </li>
+                        <li class="flex items-center text-gray-600">
+                            <i class="fas fa-envelope mr-2 text-primary"></i> hello@jabarumkmhub.id
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-200 mt-8 pt-8 text-center text-gray-500 text-sm">
+                <p>© 2025 JabarUMKM Hub. Dukung terus produk lokal Jawa Barat!</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Pop-up Confirmation -->
+    <div id="popup-confirm" class="fixed top-6 right-6 z-[9999] bg-white border border-accent shadow-lg rounded-lg px-4 py-2 flex items-center gap-2 text-primary text-sm font-semibold opacity-0 pointer-events-none transition-all duration-300">
+        <svg class="w-5 h-5 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path>
+        </svg>
+        <span id="popup-confirm-msg">Produk ditambahkan ke keranjang!</span>
+    </div>
+
+    <!-- Cart Modal -->
+    <div id="cart-modal" class="fixed inset-0 bg-black bg-opacity-40 z-[9998] hidden flex items-center justify-center">
+        <div class="bg-white rounded-2xl shadow-lg p-6 max-w-lg w-full mx-4 relative">
+            <button id="close-cart-modal" class="absolute -top-4 -right-4 w-10 h-10 bg-red-500 text-white rounded-full text-xl hover:bg-red-600 transition-colors flex items-center justify-center shadow">
+                ×
+            </button>
+            <h2 class="text-2xl font-bold text-primary mb-4">Keranjang Belanja</h2>
+            <div id="cart-items"></div>
+            <div class="flex justify-between items-center mt-6">
+                <span class="font-bold text-lg">Total:</span>
+                <span id="cart-total" class="text-xl font-bold text-accent">Rp 0</span>
+            </div>
+            <button id="checkout-btn" class="mt-6 w-full bg-gradient-to-r from-primary to-accent text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                Checkout
+            </button>
+        </div>
+    </div>
+
+    <!-- Quick View Modal -->
+    <div id="quick-view-modal" class="fixed inset-0 bg-black bg-opacity-50 z-[9997] hidden flex items-center justify-center">
+        <div class="bg-white rounded-2xl shadow-lg p-6 max-w-md w-full mx-4 relative">
+            <button id="close-quick-view" class="absolute top-2 right-2 text-gray-500 hover:text-primary text-xl">
+                ×
+            </button>
+            <img id="quick-view-img" class="w-full aspect-[4/3] object-cover rounded-lg mb-4" alt="Product">
+            <h3 id="quick-view-title" class="font-bold text-lg text-primary mb-2"></h3>
+            <p id="quick-view-price" class="text-accent font-semibold mb-2"></p>
+            <p id="quick-view-desc" class="text-gray-600 text-sm mb-4"></p>
+            <div id="quick-view-rating" class="flex items-center gap-2 mb-4"></div>
+            <button class="smooth-btn w-full bg-gradient-to-r from-primary to-accent text-white py-2 rounded-lg">
+                <i class="fas fa-shopping-cart mr-2"></i> Tambah ke Keranjang
+            </button>
+        </div>
+    </div>
+
+    <!-- Chatbot Bubble -->
+    <button id="chatbot-btn" class="fixed bottom-6 right-6 w-12 h-12 bg-gradient-to-r from-primary to-accent rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform z-50">
+        <span class="text-xl text-white">💬</span>
+    </button>
+
+    <!-- Chatbot Modal -->
+    <div id="chatbot-modal" class="fixed bottom-[88px] right-6 z-[9999] hidden">
+        <div id="chatbot-content" class="bg-white w-[280px] h-[400px] rounded-2xl shadow-xl flex flex-col transform transition-all duration-300 origin-bottom-right">
+            <!-- Header -->
+            <div class="px-3 py-2.5 bg-gradient-to-r from-primary to-accent rounded-t-2xl flex items-center justify-between border-b border-white/10">
+                <div class="flex items-center space-x-2">
+                    <div class="w-7 h-7 bg-white/15 backdrop-blur-sm rounded-lg flex items-center justify-center">
+                        <span class="text-base">🤖</span>
+                    </div>
+                    <div class="text-white">
+                        <h3 class="font-bold text-sm">AI Assistant</h3>
+                        <p class="text-[10px] text-white/90">Online</p>
+                    </div>
+                </div>
+                <button id="close-chatbot" class="w-6 h-6 flex items-center justify-center rounded-lg bg-white/10 hover:bg-white/20 text-white/90 hover:text-white transition-all">
+                    <span class="text-sm leading-none">&times;</span>
+                </button>
+            </div>
+            
+            <!-- Chat Messages -->
+            <div id="chat-messages" class="flex-1 overflow-y-auto p-3 space-y-2 bg-gray-50/50">
+                <!-- Messages will be added here by JavaScript -->
+            </div>
+            
+            <!-- Input Area -->
+            <div class="p-2 bg-white border-t border-gray-100">
+                <div class="flex items-center space-x-2">
+                    <div class="flex-1 bg-gray-100 rounded-lg flex items-center transition-all duration-300">
+                        <input type="text" id="chat-input" class="flex-1 bg-transparent px-3 py-2 text-sm focus:outline-none text-gray-700" placeholder="Ketik pesan...">
+                    </div>
+                    <button id="send-chat" class="w-8 h-8 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center text-white hover:shadow-md hover:scale-105 active:scale-95 transition-all">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform rotate-90" viewBox="0 0 20 20" fill="currentColor">
+                            <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Modal -->
+    <div id="checkout-modal" class="fixed inset-0 bg-black bg-opacity-40 z-[9998] hidden flex items-center justify-center">
+        <div class="bg-white rounded-2xl shadow-lg w-full max-w-md p-6 mx-auto relative">
+            <button id="close-checkout-modal" class="absolute -top-4 -right-4 w-10 h-10 bg-red-500 text-white rounded-full text-xl hover:bg-red-600 transition-colors flex items-center justify-center shadow">
+                ×
+            </button>
+            <h2 class="text-xl font-bold text-primary mb-4">Checkout</h2>
+            <form id="checkout-form" class="flex flex-col gap-4">
+                <input type="text" id="checkout-name" class="p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Nama Lengkap" required>
+                <input type="email" id="checkout-email" class="p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Email" required>
+                <input type="text" id="checkout-address" class="p-3 rounded-lg border border-gray-200 focus:ring-2 focus:ring-primary focus:outline-none" placeholder="Alamat Pengiriman" required>
+                <button type="submit" class="w-full bg-gradient-to-r from-primary to-accent text-white py-3 rounded-lg font-semibold hover:shadow-lg transition-all">
+                    Kirim Tagihan
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="js/data.js"></script>
+    <script src="js/produk.js"></script>
+    <script src="js/cart.js"></script>
+    <script src="js/chatbot.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const daerahId = urlParams.get('daerah');
+
+        const namaDaerahEl = document.getElementById('nama-daerah');
+        const productGridEl = document.getElementById('product-grid');
+        const noProductMessageEl = document.getElementById('no-product-message');
+        const loadingSkeletonEl = document.getElementById('loading-skeleton');
+        const filterDaerahEl = document.getElementById('filter-daerah');
+        const searchProductEl = document.getElementById('search-product');
+        const sortProductEl = document.getElementById('sort-product');
+
+        // Populate filter daerah
+        const daerahList = [...new Set(products.map(p => p.daerah))].sort();
+        daerahList.forEach(d => {
+            const opt = document.createElement('option');
+            opt.value = d;
+            opt.textContent = d.charAt(0).toUpperCase() + d.slice(1);
+            filterDaerahEl.appendChild(opt);
+        });
+
+        // State
+        let state = {
+            daerah: daerahId || '',
+            search: '',
+            sort: 'popular',
+        };
+
+        // UI Binding
+        if (daerahId) {
+            filterDaerahEl.value = daerahId;
+            namaDaerahEl.textContent = daerahId.charAt(0).toUpperCase() + daerahId.slice(1);
+        } else {
+            namaDaerahEl.textContent = 'Semua';
+        }
+
+        filterDaerahEl.addEventListener('change', e => {
+            state.daerah = e.target.value;
+            namaDaerahEl.textContent = state.daerah ? state.daerah.charAt(0).toUpperCase() + state.daerah.slice(1) : 'Semua';
+            renderProducts();
+        });
+        searchProductEl.addEventListener('input', e => {
+            state.search = e.target.value;
+            renderProducts();
+        });
+        sortProductEl.addEventListener('change', e => {
+            state.sort = e.target.value;
+            renderProducts();
+        });
+
+        // Quick View Modal
+        const quickViewModal = document.getElementById('quick-view-modal');
+        const closeQuickView = document.getElementById('close-quick-view');
+        closeQuickView.addEventListener('click', () => {
+            quickViewModal.classList.add('hidden');
+        });
+
+        // Render Produk
+        function renderProducts() {
+            loadingSkeletonEl.style.display = 'grid';
+            productGridEl.innerHTML = '';
+            noProductMessageEl.style.display = 'none';
+            setTimeout(() => {
+                let filtered = products.slice();
+                if (state.daerah) filtered = filtered.filter(p => p.daerah === state.daerah);
+                if (state.search) filtered = filtered.filter(p => 
+                    p.name.toLowerCase().includes(state.search.toLowerCase()) || 
+                    p.description.toLowerCase().includes(state.search.toLowerCase())
+                );
+                // Sorting
+                if (state.sort === 'popular') filtered.sort((a,b) => b.sold - a.sold);
+                if (state.sort === 'newest') filtered = filtered.reverse();
+                if (state.sort === 'price-asc') filtered.sort((a,b) => parseInt(a.price.replace(/\D/g,'')) - parseInt(b.price.replace(/\D/g,'')));
+                if (state.sort === 'price-desc') filtered.sort((a,b) => parseInt(b.price.replace(/\D/g,'')) - parseInt(a.price.replace(/\D/g,'')));
+                
+                loadingSkeletonEl.style.display = 'none';
+                if (filtered.length === 0) {
+                    noProductMessageEl.style.display = 'block';
+                    return;
+                }
+                
+                filtered.forEach(product => {
+                    productGridEl.innerHTML += productCard(product);
+                });
+
+                // Add event listeners
+                document.querySelectorAll('.quick-view-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        const product = products.find(p => p.id === btn.dataset.id);
+                        document.getElementById('quick-view-img').src = product.image;
+                        document.getElementById('quick-view-title').textContent = product.name;
+                        document.getElementById('quick-view-price').textContent = product.price;
+                        document.getElementById('quick-view-desc').textContent = product.description;
+                        document.getElementById('quick-view-rating').innerHTML = renderStars(product.rating) + `<span class="text-gray-500 text-sm ml-2">(${product.rating})</span>`;
+                        quickViewModal.classList.remove('hidden');
+                    });
+                });
+
+                document.querySelectorAll('.wishlist-btn').forEach(btn => {
+                    btn.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        btn.classList.toggle('text-gray-300');
+                        btn.classList.toggle('text-red-500');
+                        btn.classList.toggle('fas');
+                        btn.classList.toggle('far');
+                    });
+                });
+
+                if (window.AOS) AOS.refresh();
+            }, 400);
+        }
+
+        // Product Card
+        function productCard(product) {
+            let badge = '';
+            if (product.sold > 1000) badge = '<span class="badge badge-popular">Terlaris</span>';
+            else if (product.rating >= 4.9) badge = '<span class="badge badge-best">Best Seller</span>';
+            else if (product.sold < 200) badge = '<span class="badge badge-new">Baru</span>';
+            
+            return `
+            <div class="produk-card relative" data-aos="fade-up">
+                <div class="relative">
+                    <img src="${product.image}" alt="${product.name}" class="produk-img">
+                    <div class="produk-badge">${badge}</div>
+                    <button class="wishlist-btn absolute top-4 right-4 text-gray-300 text-xl far fa-heart hover:text-red-500 transition-colors"></button>
+                </div>
+                <div class="produk-info">
+                    <h3 class="produk-title">${product.name}</h3>
+                    <p class="produk-price">${product.price}</p>
+                    <div class="produk-rating">
+                        ${renderStars(product.rating)}
+                        <span class="text-gray-500 text-sm">(${product.rating})</span>
+                        <span class="text-gray-400 text-xs ml-2">${product.sold} terjual</span>
+                    </div>
+                    <p class="produk-desc">${product.description}</p>
+                    <div class="produk-action">
+                        <button class="smooth-btn flex-1 bg-gradient-to-r from-primary to-accent text-white py-2 rounded-lg text-sm">
+                            <i class="fas fa-shopping-cart mr-2"></i> Beli Sekarang
+                        </button>
+                        <button class="quick-view-btn flex-1 bg-gray-200 text-primary py-2 rounded-lg text-sm hover:bg-gray-300 transition-colors" data-id="${product.id}">
+                            <i class="fas fa-eye mr-2"></i> Lihat Sekilas
+                        </button>
+                    </div>
+                </div>
+                <div class="absolute -top-3 -right-3 bg-white w-8 h-8 rounded-full flex items-center justify-center shadow-sm">
+                    <img src="https://placehold.co/24x24/6B8E23/FFFFFF?text=${product.daerah.charAt(0)}" alt="${product.daerah}" class="rounded-full" title="${product.daerah}">
+                </div>
+            </div>`;
+        }
+
+        // Render Stars
+        function renderStars(rating) {
+            const full = Math.floor(rating);
+            const half = rating % 1 >= 0.5;
+            let html = '';
+            for (let i = 0; i < full; i++) html += '<span class="text-highlight">★</span>';
+            if (half) html += '<span class="text-highlight">☆</span>';
+            for (let i = full + (half ? 1 : 0); i < 5; i++) html += '<span class="text-gray-300">★</span>';
+            return html;
+        }
+
+        // Init
+        renderProducts();
+    });
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>AOS.init();</script>
+    <!-- Script Drawer Hamburger Menu (standar index.html) -->
+    <script>
+    function openDrawer() {
+        const drawer = document.getElementById('mobile-drawer');
+        if (drawer) { drawer.classList.remove('hidden'); drawer.classList.add('flex'); }
+    }
+    function closeDrawer() {
+        const drawer = document.getElementById('mobile-drawer');
+        if (drawer) { drawer.classList.add('hidden'); drawer.classList.remove('flex'); }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        const hamburgerBtn = document.getElementById('hamburger-btn');
+        const closeDrawerBtn = document.getElementById('close-drawer');
+        if (hamburgerBtn) hamburgerBtn.onclick = openDrawer;
+        if (closeDrawerBtn) closeDrawerBtn.onclick = closeDrawer;
+    });
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        if (mobileMenuBtn && mobileMenu) {
+            mobileMenuBtn.addEventListener('click', () => {
+                mobileMenu.classList.toggle('hidden');
+            });
+        }
+    });
+    </script>
+    <script>
+        // Initialize chatbot
+        document.addEventListener('DOMContentLoaded', () => {
+            window.chatbot = new EnhancedChatbot();
+        });
+    </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const chatbotBtn = document.getElementById('chatbot-btn');
+        const chatbotModal = document.getElementById('chatbot-modal');
+        const closeChatbot = document.getElementById('close-chatbot');
+
+        if (chatbotBtn && chatbotModal && closeChatbot) {
+            chatbotBtn.addEventListener('click', () => {
+                chatbotModal.classList.toggle('hidden');
+                chatbotModal.classList.toggle('show');
+            });
+
+            closeChatbot.addEventListener('click', () => {
+                chatbotModal.classList.remove('show');
+                chatbotModal.classList.add('hidden');
+            });
+        }
+    });
+    </script>
+</body>
+</html>

@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bandung - JabarUMKM Hub</title>
+    <meta name="description" content="Jelajahi produk UMKM khas Bandung, kota kreatif dengan berbagai produk inovatif">
+    
+    <!-- TailwindCSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/style.css">
+    
+    <!-- Tailwind Config -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#A05A2C',
+                        accent: '#6B8E23',
+                        highlight: '#F9C74F',
+                        background: '#FAF9F6',
+                        text: '#333333'
+                    },
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'poppins': ['Poppins', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="font-inter bg-background text-text">
+    <!-- Header/Navbar -->
+    <header class="fixed top-0 w-full bg-white/95 backdrop-blur-sm shadow-sm z-50">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-2">
+                    <div class="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                        <span class="text-white font-bold text-sm">J</span>
+                    </div>
+                    <span class="font-poppins font-semibold text-xl text-primary">JabarUMKM Hub</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300 relative">
+                        Beranda
+                    </a>
+                    <a href="tentang.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300 relative">
+                        Tentang
+                    </a>
+                    <a href="badge.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300 relative">
+                        Badge
+                    </a>
+                    <!-- Command Palette trigger -->
+                    <button id="command-palette-trigger" class="flex items-center justify-between text-left w-40 lg:w-48 text-sm text-gray-500 bg-white hover:bg-gray-100 ring-1 ring-gray-200 px-3 py-2 rounded-md transition-colors ml-4">
+                        <span class="flex items-center space-x-2">
+                            <svg class="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                            <span>Cari cepat...</span>
+                        </span>
+                        <kbd class="ml-4 px-2 py-1 text-xs font-semibold text-gray-800 bg-gray-50 border border-gray-200 rounded-md">Ctrl+K</kbd>
+                    </button>
+                </div>
+                
+                <button id="mobile-menu-btn" class="md:hidden p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="index.html" class="text-gray-600 hover:text-primary transition-colors">Beranda</a>
+                    <a href="tentang.html" class="text-gray-600 hover:text-primary transition-colors">Tentang</a>
+                    <a href="badge.html" class="text-gray-600 hover:text-primary transition-colors">Badge</a>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="pt-24 pb-16 bg-gradient-to-br from-primary/10 to-accent/10">
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-4xl mx-auto">
+                <div class="text-6xl mb-6 js-reveal">🌸</div>
+                <h1 class="text-4xl md:text-6xl font-poppins font-bold text-primary mb-6 js-reveal">
+                    <span class="text-highlight">Bandung</span> - Kota Kembang
+                </h1>
+                <p class="text-lg md:text-xl text-gray-600 mb-8 js-reveal">
+                    Jelajahi produk UMKM khas Bandung yang kreatif dan inovatif, dari fashion hingga kuliner modern
+                </p>
+                <div class="flex flex-col sm:flex-row gap-4 justify-center js-reveal">
+                    <a href="index.html" class="bg-primary text-white px-8 py-3 rounded-lg font-medium hover:bg-primary/90 transition-colors">
+                        Kembali ke Beranda
+                    </a>
+                    <a href="badge.html" class="border-2 border-primary text-primary px-8 py-3 rounded-lg font-medium hover:bg-primary hover:text-white transition-colors">
+                        Lihat Badge
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Bandung -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="js-reveal">
+                    <h2 class="text-3xl md:text-4xl font-poppins font-bold text-primary mb-6">
+                        Tentang Bandung
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-6">
+                        Bandung adalah ibu kota Provinsi Jawa Barat yang terkenal dengan julukan "Kota Kembang". 
+                        Kota ini menjadi pusat kreativitas dan inovasi dengan berbagai produk UMKM yang berkualitas tinggi.
+                    </p>
+                    <p class="text-gray-600 mb-6">
+                        Masyarakat Bandung dikenal dengan kreativitasnya dalam mengembangkan produk-produk 
+                        yang tidak hanya berkualitas tetapi juga memiliki nilai estetika yang tinggi. 
+                        Dari fashion, kuliner, hingga teknologi, Bandung selalu menjadi trendsetter.
+                    </p>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center space-x-2">
+                            <span class="text-2xl">📍</span>
+                            <span class="text-gray-600">Jawa Barat, Indonesia</span>
+                        </div>
+                        <div class="flex items-center space-x-2">
+                            <span class="text-2xl">🏛️</span>
+                            <span class="text-gray-600">Kota</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="js-reveal">
+                    <div class="bg-white rounded-xl shadow-lg p-8">
+                        <h3 class="text-2xl font-poppins font-bold text-primary mb-6">Keunggulan Bandung</h3>
+                        <div class="space-y-4">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-highlight rounded-full flex items-center justify-center">
+                                    <span class="text-white text-sm">🎨</span>
+                                </div>
+                                <span class="text-gray-700">Pusat kreativitas dan inovasi</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-accent rounded-full flex items-center justify-center">
+                                    <span class="text-white text-sm">👕</span>
+                                </div>
+                                <span class="text-gray-700">Industri fashion yang berkembang</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                                    <span class="text-white text-sm">🍽️</span>
+                                </div>
+                                <span class="text-gray-700">Kuliner kreatif dan modern</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <div class="w-8 h-8 bg-highlight rounded-full flex items-center justify-center">
+                                    <span class="text-white text-sm">💻</span>
+                                </div>
+                                <span class="text-gray-700">Startup dan teknologi</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl md:text-4xl font-poppins font-bold text-primary mb-4 js-reveal">
+                    Produk Unggulan Bandung
+                </h2>
+                <p class="text-gray-600 max-w-2xl mx-auto js-reveal">
+                    Temukan berbagai produk kreatif dan inovatif dari pelaku UMKM Bandung
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Batik Bandung -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow js-reveal product-card" data-category="kerajinan" data-halal="false" data-region="bandung">
+                    <div class="h-48 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                        <div class="text-6xl">🧵</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-accent font-medium">Bandung</span>
+                            <span class="text-xs bg-highlight text-primary px-2 py-1 rounded-full">Kerajinan</span>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2">Batik Bandung</h3>
+                        <p class="text-gray-600 text-sm mb-4">Batik dengan motif khas Bandung yang elegan dan modern, dibuat dengan teknik tradisional</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-primary font-semibold">Rp 150.000 - 500.000</span>
+                            <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">🎨 Handmade</span>
+                        </div>
+                        <button class="w-full bg-primary text-white py-2 rounded-lg text-sm hover:bg-primary/90 transition-colors">
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Keripik Maicih -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow js-reveal product-card" data-category="makanan" data-halal="true" data-region="bandung">
+                    <div class="h-48 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                        <div class="text-6xl">🌶️</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-accent font-medium">Bandung</span>
+                            <span class="text-xs bg-highlight text-primary px-2 py-1 rounded-full">Makanan</span>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2">Keripik Maicih</h3>
+                        <p class="text-gray-600 text-sm mb-4">Keripik singkong pedas dengan bumbu khas Bandung yang terkenal hingga mancanegara</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-primary font-semibold">Rp 15.000 - 35.000</span>
+                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✅ Halal</span>
+                        </div>
+                        <button class="w-full bg-primary text-white py-2 rounded-lg text-sm hover:bg-primary/90 transition-colors">
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Brownies Amanda -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow js-reveal product-card" data-category="makanan" data-halal="true" data-region="bandung">
+                    <div class="h-48 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                        <div class="text-6xl">🍫</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-accent font-medium">Bandung</span>
+                            <span class="text-xs bg-highlight text-primary px-2 py-1 rounded-full">Makanan</span>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2">Brownies Amanda</h3>
+                        <p class="text-gray-600 text-sm mb-4">Brownies cokelat premium dengan tekstur lembut dan rasa yang kaya</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-primary font-semibold">Rp 50.000 - 150.000</span>
+                            <span class="text-xs bg-green-100 text-green-800 px-2 py-1 rounded-full">✅ Halal</span>
+                        </div>
+                        <button class="w-full bg-primary text-white py-2 rounded-lg text-sm hover:bg-primary/90 transition-colors">
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Fashion Bandung -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow js-reveal product-card" data-category="fashion" data-halal="false" data-region="bandung">
+                    <div class="h-48 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                        <div class="text-6xl">👕</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-accent font-medium">Bandung</span>
+                            <span class="text-xs bg-highlight text-primary px-2 py-1 rounded-full">Fashion</span>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2">Fashion Bandung</h3>
+                        <p class="text-gray-600 text-sm mb-4">Pakaian dengan desain kreatif dan trendi, mencerminkan gaya hidup modern</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-primary font-semibold">Rp 100.000 - 500.000</span>
+                            <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">🎨 Handmade</span>
+                        </div>
+                        <button class="w-full bg-primary text-white py-2 rounded-lg text-sm hover:bg-primary/90 transition-colors">
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Kerajinan Tangan -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow js-reveal product-card" data-category="kerajinan" data-halal="false" data-region="bandung">
+                    <div class="h-48 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                        <div class="text-6xl">🎨</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-accent font-medium">Bandung</span>
+                            <span class="text-xs bg-highlight text-primary px-2 py-1 rounded-full">Kerajinan</span>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2">Kerajinan Tangan</h3>
+                        <p class="text-gray-600 text-sm mb-4">Berbagai kerajinan tangan kreatif dengan desain unik dan berkualitas tinggi</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-primary font-semibold">Rp 75.000 - 300.000</span>
+                            <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded-full">🎨 Handmade</span>
+                        </div>
+                        <button class="w-full bg-primary text-white py-2 rounded-lg text-sm hover:bg-primary/90 transition-colors">
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Produk Digital -->
+                <div class="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow js-reveal product-card" data-category="digital" data-halal="false" data-region="bandung">
+                    <div class="h-48 bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
+                        <div class="text-6xl">💻</div>
+                    </div>
+                    <div class="p-6">
+                        <div class="flex items-center justify-between mb-2">
+                            <span class="text-sm text-accent font-medium">Bandung</span>
+                            <span class="text-xs bg-highlight text-primary px-2 py-1 rounded-full">Digital</span>
+                        </div>
+                        <h3 class="font-semibold text-lg mb-2">Produk Digital</h3>
+                        <p class="text-gray-600 text-sm mb-4">Aplikasi, software, dan layanan digital inovatif dari startup Bandung</p>
+                        <div class="flex items-center justify-between mb-4">
+                            <span class="text-primary font-semibold">Rp 500.000 - 2.000.000</span>
+                            <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded-full">💻 Digital</span>
+                        </div>
+                        <button class="w-full bg-primary text-white py-2 rounded-lg text-sm hover:bg-primary/90 transition-colors">
+                            Lihat Detail
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Culture Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <div class="max-w-4xl mx-auto">
+                <div class="text-center mb-12">
+                    <h2 class="text-3xl md:text-4xl font-poppins font-bold text-primary mb-4 js-reveal">
+                        Kreativitas dan Inovasi
+                    </h2>
+                    <p class="text-gray-600 js-reveal">
+                        Bandung menjadi pusat kreativitas yang melahirkan berbagai produk inovatif
+                    </p>
+                </div>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="js-reveal">
+                        <h3 class="text-2xl font-poppins font-bold text-primary mb-4">Kreativitas Masyarakat</h3>
+                        <p class="text-gray-600 mb-4">
+                            Masyarakat Bandung dikenal dengan kreativitasnya yang tinggi dalam mengembangkan 
+                            produk-produk yang tidak hanya berkualitas tetapi juga memiliki nilai estetika 
+                            yang unik dan menarik.
+                        </p>
+                        <p class="text-gray-600">
+                            Dari fashion, kuliner, hingga teknologi, Bandung selalu menjadi trendsetter 
+                            yang melahirkan berbagai produk inovatif yang diminati tidak hanya di Indonesia 
+                            tetapi juga di mancanegara.
+                        </p>
+                    </div>
+                    
+                    <div class="js-reveal">
+                        <h3 class="text-2xl font-poppins font-bold text-primary mb-4">Ekosistem Startup</h3>
+                        <p class="text-gray-600 mb-4">
+                            Bandung memiliki ekosistem startup yang berkembang pesat dengan berbagai 
+                            perusahaan teknologi yang inovatif. Kota ini menjadi tempat lahirnya 
+                            berbagai produk digital yang berkualitas tinggi.
+                        </p>
+                        <p class="text-gray-600">
+                            Kolaborasi antara akademisi, pelaku bisnis, dan pemerintah menciptakan 
+                            lingkungan yang mendukung pertumbuhan UMKM digital dan kreatif di Bandung.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-primary text-white py-12">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-white rounded-lg flex items-center justify-center">
+                            <span class="text-primary font-bold text-sm">J</span>
+                        </div>
+                        <span class="font-poppins font-semibold text-xl">JabarUMKM Hub</span>
+                    </div>
+                    <p class="text-white/80">
+                        Platform edukatif untuk mendukung digitalisasi UMKM Jawa Barat. 
+                        Mari bersama-sama melestarikan dan mengembangkan produk lokal.
+                    </p>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Tautan</h4>
+                    <ul class="space-y-2">
+                        <li><a href="index.html" class="text-white/80 hover:text-white transition-colors">Beranda</a></li>
+                        <li><a href="tentang.html" class="text-white/80 hover:text-white transition-colors">Tentang</a></li>
+                        <li><a href="badge.html" class="text-white/80 hover:text-white transition-colors">Badge</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h4 class="font-semibold mb-4">Kontak</h4>
+                    <ul class="space-y-2 text-white/80">
+                        <li>Email: info@jabarumkmhub.com</li>
+                        <li>Instagram: @jabarumkmhub</li>
+                        <li>Facebook: JabarUMKM Hub</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-white/20 mt-8 pt-8 text-center text-white/60">
+                <p>&copy; 2024 JabarUMKM Hub. Dibuat dengan ❤️ untuk UMKM Jawa Barat.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/command-palette.js"></script>
+
+    <!-- Command Palette -->
+    <div id="command-palette" class="fixed inset-0 bg-gray-900 bg-opacity-75 z-[9999] hidden items-start justify-center pt-20">
+        <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg transform transition-all" id="command-palette-content">
+            <div class="relative">
+                <div class="absolute top-3.5 left-4">
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                </div>
+                <input type="text" id="command-input" placeholder="Ketik perintah atau cari..." class="w-full pl-12 pr-4 py-4 text-lg border-b border-gray-200 focus:outline-none rounded-t-xl">
+                <div class="absolute top-0 right-0 p-3">
+                    <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-400 bg-gray-100 border border-gray-200 rounded-lg">ESC</kbd>
+                </div>
+            </div>
+            <div id="command-results" class="max-h-96 overflow-y-auto p-2">
+                <!-- Search results will be injected here -->
+            </div>
+            <div class="p-3 border-t border-gray-200 text-xs text-gray-500 flex justify-between bg-gray-50 rounded-b-xl">
+                <div>Gunakan <kbd class="px-1.5 py-1 text-xs font-semibold text-gray-800 bg-white border border-gray-200 rounded-md">↑</kbd> <kbd class="px-1.5 py-1 text-xs font-semibold text-gray-800 bg-white border border-gray-200 rounded-md">↓</kbd> untuk navigasi dan <kbd class="px-1.5 py-1 text-xs font-semibold text-gray-800 bg-white border border-gray-200 rounded-md">Enter</kbd> untuk memilih.</div>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 
