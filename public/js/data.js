@@ -508,3 +508,5 @@ const products = [
         stock: 30
     }
 ]; 
+
+window.products = products; 

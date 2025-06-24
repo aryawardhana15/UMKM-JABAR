@@ -69,10 +69,10 @@ document.addEventListener('DOMContentLoaded', () => {
 
         hideLoading();
 
-        if (filtered.length === 0) {
+            if (filtered.length === 0) {
             showNoProductsMessage();
-            return;
-        }
+                return;
+            }
 
         if (!append) {
             elements.productGrid.innerHTML = '';
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', () => {
         displayProducts(paginated);
         updateLoadMoreButton(filtered.length);
 
-        if (window.AOS) AOS.refresh();
+            if (window.AOS) AOS.refresh();
     }
 
     function createProductCard(product, idx) {
@@ -628,4 +628,4 @@ document.addEventListener('DOMContentLoaded', () => {
             window.addToCart(product);
         }
     }
-});
+}); 
