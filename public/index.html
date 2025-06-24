@@ -429,6 +429,63 @@
                 margin-right: 1.5rem;
             }
         }
+
+        /* Hero Typing Animation Fix */
+        .hero-title-fixed {
+            min-width: 0;
+            min-height: 2.5em;
+            overflow: hidden;
+            line-height: 1.1;
+        }
+        .typed-wrapper {
+            display: inline-block;
+            min-width: 0;
+            min-height: 1.2em;
+            vertical-align: bottom;
+            font-family: 'Fira Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
+            position: relative;
+            top: -0.3em;
+        }
+        #typed-text, .typed-cursor {
+            display: inline-block;
+            width: 100%;
+            white-space: nowrap;
+            overflow: hidden;
+            vertical-align: bottom;
+        }
+        @media (max-width: 640px) {
+            .hero-title-fixed {
+                min-width: 180px;
+            }
+            .typed-wrapper {
+                min-width: 120px;
+            }
+        }
+        .hero-fixed-height {
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        @media (max-width: 640px) {
+            .hero-fixed-height {
+                min-height: 140px;
+                padding-top: 80px;
+                padding-bottom: 32px;
+            }
+            .hero-title-fixed {
+                font-size: 2rem;
+                min-height: 1.8em;
+            }
+            .typed-wrapper {
+                min-width: 0;
+                font-size: 1.1rem;
+            }
+        }
+        /* Hide Typed.js Cursor */
+        .typed-cursor {
+            display: none !important;
+        }
     </style>
     
     <!-- Tailwind Config -->
@@ -542,7 +599,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section class="pt-32 pb-20 bg-gradient-to-br from-primary/5 via-accent/5 to-highlight/5 relative overflow-hidden">
+    <section class="pt-32 pb-20 bg-gradient-to-br from-primary/5 via-accent/5 to-highlight/5 relative overflow-hidden hero-fixed-height flex items-center justify-center">
         <!-- Animated Background Particles -->
         <div class="absolute inset-0 overflow-hidden">
             <div class="particle absolute top-20 left-10 w-20 h-20 bg-highlight/20 rounded-full"></div>
@@ -560,8 +617,13 @@
                     </div>
                 </div>
                 
-                <h1 class="text-5xl md:text-7xl font-poppins font-black text-primary mb-8 leading-tight animate-slide-up">
-                    Jelajahi <span id="typed-text" class="bg-gradient-to-r from-highlight via-accent to-primary bg-clip-text text-transparent"></span><br>
+                <h1 class="text-4xl md:text-6xl font-poppins font-black text-primary mb-8 leading-tight animate-slide-up hero-title-fixed">
+                    Jelajahi <span class="typed-wrapper font-mono" style="position:relative;display:inline-block;">
+                        <span id="typed-text" class="bg-gradient-to-r from-highlight via-accent to-primary bg-clip-text text-transparent"></span>
+                        <span class="typed-placeholder" style="visibility:hidden;position:absolute;left:0;top:0;white-space:nowrap;">
+                            Cita Rasa Kekayaan Budaya Produk Lokal Inovasi Digital
+                        </span>
+                    </span><br>
                     <span class="text-4xl md:text-6xl">Khas Jawa Barat</span>
                 </h1>
                 
