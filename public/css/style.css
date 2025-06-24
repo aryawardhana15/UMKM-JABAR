@@ -637,7 +637,7 @@ input:focus {
 }
 
 /* Timeline Section */
-<section class="py-20 bg-white">
+/* <section class="py-20 bg-white">
     <div class="container mx-auto px-4">
         <div class="text-center mb-16">
             <!-- ... section title ... -->
@@ -696,7 +696,7 @@ input:focus {
             </div>
         </div>
     </div>
-</section>
+</section> */
 
 /* Responsive Timeline */
 @media (max-width: 768px) {

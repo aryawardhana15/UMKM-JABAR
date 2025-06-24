@@ -444,7 +444,7 @@
             vertical-align: bottom;
             font-family: 'Fira Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
             position: relative;
-            top: -0.3em;
+            top: 0;
         }
         #typed-text, .typed-cursor {
             display: inline-block;
@@ -459,6 +459,7 @@
             }
             .typed-wrapper {
                 min-width: 120px;
+                top: -0.3em;
             }
         }
         .hero-fixed-height {
@@ -541,7 +542,7 @@
         }
     </script>
 </head>
-<body class="font-inter bg-background text-text overflow-x-hidden">
+<body class="font-inter text-text overflow-x-hidden">
     <!-- Loading Screen -->
     <div id="loading-screen" class="fixed inset-0 bg-gradient-to-br from-primary via-accent to-highlight z-[9999] flex items-center justify-center animate-gradient-wave">
         <div class="text-center glassmorphism p-8 rounded-2xl">
@@ -1182,7 +1183,7 @@
     </section> -->
 
     <!-- Peta Interaktif -->
-    <section id="peta" class="py-24 bg-white mb-20">
+    <section id="peta" class="py-20 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <div class="inline-flex items-center space-x-2 glassmorphism rounded-full px-6 py-3 mb-6 animate-slide-down">
@@ -1325,14 +1326,14 @@
         </div>
     </section>
 
+    <!-- Wave Transition -->
+    <div class="-mt-2">
+      <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-12">
+        <path d="M0 40 Q360 0 720 40T1440 40V60H0V40Z" fill="#f9fafb"/>
+      </svg>
+    </div>
     <!-- CTA Section - Ajak Bergabung (Super Power Layout) -->
-    <section class="py-16 md:py-24 bg-gradient-to-br from-gray-50 to-gray-100 overflow-hidden relative">
-        <!-- Background Patterns -->
-        <div class="absolute inset-0 z-0 opacity-10">
-            <div class="absolute top-0 left-0 w-64 h-64 bg-primary rounded-full filter blur-3xl"></div>
-            <div class="absolute bottom-0 right-0 w-64 h-64 bg-accent rounded-full filter blur-3xl"></div>
-        </div>
-
+    <section class="pt-8 pb-14 bg-gradient-to-br from-white via-blue-50 to-accent/10 relative overflow-hidden">
         <div class="container mx-auto px-4 relative z-10">
             <div class="flex flex-wrap items-center -mx-4">
                 <!-- Left Column: Text Content -->
