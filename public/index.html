@@ -1924,8 +1924,11 @@
             }
             updateWidth();
             window.addEventListener('resize', updateWidth);
+            function getScrollSpeed() {
+                return window.innerWidth <= 640 ? 2.7 : 1.1;
+            }
             function animateCarousel() {
-                scrollAmount += 1.1;
+                scrollAmount += getScrollSpeed();
                 if (scrollAmount >= setWidth) {
                     carousel.style.transition = 'none';
                     scrollAmount = 0;
