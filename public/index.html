@@ -14,11 +14,90 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- AOS Animation Library -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- GSAP and ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+    
+    <!-- Vanilla Tilt.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" defer></script>
+    
+    <!-- Typed.js -->
+    <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" defer></script>
     
     <!-- Custom CSS -->
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Glassmorphism Effect */
+        .glassmorphism {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        /* Custom Animations */
+        @keyframes gradientWave {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .animate-gradient-wave {
+            background: linear-gradient(270deg, #A05A2C, #6B8E23, #F9C74F);
+            background-size: 600% 600%;
+            animation: gradientWave 15s ease infinite;
+        }
+
+        /* Parallax Background */
+        .parallax-bg {
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Scrollbar Styling */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #FAF9F6; }
+        ::-webkit-scrollbar-thumb { background: #A05A2C; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #6B8E23; }
+
+        /* Product Card Enhancements */
+        .product-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+        }
+        .product-image-overlay {
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            transition: opacity 0.3s ease;
+        }
+        .product-card:hover .product-image-overlay {
+            opacity: 0.8;
+        }
+        .quick-view-btn {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+        .product-card:hover .quick-view-btn {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Reduced Motion Fallback */
+        @media (prefers-reduced-motion: reduce) {
+            .animate-float, .animate-pulse-slow, .animate-bounce-slow, .animate-slide-up,
+            .animate-slide-down, .animate-fade-in, .animate-scale-in, .animate-rotate-slow,
+            .animate-gradient-wave {
+                animation: none !important;
+                transition: none !important;
+            }
+            .product-card, .quick-view-btn, .product-image-overlay {
+                transition: none !important;
+            }
+        }
+    </style>
     
     <!-- Tailwind Config -->
     <script>
@@ -45,6 +124,28 @@
                         'fade-in': 'fadeIn 1s ease-out',
                         'scale-in': 'scaleIn 0.6s ease-out',
                         'rotate-slow': 'rotate 20s linear infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0)' },
+                            '50%': { transform: 'translateY(-20px)' }
+                        },
+                        slideUp: {
+                            '0%': { transform: 'translateY(50px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        slideDown: {
+                            '0%': { transform: 'translateY(-50px)', opacity: '0' },
+                            '100%': { transform: 'translateY(0)', opacity: '1' }
+                        },
+                        fadeIn: {
+                            '0%': { opacity: '0' },
+                            '100%': { opacity: '1' }
+                        },
+                        scaleIn: {
+                            '0%': { transform: 'scale(0.8)', opacity: '0' },
+                            '100%': { transform: 'scale(1)', opacity: '1' }
+                        }
                     }
                 }
             }
@@ -53,8 +154,8 @@
 </head>
 <body class="font-inter bg-background text-text overflow-x-hidden">
     <!-- Loading Screen -->
-    <div id="loading-screen" class="fixed inset-0 bg-gradient-to-br from-primary via-accent to-highlight z-[9999] flex items-center justify-center">
-        <div class="text-center">
+    <div id="loading-screen" class="fixed inset-0 bg-gradient-to-br from-primary via-accent to-highlight z-[9999] flex items-center justify-center animate-gradient-wave">
+        <div class="text-center glassmorphism p-8 rounded-2xl">
             <div class="w-20 h-20 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
             <h2 class="text-white text-2xl font-poppins font-bold mb-2">JabarUMKM Hub</h2>
             <p class="text-white/80">Memuat pengalaman terbaik...</p>
@@ -66,7 +167,7 @@
         <nav class="container mx-auto px-4 py-4">
             <div class="flex items-center justify-between">
                 <div class="flex items-center space-x-3 group cursor-pointer" onclick="window.location.href='index.html'">
-                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center transform group-hover:scale-110 group-hover:rotate-45 transition-all duration-300">
                         <span class="text-white font-bold text-lg">J</span>
                     </div>
                     <span class="font-poppins font-bold text-2xl text-primary group-hover:text-accent transition-colors duration-300">JabarUMKM Hub</span>
@@ -77,16 +178,14 @@
                     <a href="badge.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300 relative">Badge</a>
                     <a href="produk.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Produk</a>
                     <a href="kontak.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300 relative">Kontak</a>
-                    <!-- New Command Palette trigger -->
-                   <button data-toggle="command-palette" class="ml-6 p-2 rounded-full hover:bg-gray-200 transition-colors duration-300 group" aria-label="Buka Command Palette">
+                    <button data-toggle="command-palette" class="ml-6 p-2 rounded-full hover:bg-gray-200 transition-colors duration-300 group" aria-label="Buka Command Palette">
                         <svg class="w-6 h-6 text-gray-500 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
                     </button>
                 </div>
                 <div class="md:hidden flex items-center space-x-2">
-                    <!-- Mobile Search Trigger -->
-                  <button data-toggle="command-palette" class="p-2 rounded-full hover:bg-gray-200 transition-colors duration-300 group" aria-label="Buka Pencarian">
+                    <button data-toggle="command-palette" class="p-2 rounded-full hover:bg-gray-200 transition-colors duration-300 group" aria-label="Buka Pencarian">
                         <svg class="w-6 h-6 text-gray-500 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
                         </svg>
@@ -97,16 +196,14 @@
                 </div>
             </div>
             <!-- Mobile Menu -->
-            <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4">
-                <div class="flex flex-col space-y-4 bg-white rounded-xl p-4 shadow-lg">
+            <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4 glassmorphism rounded-xl">
+                <div class="flex flex-col space-y-4 p-4">
                     <a href="index.html" class="text-primary font-semibold py-2 px-4 rounded-lg bg-primary/10">Beranda</a>
                     <a href="tentang.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Tentang</a>
                     <a href="badge.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Badge</a>
                     <a href="produk.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Produk</a>
                     <a href="kontak.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Kontak</a>
-                    <button class="bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-full font-medium mt-2">
-                        Mulai Eksplorasi
-                    </button>
+                    <button class="bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-full font-medium mt-2 hover:scale-105 transition-transform">Mulai Eksplorasi</button>
                 </div>
             </div>
         </nav>
@@ -114,41 +211,41 @@
 
     <!-- Hero Section -->
     <section class="pt-32 pb-20 bg-gradient-to-br from-primary/5 via-accent/5 to-highlight/5 relative overflow-hidden">
-        <!-- Animated Background Elements -->
+        <!-- Animated Background Particles -->
         <div class="absolute inset-0 overflow-hidden">
-            <div class="absolute top-20 left-10 w-20 h-20 bg-highlight/20 rounded-full animate-float"></div>
-            <div class="absolute top-40 right-20 w-16 h-16 bg-primary/20 rounded-full animate-float" style="animation-delay: 2s;"></div>
-            <div class="absolute bottom-20 left-1/4 w-12 h-12 bg-accent/20 rounded-full animate-float" style="animation-delay: 4s;"></div>
-            <div class="absolute top-1/2 right-1/3 w-24 h-24 bg-highlight/15 rounded-full animate-pulse-slow"></div>
+            <div class="particle absolute top-20 left-10 w-20 h-20 bg-highlight/20 rounded-full"></div>
+            <div class="particle absolute top-40 right-20 w-16 h-16 bg-primary/20 rounded-full"></div>
+            <div class="particle absolute bottom-20 left-1/4 w-12 h-12 bg-accent/20 rounded-full"></div>
+            <div class="particle absolute top-1/2 right-1/3 w-24 h-24 bg-highlight/15 rounded-full"></div>
         </div>
         
         <div class="container mx-auto px-4 relative z-10">
             <div class="text-center max-w-5xl mx-auto">
-                <div class="mb-8" data-aos="fade-down" data-aos-delay="200">
-                    <div class="inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 shadow-lg mb-6">
+                <div class="mb-8 animate-slide-down">
+                    <div class="inline-flex items-center space-x-2 glassmorphism rounded-full px-6 py-3 shadow-lg mb-6">
                         <span class="text-2xl">🌟</span>
                         <span class="text-sm font-medium text-primary">Platform UMKM Jawa Barat Terdepan</span>
                     </div>
                 </div>
                 
-                <h1 class="text-5xl md:text-7xl font-poppins font-black text-primary mb-8 leading-tight" data-aos="fade-up" data-aos-delay="400">
-                    Jelajahi <span class="bg-gradient-to-r from-highlight via-accent to-primary bg-clip-text text-transparent animate-pulse-slow">Cita Rasa</span><br>
+                <h1 class="text-5xl md:text-7xl font-poppins font-black text-primary mb-8 leading-tight animate-slide-up">
+                    Jelajahi <span id="typed-text" class="bg-gradient-to-r from-highlight via-accent to-primary bg-clip-text text-transparent"></span><br>
                     <span class="text-4xl md:text-6xl">Khas Jawa Barat</span>
                 </h1>
                 
-                <p class="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="600">
+                <p class="text-xl md:text-2xl text-gray-600 mb-12 max-w-3xl mx-auto leading-relaxed animate-fade-in">
                     Temukan dan dukung produk UMKM berkualitas dari berbagai kabupaten/kota di Jawa Barat. 
                     Dari kerajinan tangan hingga kuliner tradisional, semuanya ada di sini!
                 </p>
                 
-                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center" data-aos="fade-up" data-aos-delay="800">
-                    <a href="#peta" class="btn-3d shadow-primary/40 bg-gradient-to-r from-primary to-accent text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-lg transition-all duration-300 transform">
+                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center animate-scale-in">
+                    <a href="#peta" class="btn-3d glassmorphism bg-gradient-to-r from-primary to-accent text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105">
                         <span class="flex items-center space-x-2">
                             <span>Mulai Eksplorasi Peta</span>
                             <span class="transform group-hover:translate-x-1 transition-transform duration-300">🚀</span>
                         </span>
                     </a>
-                    <a href="tentang.html" class="btn-3d shadow-highlight/40 bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:shadow-lg transition-all duration-300 transform">
+                    <a href="tentang.html" class="btn-3d glassmorphism bg-white text-primary px-8 py-4 rounded-full font-bold text-lg hover:shadow-lg transition-all duration-300 transform hover:scale-105">
                         <span class="flex items-center space-x-2">
                             <span>Tentang Kami</span>
                             <span class="transform group-hover:rotate-12 transition-transform duration-300">ℹ️</span>
@@ -157,16 +254,16 @@
                 </div>
                 
                 <!-- Stats -->
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16" data-aos="fade-up" data-aos-delay="1000">
-                    <div class="text-center">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
+                    <div class="text-center animate-scale-in" style="animation-delay: 0.2s;">
                         <div class="text-4xl font-bold text-primary mb-2" id="stats-regions">19</div>
                         <div class="text-gray-600">Kabupaten/Kota</div>
                     </div>
-                    <div class="text-center">
+                    <div class="text-center animate-scale-in" style="animation-delay: 0.4s;">
                         <div class="text-4xl font-bold text-accent mb-2" id="stats-products">50+</div>
                         <div class="text-gray-600">Produk UMKM</div>
                     </div>
-                    <div class="text-center">
+                    <div class="text-center animate-scale-in" style="animation-delay: 0.6s;">
                         <div class="text-4xl font-bold text-highlight mb-2" id="stats-badges">12</div>
                         <div class="text-gray-600">Badge Koleksi</div>
                     </div>
@@ -180,14 +277,14 @@
         <div class="container mx-auto px-4">
             <!-- Section Header -->
             <div class="text-center mb-16">
-                <div class="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full px-6 py-3 mb-6" data-aos="fade-down">
+                <div class="inline-flex items-center space-x-2 glassmorphism rounded-full px-6 py-3 mb-6 animate-slide-down">
                     <span class="text-2xl">🛍️</span>
                     <span class="font-semibold text-primary">Produk Unggulan</span>
                 </div>
-                <h2 class="text-4xl md:text-5xl font-poppins font-bold text-primary mb-6" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-poppins font-bold text-primary mb-6 animate-slide-up">
                     Temukan <span class="bg-gradient-to-r from-highlight to-accent bg-clip-text text-transparent">Produk UMKM</span> Terbaik
                 </h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed animate-fade-in">
                     Koleksi produk unggulan dari UMKM terpilih di Jawa Barat. Kualitas terjamin dengan harga terbaik.
                 </p>
             </div>
@@ -195,85 +292,93 @@
             <!-- Product Grid -->
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8">
                 <!-- Batik Garut -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transform transition-all duration-300 hover:-translate-y-1 flex flex-col" data-aos="fade-up">
-                    <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=400&q=80" alt="Batik Garut" class="w-full h-44 object-cover object-center rounded-t-2xl shadow-md group-hover:scale-105 transition-transform duration-500">
+                <div class="product-card glassmorphism rounded-2xl overflow-hidden flex flex-col" data-tilt data-tilt-max="15" data-tilt-speed="400">
+                    <div class="relative h-44">
+                        <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=400&q=80" alt="Batik Garut" class="w-full h-full object-cover object-center rounded-t-2xl" loading="lazy">
+                        <div class="product-image-overlay absolute inset-0 opacity-0"></div>
+                        <button class="quick-view-btn absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white text-primary px-4 py-2 rounded-full text-sm font-semibold">Quick View</button>
+                    </div>
                     <div class="relative px-6 pt-4">
-                        <span class="absolute -top-4 left-4 bg-yellow-400 text-gray-900 text-xs font-semibold px-3 py-1.5 rounded-full shadow">Terlaris</span>
+                        <span class="product-badge absolute -top-4 left-4 bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 text-xs font-semibold px-3 py-1.5 rounded-full shadow animate-pulse-slow">Terlaris</span>
                     </div>
                     <div class="p-6 flex-1 flex flex-col">
-                        <h4 class="text-xl font-bold text-gray-900 mb-1 group-hover:text-primary transition-colors">Batik Garut</h4>
+                        <h4 class="text-xl font-bold text-gray-900 mb-1 transition-colors">Batik Garut</h4>
                         <p class="text-2xl font-semibold text-primary mb-2">Rp 150.000</p>
                         <div class="flex gap-0.5 text-yellow-400 mb-2">
                             <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
                         </div>
                         <p class="text-gray-600 mb-4 line-clamp-2 flex-1">Batik tradisional Garut dengan motif khas yang menggambarkan kekayaan budaya Jawa Barat</p>
-                        <button class="w-full mt-auto bg-gradient-to-r from-primary to-accent text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 active:scale-100 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/20">
-                            Lihat Detail
-                        </button>
+                        <button class="w-full mt-auto bg-gradient-to-r from-primary to-accent text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 active:scale-100 transition-all duration-300">Lihat Detail</button>
                     </div>
                 </div>
 
                 <!-- Keripik Singkong -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transform transition-all duration-300 hover:-translate-y-1 flex flex-col" data-aos="fade-up" data-aos-delay="100">
-                    <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Keripik Singkong" class="w-full h-44 object-cover object-center rounded-t-2xl shadow-md group-hover:scale-105 transition-transform duration-500">
+                <div class="product-card glassmorphism rounded-2xl overflow-hidden flex flex-col" data-tilt data-tilt-max="15" data-tilt-speed="400">
+                    <div class="relative h-44">
+                        <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Keripik Singkong" class="w-full h-full object-cover object-center rounded-t-2xl" loading="lazy">
+                        <div class="product-image-overlay absolute inset-0 opacity-0"></div>
+                        <button class="quick-view-btn absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white text-primary px-4 py-2 rounded-full text-sm font-semibold">Quick View</button>
+                    </div>
                     <div class="relative px-6 pt-4">
-                        <span class="absolute -top-4 left-4 bg-green-400 text-gray-900 text-xs font-semibold px-3 py-1.5 rounded-full shadow">Baru</span>
+                        <span class="product-badge absolute -top-4 left-4 bg-gradient-to-r from-green-400 to-green-500 text-gray-900 text-xs font-semibold px-3 py-1.5 rounded-full shadow animate-pulse-slow">Baru</span>
                     </div>
                     <div class="p-6 flex-1 flex flex-col">
-                        <h4 class="text-xl font-bold text-gray-900 mb-1 group-hover:text-primary transition-colors">Keripik Singkong</h4>
+                        <h4 class="text-xl font-bold text-gray-900 mb-1 transition-colors">Keripik Singkong</h4>
                         <p class="text-2xl font-semibold text-primary mb-2">Rp 25.000</p>
                         <div class="flex gap-0.5 text-yellow-400 mb-2">
                             <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
                         </div>
                         <p class="text-gray-600 mb-4 line-clamp-2 flex-1">Keripik singkong renyah dengan berbagai varian rasa dari UMKM Bandung</p>
-                        <button class="w-full mt-auto bg-gradient-to-r from-primary to-accent text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 active:scale-100 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/20">
-                            Lihat Detail
-                        </button>
+                        <button class="w-full mt-auto bg-gradient-to-r from-primary to-accent text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 active:scale-100 transition-all duration-300">Lihat Detail</button>
                     </div>
                 </div>
 
                 <!-- Tas Rajut -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transform transition-all duration-300 hover:-translate-y-1 flex flex-col" data-aos="fade-up" data-aos-delay="200">
-                    <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80" alt="Tas Rajut" class="w-full h-44 object-cover object-center rounded-t-2xl shadow-md group-hover:scale-105 transition-transform duration-500">
+                <div class="product-card glassmorphism rounded-2xl overflow-hidden flex flex-col" data-tilt data-tilt-max="15" data-tilt-speed="400">
+                    <div class="relative h-44">
+                        <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80" alt="Tas Rajut" class="w-full h-full object-cover object-center rounded-t-2xl" loading="lazy">
+                        <div class="product-image-overlay absolute inset-0 opacity-0"></div>
+                        <button class="quick-view-btn absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white text-primary px-4 py-2 rounded-full text-sm font-semibold">Quick View</button>
+                    </div>
                     <div class="relative px-6 pt-4">
-                        <span class="absolute -top-4 left-4 bg-amber-300 text-gray-900 text-xs font-semibold px-3 py-1.5 rounded-full shadow">Handmade</span>
+                        <span class="product-badge absolute -top-4 left-4 bg-gradient-to-r from-amber-300 to-amber-400 text-gray-900 text-xs font-semibold px-3 py-1.5 rounded-full shadow animate-pulse-slow">Handmade</span>
                     </div>
                     <div class="p-6 flex-1 flex flex-col">
-                        <h4 class="text-xl font-bold text-gray-900 mb-1 group-hover:text-primary transition-colors">Tas Rajut</h4>
+                        <h4 class="text-xl font-bold text-gray-900 mb-1 transition-colors">Tas Rajut</h4>
                         <p class="text-2xl font-semibold text-primary mb-2">Rp 200.000</p>
                         <div class="flex gap-0.5 text-yellow-400 mb-2">
                             <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
                         </div>
                         <p class="text-gray-600 mb-4 line-clamp-2 flex-1">Tas rajut handmade dengan desain unik dan berkualitas tinggi dari pengrajin lokal</p>
-                        <button class="w-full mt-auto bg-gradient-to-r from-primary to-accent text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 active:scale-100 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/20">
-                            Lihat Detail
-                        </button>
+                        <button class="w-full mt-auto bg-gradient-to-r from-primary to-accent text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 active:scale-100 transition-all duration-300">Lihat Detail</button>
                     </div>
                 </div>
 
                 <!-- Kopi Arabika -->
-                <div class="bg-white rounded-2xl shadow-lg overflow-hidden group hover:shadow-xl transform transition-all duration-300 hover:-translate-y-1 flex flex-col" data-aos="fade-up" data-aos-delay="300">
-                    <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Kopi Arabika" class="w-full h-44 object-cover object-center rounded-t-2xl shadow-md group-hover:scale-105 transition-transform duration-500">
+                <div class="product-card glassmorphism rounded-2xl overflow-hidden flex flex-col" data-tilt data-tilt-max="15" data-tilt-speed="400">
+                    <div class="relative h-44">
+                        <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Kopi Arabika" class="w-full h-full object-cover object-center rounded-t-2xl" loading="lazy">
+                        <div class="product-image-overlay absolute inset-0 opacity-0"></div>
+                        <button class="quick-view-btn absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-white text-primary px-4 py-2 rounded-full text-sm font-semibold">Quick View</button>
+                    </div>
                     <div class="relative px-6 pt-4">
-                        <span class="absolute -top-4 left-4 bg-yellow-500 text-gray-900 text-xs font-semibold px-3 py-1.5 rounded-full shadow">Premium</span>
+                        <span class="product-badge absolute -top-4 left-4 bg-gradient-to-r from-yellow-500 to-yellow-600 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow animate-pulse-slow">Premium</span>
                     </div>
                     <div class="p-6 flex-1 flex flex-col">
-                        <h4 class="text-xl font-bold text-gray-900 mb-1 group-hover:text-primary transition-colors">Kopi Arabika</h4>
+                        <h4 class="text-xl font-bold text-gray-900 mb-1 transition-colors">Kopi Arabika</h4>
                         <p class="text-2xl font-semibold text-primary mb-2">Rp 85.000</p>
                         <div class="flex gap-0.5 text-yellow-400 mb-2">
                             <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
                         </div>
                         <p class="text-gray-600 mb-4 line-clamp-2 flex-1">Kopi arabika premium dari perkebunan di Jawa Barat dengan cita rasa yang khas</p>
-                        <button class="w-full mt-auto bg-gradient-to-r from-primary to-accent text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 active:scale-100 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary/20">
-                            Lihat Detail
-                        </button>
+                        <button class="w-full mt-auto bg-gradient-to-r from-primary to-accent text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 active:scale-100 transition-all duration-300">Lihat Detail</button>
                     </div>
                 </div>
             </div>
 
             <!-- View All Button -->
-            <div class="text-center mt-12">
-                <a href="produk.html" class="inline-flex items-center space-x-2 bg-white px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transform transition-all duration-300 hover:-translate-y-0.5 group">
+            <div class="text-center mt-12 animate-slide-up">
+                <a href="produk.html" class="inline-flex items-center space-x-2 glassmorphism px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-105">
                     <span class="font-semibold text-primary group-hover:text-accent transition-colors">Lihat Semua Produk</span>
                     <span class="text-primary group-hover:translate-x-1 transform transition-transform">→</span>
                 </a>
@@ -281,90 +386,56 @@
         </div>
     </section>
 
-    <!-- Testimonial Section -->
+    <!-- Testimonial Section (rapi grid) -->
     <section class="py-20 bg-gradient-to-br from-gray-50 to-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <div class="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full px-6 py-3 mb-6" data-aos="fade-down">
+                <div class="inline-flex items-center space-x-2 glassmorphism rounded-full px-6 py-3 mb-6 animate-slide-down">
                     <span class="text-2xl">💬</span>
                     <span class="font-semibold text-primary">Testimonial</span>
                 </div>
-                <h2 class="text-4xl md:text-5xl font-poppins font-bold text-primary mb-6" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-poppins font-bold text-primary mb-6 animate-slide-up">
                     Apa Kata <span class="bg-gradient-to-r from-highlight to-accent bg-clip-text text-transparent">Mereka</span>
                 </h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed animate-fade-in">
                     Pendapat dari berbagai pihak tentang platform JabarUMKM Hub
                 </p>
             </div>
-            
-            <!-- Testimonial Cards -->
-            <div class="flex overflow-x-auto md:grid md:grid-cols-3 gap-6 md:gap-8 pb-4 md:pb-0 scrollbar-hide">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Testimonial 1 -->
-                <div class="flex-shrink-0 w-80 md:w-auto group bg-white rounded-3xl shadow-xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4" data-aos="fade-up" data-aos-delay="100">
-                    <div class="flex items-center mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white text-2xl">👨‍💼</span>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-lg text-primary">Ahmad Suryadi</h4>
-                            <p class="text-accent text-sm">Pemilik UMKM Batik</p>
-                        </div>
+                <div class="glassmorphism rounded-3xl shadow-xl p-8 flex flex-col items-center text-center animate-fade-in">
+                    <div class="w-16 h-16 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mb-4">
+                        <span class="text-white text-2xl">👨‍💼</span>
                     </div>
-                    <p class="text-gray-600 leading-relaxed mb-4">
-                        "Platform ini sangat membantu dalam memperkenalkan produk batik kami ke pasar yang lebih luas. Fitur interaktifnya membuat pengalaman belajar menjadi menyenangkan."
-                    </p>
-                    <div class="flex text-highlight">
-                        <span class="text-xl">⭐</span>
-                        <span class="text-xl">⭐</span>
-                        <span class="text-xl">⭐</span>
-                        <span class="text-xl">⭐</span>
-                        <span class="text-xl">⭐</span>
+                    <h4 class="font-bold text-lg text-primary mb-1">Ahmad Suryadi</h4>
+                    <p class="text-accent text-sm mb-2">Pemilik UMKM Batik</p>
+                    <p class="text-gray-600 mb-4 flex-1">"Platform ini sangat membantu dalam memperkenalkan produk batik kami ke pasar yang lebih luas. Fitur interaktifnya membuat pengalaman belajar menjadi menyenangkan."</p>
+                    <div class="flex justify-center text-highlight mb-2">
+                        <span class="text-xl">⭐</span><span class="text-xl">⭐</span><span class="text-xl">⭐</span><span class="text-xl">⭐</span><span class="text-xl">⭐</span>
                     </div>
                 </div>
-
                 <!-- Testimonial 2 -->
-                <div class="flex-shrink-0 w-80 md:w-auto group bg-white rounded-3xl shadow-xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4" data-aos="fade-up" data-aos-delay="200">
-                    <div class="flex items-center mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-br from-accent to-highlight rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white text-2xl">👩‍🎓</span>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-lg text-accent">Siti Nurhaliza</h4>
-                            <p class="text-highlight text-sm">Mahasiswa Ekonomi</p>
-                        </div>
+                <div class="glassmorphism rounded-3xl shadow-xl p-8 flex flex-col items-center text-center animate-fade-in">
+                    <div class="w-16 h-16 bg-gradient-to-br from-accent to-highlight rounded-full flex items-center justify-center mb-4">
+                        <span class="text-white text-2xl">👩‍🎓</span>
                     </div>
-                    <p class="text-gray-600 leading-relaxed mb-4">
-                        "Sebagai mahasiswa, platform ini memberikan insight yang berharga tentang UMKM Jawa Barat. Sistem badge-nya membuat belajar menjadi lebih engaging."
-                    </p>
-                    <div class="flex text-highlight">
-                        <span class="text-xl">⭐</span>
-                        <span class="text-xl">⭐</span>
-                        <span class="text-xl">⭐</span>
-                        <span class="text-xl">⭐</span>
-                        <span class="text-xl">⭐</span>
+                    <h4 class="font-bold text-lg text-accent mb-1">Siti Nurhaliza</h4>
+                    <p class="text-highlight text-sm mb-2">Mahasiswa Ekonomi</p>
+                    <p class="text-gray-600 mb-4 flex-1">"Sebagai mahasiswa, platform ini memberikan insight yang berharga tentang UMKM Jawa Barat. Sistem badge-nya membuat belajar menjadi lebih engaging."</p>
+                    <div class="flex justify-center text-highlight mb-2">
+                        <span class="text-xl">⭐</span><span class="text-xl">⭐</span><span class="text-xl">⭐</span><span class="text-xl">⭐</span><span class="text-xl">⭐</span>
                     </div>
                 </div>
-
                 <!-- Testimonial 3 -->
-                <div class="flex-shrink-0 w-80 md:w-auto group bg-white rounded-3xl shadow-xl p-8 hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-4" data-aos="fade-up" data-aos-delay="300">
-                    <div class="flex items-center mb-6">
-                        <div class="w-16 h-16 bg-gradient-to-br from-highlight to-primary rounded-full flex items-center justify-center mr-4">
-                            <span class="text-white text-2xl">👨‍🏫</span>
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-lg text-highlight">Dr. Bambang Sutejo</h4>
-                            <p class="text-primary text-sm">Dosen Universitas</p>
-                        </div>
+                <div class="glassmorphism rounded-3xl shadow-xl p-8 flex flex-col items-center text-center animate-fade-in">
+                    <div class="w-16 h-16 bg-gradient-to-br from-highlight to-primary rounded-full flex items-center justify-center mb-4">
+                        <span class="text-white text-2xl">👨‍🏫</span>
                     </div>
-                    <p class="text-gray-600 leading-relaxed mb-4">
-                        "Platform yang sangat inovatif dalam mendukung digitalisasi UMKM. Kombinasi edukasi dan teknologi yang tepat untuk era digital."
-                    </p>
-                    <div class="flex text-highlight">
-                        <span class="text-xl">⭐</span>
-                        <span class="text-xl">⭐</span>
-                        <span class="text-xl">⭐</span>
-                        <span class="text-xl">⭐</span>
-                        <span class="text-xl">⭐</span>
+                    <h4 class="font-bold text-lg text-highlight mb-1">Dr. Bambang Sutejo</h4>
+                    <p class="text-primary text-sm mb-2">Dosen Universitas</p>
+                    <p class="text-gray-600 mb-4 flex-1">"Platform yang sangat inovatif dalam mendukung digitalisasi UMKM. Kombinasi edukasi dan teknologi yang tepat untuk era digital."</p>
+                    <div class="flex justify-center text-highlight mb-2">
+                        <span class="text-xl">⭐</span><span class="text-xl">⭐</span><span class="text-xl">⭐</span><span class="text-xl">⭐</span><span class="text-xl">⭐</span>
                     </div>
                 </div>
             </div>
@@ -375,30 +446,155 @@
     <section id="peta" class="py-24 bg-white mb-20">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <div class="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full px-6 py-3 mb-6" data-aos="fade-down">
+                <div class="inline-flex items-center space-x-2 glassmorphism rounded-full px-6 py-3 mb-6 animate-slide-down">
                     <span class="text-2xl">🗺️</span>
                     <span class="font-semibold text-primary">Peta Interaktif</span>
                 </div>
-                <h2 class="text-4xl md:text-5xl font-poppins font-bold text-primary mb-6" data-aos="fade-up">
+                <h2 class="text-4xl md:text-5xl font-poppins font-bold text-primary mb-6 animate-slide-up">
                     Jelajahi Kekayaan <span class="bg-gradient-to-r from-highlight to-accent bg-clip-text text-transparent">UMKM Jawa Barat</span>
                 </h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed" data-aos="fade-up" data-aos-delay="200">
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed animate-fade-in">
                     Klik pada sebuah daerah di peta untuk melihat potensi UMKM dan produk unggulannya.
                 </p>
             </div>
-
             <div class="flex flex-col items-center justify-center w-full mb-16">
-                <!-- Peta SVG -->
-                <div id="map-container" class="w-full max-w-3xl flex justify-center items-center" data-aos="fade-right">
-                    <div id="jabar-map" class="w-full h-auto cursor-pointer mx-auto"></div>
+                <div id="map-container" class="w-full max-w-3xl mx-auto animate-zoom-in">
+                    <div id="jabar-map" class="w-full h-auto cursor-pointer">
+                        <svg viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg">
+                            <defs>
+                                <linearGradient id="landGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#e8f1f2;stop-opacity:1" />
+                                    <stop offset="100%" style="stop-color:#b8d8d8;stop-opacity:1" />
+                                </linearGradient>
+                                <linearGradient id="waterGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                                    <stop offset="0%" style="stop-color:#7eb9e8;stop-opacity:0.7" />
+                                    <stop offset="100%" style="stop-color:#3a7bd5;stop-opacity:0.9" />
+                                </linearGradient>
+                                <pattern id="mountainPattern" patternUnits="userSpaceOnUse" width="30" height="30">
+                                    <path d="M0,30 L15,0 L30,30 Z" fill="#8d8d8d" opacity="0.3"/>
+                                </pattern>
+                                <pattern id="forestPattern" patternUnits="userSpaceOnUse" width="20" height="20">
+                                    <circle cx="5" cy="15" r="4" fill="#2d6a4f" opacity="0.4"/>
+                                    <circle cx="10" cy="10" r="4" fill="#2d6a4f" opacity="0.4"/>
+                                    <circle cx="15" cy="15" r="4" fill="#2d6a4f" opacity="0.4"/>
+                                </pattern>
+                                <pattern id="urbanPattern" patternUnits="userSpaceOnUse" width="10" height="10">
+                                    <rect x="2" y="2" width="6" height="6" fill="#555" opacity="0.2"/>
+                                </pattern>
+                                <filter id="regionShadow" x="-20%" y="-20%" width="140%" height="140%">
+                                    <feGaussianBlur in="SourceAlpha" stdDeviation="3"/>
+                                    <feOffset dx="2" dy="3"/>
+                                    <feComponentTransfer>
+                                        <feFuncA type="linear" slope="0.2"/>
+                                    </feComponentTransfer>
+                                    <feMerge>
+                                        <feMergeNode/>
+                                        <feMergeNode in="SourceGraphic"/>
+                                    </feMerge>
+                                </filter>
+                                <filter id="textOutline" color-interpolation-filters="sRGB">
+                                    <feMorphology in="SourceAlpha" operator="dilate" radius="1"/>
+                                    <feComposite in="SourceGraphic" operator="over"/>
+                                </filter>
+                                <style>
+                                    .region-label { font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 600; fill: #2d3748; text-anchor: middle; filter: url(#textOutline); paint-order: stroke; stroke: white; stroke-width: 2px; stroke-linecap: round; stroke-linejoin: round; }
+                                    .city-label { font-family: 'Poppins', sans-serif; font-size: 8px; font-weight: 500; fill: #2d3748; text-anchor: middle; }
+                                    .title { font-family: 'Poppins', sans-serif; font-size: 28px; font-weight: 700; fill: #2d3748; text-anchor: middle; }
+                                </style>
+                            </defs>
+                            <rect width="800" height="600" fill="url(#landGradient)"/>
+                            <path d="M100,500 Q250,450 400,550 Q550,600 700,500 L800,600 L0,600 Z" fill="url(#waterGradient)"/>
+                            <path d="M150,300 Q200,200 250,250 Q300,150 350,200 Q400,100 450,250 Q500,180 550,300" fill="#a5a5a5" fill-opacity="0.2" stroke="#6b7280" stroke-width="1" stroke-dasharray="3,2"/>
+                            <path d="M200,350 Q250,250 300,300 Q350,200 400,250 Q450,150 500,300" fill="url(#mountainPattern)" opacity="0.6"/>
+                            <path d="M250,400 Q300,350 350,400 Q400,380 450,450" fill="url(#forestPattern)"/>
+                            <circle cx="300" cy="200" r="25" fill="url(#urbanPattern)"/>
+                            <circle cx="500" cy="180" r="20" fill="url(#urbanPattern)"/>
+                            <circle cx="600" cy="200" r="22" fill="url(#urbanPattern)"/>
+                            <g id="regions" filter="url(#regionShadow)">
+                                <path d="M280,180 L320,160 L350,180 L330,200 L300,220 L280,200 Z" fill="#4a6fa5" stroke="#3a5a80" stroke-width="1.5" fill-opacity="0.8" data-region-id="bandung" class="map-region"><title>Bandung</title></path>
+                                <path d="M420,240 L460,220 L480,240 L460,260 L440,280 L420,260 Z" fill="#6b9080" stroke="#5a7d6d" stroke-width="1.5" fill-opacity="0.8" data-region-id="sumedang" class="map-region"><title>Sumedang</title></path>
+                                <path d="M380,280 L420,260 L460,280 L480,300 L440,320 L400,300 Z" fill="#83b692" stroke="#6d9a7a" stroke-width="1.5" fill-opacity="0.8" data-region-id="tasikmalaya" class="map-region"><title>Tasikmalaya</title></path>
+                                <path d="M480,280 L520,260 L540,280 L520,300 L500,320 L480,300 Z" fill="#bde0fe" stroke="#a4c7e5" stroke-width="1.5" fill-opacity="0.8" data-region-id="majalengka" class="map-region"><title>Majalengka</title></path>
+                                <path d="M520,320 L560,300 L580,320 L560,340 L540,360 L520,340 Z" fill="#ffc8dd" stroke="#e6afc4" stroke-width="1.5" fill-opacity="0.8" data-region-id="kuningan" class="map-region"><title>Kuningan</title></path>
+                                <path d="M580,240 L620,220 L640,240 L620,260 L600,280 L580,260 Z" fill="#b7b7a4" stroke="#9d9d8a" stroke-width="1.5" fill-opacity="0.8" data-region-id="karawang" class="map-region"><title>Karawang</title></path>
+                                <path d="M560,280 L600,260 L620,280 L600,300 L580,320 L560,300 Z" fill="#ffe8d6" stroke="#e6cfb5" stroke-width="1.5" fill-opacity="0.8" data-region-id="indramayu" class="map-region"><title>Indramayu</title></path>
+                                <path d="M500,360 L540,340 L560,360 L540,380 L520,400 L500,380 Z" fill="#ffafcc" stroke="#e696b3" stroke-width="1.5" fill-opacity="0.8" data-region-id="pangandaran" class="map-region"><title>Pangandaran</title></path>
+                                <path d="M400,120 L440,100 L460,120 L440,140 L420,160 L400,140 Z" fill="#264653" stroke="#1a343e" stroke-width="1.5" fill-opacity="0.8" data-region-id="bogor" class="map-region"><title>Bogor</title></path>
+                                <path d="M460,140 L500,120 L520,140 L500,160 L480,180 L460,160 Z" fill="#7f5539" stroke="#64412a" stroke-width="1.5" fill-opacity="0.8" data-region-id="depok" class="map-region"><title>Depok</title></path>
+                                <path d="M540,160 L580,140 L600,160 L580,180 L560,200 L540,180 Z" fill="#ddbea9" stroke="#c4a590" stroke-width="1.5" fill-opacity="0.8" data-region-id="subang" class="map-region"><title>Subang</title></path>
+                                <path d="M500,180 L550,160 L580,180 L560,200 L520,220 L500,200 Z" fill="#a68a64" stroke="#8a6f4a" stroke-width="1.5" fill-opacity="0.8" data-region-id="cirebon" class="map-region"><title>Cirebon</title></path>
+                                <path d="M200,300 L240,280 L280,300 L260,320 L220,340 L200,320 Z" fill="#f4a261" stroke="#d98b4a" stroke-width="1.5" fill-opacity="0.8" data-region-id="sukabumi" class="map-region"><title>Sukabumi</title></path>
+                                <path d="M600,200 L640,180 L660,200 L640,220 L620,240 L600,220 Z" fill="#e76f51" stroke="#c95a3a" stroke-width="1.5" fill-opacity="0.8" data-region-id="bekasi" class="map-region"><title>Bekasi</title></path>
+                                <path d="M620,160 L660,140 L680,160 L660,180 L640,200 L620,180 Z" fill="#8d99ae" stroke="#748093" stroke-width="1.5" fill-opacity="0.8" data-region-id="cikarang" class="map-region"><title>Cikarang</title></path>
+                            </g>
+                            <path d="M300,200 L400,240 L460,280 L520,320" fill="none" stroke="#2d3748" stroke-width="2" stroke-dasharray="5,3"/>
+                            <path d="M500,180 L520,220 L540,280 L560,320" fill="none" stroke="#2d3748" stroke-width="2" stroke-dasharray="5,3"/>
+                            <path d="M600,200 L580,240 L560,280 L540,320" fill="none" stroke="#2d3748" stroke-width="2" stroke-dasharray="5,3"/>
+                            <path d="M250,250 Q300,280 350,260 Q400,290 450,270 Q500,300 550,280" fill="none" stroke="#3a86ff" stroke-width="1.5" stroke-linecap="round"/>
+                            <text x="330" y="215" class="region-label">Bandung</text>
+                            <text x="450" y="250" class="region-label">Sumedang</text>
+                            <text x="420" y="300" class="region-label">Tasikmalaya</text>
+                            <text x="510" y="300" class="region-label">Majalengka</text>
+                            <text x="550" y="330" class="region-label">Kuningan</text>
+                            <text x="610" y="255" class="region-label">Karawang</text>
+                            <text x="590" y="295" class="region-label">Indramayu</text>
+                            <text x="530" y="375" class="region-label">Pangandaran</text>
+                            <text x="430" y="135" class="region-label">Bogor</text>
+                            <text x="490" y="155" class="region-label">Depok</text>
+                            <text x="570" y="175" class="region-label">Subang</text>
+                            <text x="535" y="195" class="region-label">Cirebon</text>
+                            <text x="240" y="315" class="region-label">Sukabumi</text>
+                            <text x="630" y="215" class="region-label">Bekasi</text>
+                            <text x="650" y="175" class="region-label">Cikarang</text>
+                            <g id="city-markers">
+                                <circle cx="300" cy="200" r="4" fill="#e63946" stroke="#fff" stroke-width="1.5"/>
+                                <circle cx="500" cy="180" r="3" fill="#e63946" stroke="#fff" stroke-width="1.5"/>
+                                <circle cx="600" cy="200" r="3" fill="#e63946" stroke="#fff" stroke-width="1.5"/>
+                                <circle cx="400" cy="240" r="3" fill="#e63946" stroke="#fff" stroke-width="1.5"/>
+                            </g>
+                            <text x="300" y="190" class="city-label">Kota Bandung</text>
+                            <text x="500" y="170" class="city-label">Kota Cirebon</text>
+                            <text x="600" y="190" class="city-label">Kota Bekasi</text>
+                            <text x="400" y="50" class="title">Peta UMKM Jawa Barat</text>
+                            <g transform="translate(30, 450)">
+                                <rect x="0" y="0" width="200" height="150" fill="white" fill-opacity="0.8" stroke="#dee2e6" stroke-width="1" rx="8"/>
+                                <text x="100" y="25" font-family="Poppins" font-size="14" font-weight="600" text-anchor="middle" fill="#2d3748">Keterangan</text>
+                                <rect x="15" y="40" width="15" height="15" fill="#4a6fa5" stroke="#3a5a80" stroke-width="1" rx="3"/>
+                                <text x="40" y="52" font-family="Poppins" font-size="10" font-weight="500" fill="#2d3748">Kabupaten/Kota</text>
+                                <circle cx="22" cy="75" r="4" fill="#e63946" stroke="#fff" stroke-width="1"/>
+                                <text x="40" y="77" font-family="Poppins" font-size="10" font-weight="500" fill="#2d3748">Kota Utama</text>
+                                <path d="M15,90 L30,90" stroke="#2d3748" stroke-width="2" stroke-dasharray="5,3"/>
+                                <text x="40" y="92" font-family="Poppins" font-size="10" font-weight="500" fill="#2d3748">Jalan Raya</text>
+                                <path d="M15,105 L30,105" stroke="#3a86ff" stroke-width="1.5" stroke-linecap="round"/>
+                                <text x="40" y="107" font-family="Poppins" font-size="10" font-weight="500" fill="#2d3748">Sungai</text>
+                                <rect x="15" y="120" width="15" height="15" fill="url(#mountainPattern)" opacity="0.6" stroke="#6b7280" stroke-width="1" rx="3"/>
+                                <text x="40" y="132" font-family="Poppins" font-size="10" font-weight="500" fill="#2d3748">Daerah Pegunungan</text>
+                            </g>
+                            <g transform="translate(600, 520)">
+                                <rect x="0" y="0" width="120" height="8" fill="#2d3748" rx="2"/>
+                                <rect x="0" y="0" width="30" height="8" fill="#e63946" rx="2"/>
+                                <text x="60" y="25" font-family="Poppins" font-size="10" font-weight="500" text-anchor="middle" fill="#2d3748">100 km</text>
+                            </g>
+                            <g transform="translate(700, 100)">
+                                <circle cx="0" cy="0" r="30" fill="white" fill-opacity="0.8" stroke="#adb5bd" stroke-width="1"/>
+                            </g>
+                        </svg>
+                    </div>
+                    <div id="map-fallback" class="text-center text-red-500 mt-4 hidden">Peta tidak dapat dimuat. Silakan refresh halaman.</div>
                 </div>
             </div>
         </div>
     </section>
     
-    <!-- Call to Action Section -->
+    <!-- Call to Action Section (Bergabunglah Sekarang) -->
     <section class="py-24 bg-primary/5">
-        <!-- ... CTA content ... -->
+        <div class="container mx-auto px-4">
+            <div class="text-center max-w-2xl mx-auto">
+                <h2 class="text-4xl md:text-5xl font-poppins font-bold text-primary mb-6 animate-slide-up">Bergabunglah Sekarang!</h2>
+                <p class="text-xl text-gray-600 mb-10 animate-fade-in">Dukung UMKM Jawa Barat dengan menjelajahi produk lokal dan menjadi bagian dari perjalanan digitalisasi mereka. Jadilah bagian dari perubahan positif untuk ekonomi lokal!</p>
+                <a href="#" class="glassmorphism bg-gradient-to-r from-primary to-accent text-white px-10 py-5 rounded-full font-bold text-2xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 animate-scale-in">Mulai Sekarang 🚀</a>
+            </div>
+        </div>
     </section>
 
     <!-- Footer -->
@@ -410,10 +606,10 @@
         
         <div class="container mx-auto px-4 relative z-10">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <div class="md:col-span-2">
+                <div class="md:col-span-2 animate-slide-up">
                     <div class="flex items-center space-x-3 mb-6">
-                        <div class="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                            <span class="text-white font-bold text-xl">J</span>
+                        <div class="w-12 h-12 bg-white rounded-full flex items-center justify-center">
+                            <span class="text-gray-900 font-bold text-xl">J</span>
                         </div>
                         <span class="font-poppins font-bold text-2xl">JabarUMKM Hub</span>
                     </div>
@@ -422,19 +618,19 @@
                         Mari bersama-sama melestarikan dan mengembangkan produk lokal dengan teknologi modern.
                     </p>
                     <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                        <a href="#" class="w-10 h-10 glassmorphism rounded-full flex items-center justify-center hover:bg-gray-200 transition-opacity">
                             <span class="text-lg">📧</span>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                        <a href="#" class="w-10 h-10 glassmorphism rounded-full flex items-center justify-center hover:bg-gray-200 transition-opacity">
                             <span class="text-lg">📱</span>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
+                        <a href="#" class="w-10 h-10 glassmorphism rounded-full flex items-center justify-center hover:bg-gray-200 transition-opacity">
                             <span class="text-lg">💬</span>
                         </a>
                     </div>
                 </div>
                 
-                <div>
+                <div class="animate-slide-up" style="animation-delay: 0.2s;">
                     <h4 class="font-bold text-lg mb-6">Tautan</h4>
                     <ul class="space-y-3">
                         <li><a href="index.html" class="text-white/80 hover:text-white transition-colors">Beranda</a></li>
@@ -443,7 +639,7 @@
                     </ul>
                 </div>
                 
-                <div>
+                <div class="animate-slide-up" style="animation-delay: 0.4s;">
                     <h4 class="font-bold text-lg mb-6">Kontak</h4>
                     <ul class="space-y-3 text-white/80">
                         <li class="flex items-center space-x-2">
@@ -462,34 +658,25 @@
                 </div>
             </div>
             
-            <div class="border-t border-white/20 mt-12 pt-8 text-center text-white/60">
+            <div class="border-t border-white/20 mt-12 pt-8 text-center text-white/60 animate-fade-in">
                 <p>© 2024 JabarUMKM Hub. Dibuat dengan ❤️ untuk UMKM Jawa Barat.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Scripts -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js" defer></script>
-    <script src="js/main.js" defer></script>
-    <script src="js/map.js" defer></script>
-    <!-- BARIS INI DIHAPUS ATAU DIKOMENTARI KARENA MENYEBABKAN KONFLIK -->
-    <!-- <script src="js/command-palette.js" defer></script> -->
-
-    <!-- Command Palette (SUDAH DIPERBAIKI) -->
-    <div id="command-palette-container" class="fixed inset-0 bg-gray-900 bg-opacity-50 backdrop-blur-sm z-[9999] hidden items-start justify-center pt-20 md:pt-32 transition-opacity duration-300">
-        <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg md:max-w-xl transform transition-all duration-300 opacity-0 scale-95 mx-4 md:mx-0" id="command-palette-content">
+    <!-- Command Palette -->
+    <div id="command-palette-container" class="fixed inset-0 bg-gray-900/50 backdrop-blur-sm z-[9999] hidden flex items-center justify-center transition-all duration-500">
+        <div class="glassmorphism rounded-xl shadow-xl w-full max-w-md mx-4 transform transition-all duration-500" id="command-palette-content">
             <div class="relative">
                 <div class="absolute top-4 left-4">
-                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </div>
-                <input type="text" id="command-palette-input" placeholder="Cari produk, kategori, atau halaman..." class="w-full pl-12 pr-16 py-4 text-lg border-b border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary rounded-t-xl">
+                <input type="text" id="command-palette-input" placeholder="Cari produk..." class="w-full pl-12 pr-16 py-4 text-lg border-b border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary rounded-t-xl">
                 <div class="absolute top-3.5 right-4">
                     <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-500 bg-gray-100 border border-gray-200 rounded-md">ESC</kbd>
                 </div>
             </div>
-            <div id="command-palette-results" class="max-h-[60vh] md:max-h-96 overflow-y-auto p-2">
-                <!-- Hasil pencarian akan ditampilkan di sini oleh JavaScript -->
-            </div>
+            <div id="command-palette-results" class="max-h-[60vh] overflow-y-auto p-2"></div>
             <div class="p-3 border-t border-gray-200 text-xs text-gray-500 flex justify-between items-center bg-gray-50 rounded-b-xl">
                 <span>Gunakan <kbd class="px-1.5 py-1 font-semibold text-gray-800 bg-white border border-gray-200 rounded-md">↑</kbd> <kbd class="px-1.5 py-1 font-semibold text-gray-800 bg-white border border-gray-200 rounded-md">↓</kbd></span>
                 <span>Tekan <kbd class="px-1.5 py-1 font-semibold text-gray-800 bg-white border border-gray-200 rounded-md">Enter</kbd> untuk memilih</span>
@@ -498,55 +685,26 @@
     </div>
 
     <!-- Region Info Modal -->
-    <div id="region-modal" class="fixed inset-0 bg-gray-900 bg-opacity-60 z-[9998] hidden items-center justify-center transition-opacity duration-300">
-        <div id="region-modal-content" class="bg-white rounded-2xl shadow-2xl w-full max-w-md transform transition-all duration-300 scale-95 opacity-0 p-8 text-center">
+    <div id="region-modal" class="fixed inset-0 bg-gray-900/50 backdrop-blur-sm z-[9998] hidden flex items-center justify-center transition-all duration-500">
+        <div id="region-modal-content" class="glassmorphism rounded-2xl shadow-xl w-full max-w-md p-10 text-center transform transition-all duration-300">
             <div class="relative">
-                <button id="close-modal-btn" class="absolute -top-4 -right-4 w-10 h-10 bg-red-500 text-white rounded-full text-xl hover:bg-red-600 transition-colors flex items-center justify-center shadow-lg">×</button>
-                <div id="modal-region-icon" class="text-6xl mb-4">🗺️</div>
+                <button id="close-modal-btn" class="absolute top-0 right-0 w-10 h-10 bg-red-500 text-white rounded-full text-xl hover:bg-red-600 transition-all duration-300 flex items-center justify-center">×</button>
+                <div id="modal-region-icon" class="text-6xl mb-4 animate-bounce-slow">🗺️</div>
                 <h3 id="modal-region-name" class="text-3xl font-poppins font-bold text-primary mb-3">Nama Daerah</h3>
-                <p id="modal-region-description" class="text-gray-600 mb-8">Deskripsi singkat mengenai potensi UMKM di daerah ini.</p>
-                <a href="#" id="modal-region-link" class="btn-3d shadow-accent/40 bg-gradient-to-r from-accent to-primary text-white font-bold py-3 px-8 rounded-full inline-block transition-all duration-300 transform hover:scale-105">
-                    Lihat Produk Unggulan
-                </a>
+                <p id="modal-region-description" class="text-gray-600 mb-8">Deskripsi kesan tentang potensi UMKM di daerah ini.</p>
+                <a href="#" id="modal-region-link" class="bg-gradient-to-r from-accent to-primary text-white font-bold py-3 px-8 rounded-full inline-block transition-all duration-300 transform hover:scale-105">Lihat Produk Unggulan</a>
             </div>
         </div>
     </div>
 
-    <style>
-    @keyframes slideInRight {
-      from { transform: translateX(100%); opacity: 0; }
-      to { transform: translateX(0); opacity: 1; }
-    }
-    .animate-slideInRight { animation: slideInRight 0.4s cubic-bezier(0.4,0,0.2,1); }
-    </style>
-
-    <script>
-    // Drawer hamburger menu (standar dari produk.html/js/cart.js)
-    function openDrawer() {
-        const drawer = document.getElementById('mobile-drawer');
-        if (drawer) { drawer.classList.remove('hidden'); drawer.classList.add('flex'); }
-    }
-    function closeDrawer() {
-        const drawer = document.getElementById('mobile-drawer');
-        if (drawer) { drawer.classList.add('hidden'); drawer.classList.remove('flex'); }
-    }
-    document.addEventListener('DOMContentLoaded', () => {
-        const hamburgerBtn = document.getElementById('hamburger-btn');
-        const closeDrawerBtn = document.getElementById('close-drawer');
-        if (hamburgerBtn) hamburgerBtn.onclick = openDrawer;
-        if (closeDrawerBtn) closeDrawerBtn.onclick = closeDrawer;
-    });
-    </script>
-
     <!-- Chatbot Bubble -->
-    <button id="chatbot-btn" class="fixed bottom-20 right-6 w-12 h-12 bg-gradient-to-r from-primary to-accent rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform z-50">
+    <button id="chatbot-btn" class="fixed bottom-20 right-6 w-12 h-12 bg-gradient-to-r from-primary to-accent rounded-full shadow-lg flex items-center justify-center hover:scale-110 transition-transform duration-300 animate-pulse-slow z-50">
         <span class="text-xl text-white">💬</span>
     </button>
 
     <!-- Chatbot Modal -->
     <div id="chatbot-modal" class="fixed bottom-[88px] right-6 z-[9999] hidden">
-        <div id="chatbot-content" class="bg-white w-[280px] h-[400px] rounded-2xl shadow-xl flex flex-col transform transition-all duration-300 origin-bottom-right">
-            <!-- Header -->
+        <div id="chatbot-content" class="glassmorphism w-[280px] md:w-[320px] h-[400px] rounded-2xl shadow-xl flex flex-col transform transition-all duration-300 origin-bottom-right">
             <div class="px-3 py-2.5 bg-gradient-to-r from-primary to-accent rounded-t-2xl flex items-center justify-between border-b border-white/10">
                 <div class="flex items-center space-x-2">
                     <div class="w-7 h-7 bg-white/15 backdrop-blur-sm rounded-lg flex items-center justify-center">
@@ -561,21 +719,17 @@
                     <span class="text-sm leading-none">×</span>
                 </button>
             </div>
-            
-            <!-- Chat Messages -->
             <div id="chat-messages" class="flex-1 overflow-y-auto p-3 space-y-2 bg-gray-50/50">
                 <!-- Messages will be added here by JavaScript -->
             </div>
-            
-            <!-- Input Area -->
             <div class="p-2 bg-white border-t border-gray-100">
                 <div class="flex items-center space-x-2">
                     <div class="flex-1 bg-gray-100 rounded-lg flex items-center transition-all duration-300">
-                        <input type="text" id="chat-input" class="flex-1 bg-transparent px-3 py-2 text-sm focus:outline-none text-gray-700" placeholder="Ketik pesan...">
+                        <input type="text" id="chat-input" class="flex-1 bg-transparent px-3 py-2 text-sm text-gray-700 focus:outline-none" placeholder="Ketik pesan...">
                     </div>
                     <button id="send-chat" class="w-8 h-8 bg-gradient-to-r from-primary to-accent rounded-lg flex items-center justify-center text-white hover:shadow-md hover:scale-105 active:scale-95 transition-all">
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 transform rotate-90" viewBox="0 0 20 20" fill="currentColor">
-                            <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z" />
+                            <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"/>
                         </svg>
                     </button>
                 </div>
@@ -583,173 +737,219 @@
         </div>
     </div>
 
-    <style>
-    /* Custom scrollbar untuk chat messages */
-    #chat-messages::-webkit-scrollbar { width: 3px; }
-    #chat-messages::-webkit-scrollbar-track { background: transparent; }
-    #chat-messages::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 1.5px; }
-    #chat-messages::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
-    .chat-message-in { animation: messageSlideIn 0.2s ease-out; }
-    @keyframes messageSlideIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
-    #chatbot-modal.show { display: block !important; animation: chatbotShow 0.3s cubic-bezier(0.16, 1, 0.3, 1); }
-    @keyframes chatbotShow { 0% { opacity: 0; transform: scale(0.95) translateY(10px); } 100% { opacity: 1; transform: scale(1) translateY(0); } }
-    </style>
-
     <!-- Scripts -->
-    <script src="js/chatbot.js"></script>
     <script>
-        // Initialize chatbot
+        // GSAP Animations
         document.addEventListener('DOMContentLoaded', () => {
-            if (window.EnhancedChatbot) {
-                window.chatbot = new EnhancedChatbot();
-            }
+            // Page Load Animation
+            gsap.to('#loading-screen', {
+                opacity: 0,
+                duration: 1,
+                delay: 2,
+                onComplete: () => document.getElementById('loading-screen').style.display = 'none'
+            });
+
+            // Navbar Scroll Animation
+            gsap.to('#navbar', {
+                scrollTrigger: {
+                    trigger: '#navbar',
+                    start: 'top top',
+                    scrub: 1
+                },
+                scale: 0.95,
+                opacity: 0.9
+            });
+
+            // Hero Section Particles
+            gsap.utils.toArray('.particle').forEach((particle, i) => {
+                gsap.to(particle, {
+                    y: -100,
+                    opacity: 0.3,
+                    duration: 5 + i,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: 'sine.inOut',
+                    delay: i * 0.5
+                });
+            });
+
+            // Section Animations
+            gsap.utils.toArray('section').forEach(section => {
+                gsap.from(section.children, {
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'top 80%',
+                        end: 'bottom 20%',
+                        toggleActions: 'play none none reverse'
+                    },
+                    opacity: 0,
+                    y: 50,
+                    stagger: 0.2,
+                    duration: 1,
+                    ease: 'power3.out'
+                });
+            });
+
+            // Typed.js for Hero Text
+            new Typed('#typed-text', {
+                strings: ['Cita Rasa', 'Kekayaan Budaya', 'Produk Lokal'],
+                typeSpeed: 100,
+                backSpeed: 50,
+                loop: true
+            });
+
+            // Command Palette Animation
+            const paletteContainer = document.getElementById('command-palette-container');
+            const paletteContent = document.getElementById('command-palette-content');
+            document.querySelectorAll('[data-toggle-command-palette]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    gsap.to(paletteContainer, { opacity: 1, display: 'flex', duration: 0.5 });
+                    gsap.to(paletteContent, { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(1.7)' });
+                });
+            });
+
+            // Chatbot Animation
+            const chatbotBtn = document.getElementById('chatbot-btn');
+            const chatbotModal = document.getElementById('chatbot-modal');
+            const closeChatbot = document.getElementById('close-chatbot');
+            chatbotBtn.addEventListener('click', () => {
+                gsap.to(chatbotModal, { display: 'block', scale: 1, opacity: 1, duration: 0.3, ease: 'back.out' });
+            });
+            closeChatbot.addEventListener('click', () => {
+                gsap.to(chatbotModal, { scale: 0.9, opacity: 0, duration: 0.3, onComplete: () => chatbotModal.style.display = 'none' });
+            });
+
+            // Mobile Menu Toggle
+            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+            mobileMenuBtn.addEventListener('click', () => {
+                const isHidden = mobileMenu.classList.contains('hidden');
+                gsap.to(mobileMenu, {
+                    opacity: isHidden ? 1 : 0,
+                    height: isHidden ? 'auto' : 'auto',
+                    display: isHidden ? 'block' : 'none',
+                    duration: 0.5,
+                    ease: 'power3.inOut'
+                });
+                mobileMenu.classList.toggle('hidden');
+            });
         });
-    </script>
 
-    <style>
-    /* Style untuk Product Card (HANYA SATU KALI) */
-    .product-card { @apply bg-white rounded-2xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl hover:-translate-y-1; }
-    .product-image { @apply relative h-64 overflow-hidden; }
-    .product-gradient { @apply absolute inset-0 transition-transform duration-500; }
-    .product-card:hover .product-gradient { transform: scale(1.05); }
-    .product-title { @apply absolute inset-0 flex items-center justify-center; backdrop-filter: blur(0px); transition: backdrop-filter 0.3s ease; }
-    .product-card:hover .product-title { backdrop-filter: blur(2px); }
-    .product-badge { @apply absolute top-4 left-4 text-xs font-semibold px-3 py-1.5 rounded-full shadow-md; }
-    .product-content { @apply p-6; }
-    .product-name { @apply text-xl font-bold text-gray-900 mb-2 transition-colors; }
-    .product-card:hover .product-name { @apply text-primary; }
-    .product-price { @apply text-2xl font-semibold text-primary; }
-    .product-description { @apply text-gray-600 mb-6 line-clamp-2; }
-    .product-button { @apply w-full bg-gradient-to-r from-primary to-accent text-white font-semibold py-3 px-6 rounded-xl shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 transform transition-all duration-300 hover:-translate-y-0.5 active:translate-y-0 focus:outline-none focus:ring-2 focus:ring-primary/20; }
+        // Command Palette JavaScript (retained from original)
+        document.addEventListener('DOMContentLoaded', function() {
+            const paletteContainer = document.getElementById('command-palette-container');
+            const paletteContent = document.getElementById('command-palette-content');
+            const paletteInput = document.getElementById('command-palette-input');
+            const paletteResults = document.getElementById('command-palette-results');
+            const paletteTriggers = document.querySelectorAll('[data-toggle="command-palette"]');
+            
+            let currentIndex = -1;
 
-    /* CSS BARU untuk Command Palette */
-    #command-palette-results { scrollbar-width: thin; scrollbar-color: #A05A2C #f3f4f6; }
-    #command-palette-results::-webkit-scrollbar { width: 6px; }
-    #command-palette-results::-webkit-scrollbar-track { background: #f3f4f6; }
-    #command-palette-results::-webkit-scrollbar-thumb { background-color: #A05A2C; border-radius: 3px; }
-    .command-item { @apply p-3 hover:bg-gray-100 rounded-lg cursor-pointer transition-colors; }
-    .command-item.active { @apply bg-primary/10; }
-    </style>
+            const searchData = [
+                { type: 'produk', title: 'Batik Garut', category: 'Kerajinan', url: 'produk.html?id=1' },
+                { type: 'produk', title: 'Keripik Singkong', category: 'Makanan', url: 'produk.html?id=2' },
+                { type: 'kategori', title: 'Kerajinan Tangan', url: 'produk.html?kategori=kerajinan' },
+                { type: 'kategori', title: 'Makanan Tradisional', url: 'produk.html?kategori=makanan' },
+                { type: 'lokasi', title: 'Kabupaten Garut', url: 'peta.html?kabupaten=garut' },
+                { type: 'lokasi', title: 'Kota Bandung', url: 'peta.html?kabupaten=bandung' }
+            ];
 
-    <script>
-    // SCRIPT BARU UNTUK COMMAND PALETTE
-    document.addEventListener('DOMContentLoaded', function() {
-        const paletteContainer = document.getElementById('command-palette-container');
-        const paletteContent = document.getElementById('command-palette-content');
-        const paletteInput = document.getElementById('command-palette-input');
-        const paletteResults = document.getElementById('command-palette-results');
-        const paletteTriggers = document.querySelectorAll('[data-toggle="command-palette"]');
-        
-        let currentIndex = -1;
-
-        const searchData = [
-            { type: 'produk', title: 'Batik Garut', category: 'Kerajinan', url: 'produk.html?id=1' },
-            { type: 'produk', title: 'Keripik Singkong', category: 'Makanan', url: 'produk.html?id=2' },
-            { type: 'kategori', title: 'Kerajinan Tangan', url: 'produk.html?kategori=kerajinan' },
-            { type: 'kategori', title: 'Makanan Tradisional', url: 'produk.html?kategori=makanan' },
-            { type: 'lokasi', title: 'Kabupaten Garut', url: 'peta.html?kabupaten=garut' },
-            { type: 'lokasi', title: 'Kota Bandung', url: 'peta.html?kabupaten=bandung' }
-        ];
-
-        function togglePalette(show) {
-            if (show) {
-                paletteContainer.classList.remove('hidden');
-                setTimeout(() => {
-                    paletteContainer.classList.remove('opacity-0');
-                    paletteContent.classList.remove('opacity-0', 'scale-95');
-                    paletteContent.classList.add('opacity-100', 'scale-100');
+            function togglePalette(show) {
+                if (show) {
+                    paletteContainer.classList.remove('hidden');
+                    gsap.to(paletteContainer, { opacity: 1, display: 'flex', duration: 0.5 });
+                    gsap.to(paletteContent, { scale: 1, opacity: 1, duration: 0.5, ease: 'back.out(1.7)' });
                     paletteInput.focus();
                     renderResults(searchData.slice(0, 5));
-                }, 10);
-            } else {
-                paletteContent.classList.remove('opacity-100', 'scale-100');
-                paletteContent.classList.add('opacity-0', 'scale-95');
-                paletteContainer.classList.add('opacity-0');
-                setTimeout(() => {
-                    paletteContainer.classList.add('hidden');
-                    paletteInput.value = '';
-                    paletteResults.innerHTML = '';
-                }, 300);
-            }
-        }
-
-        function renderResults(results, query = '') {
-            currentIndex = -1;
-            if (results.length === 0 && query) {
-                paletteResults.innerHTML = `<div class="p-4 text-center text-gray-500">Tidak ada hasil untuk "<span class="font-semibold">${query}</span>"</div>`;
-                return;
-            }
-            paletteResults.innerHTML = results.map(item => {
-                 const iconMap = { produk: '🛍️', kategori: '🏷️', lokasi: '📍'};
-                 const colorMap = { produk: 'bg-primary/10 text-primary', kategori: 'bg-accent/10 text-accent', lokasi: 'bg-highlight/20 text-yellow-700'};
-                 return `
-                    <a href="${item.url}" class="command-item flex items-center p-3 hover:bg-gray-100 rounded-lg transition-colors">
-                        <div class="w-10 h-10 rounded-lg flex items-center justify-center mr-3 ${colorMap[item.type] || 'bg-gray-100'}">
-                            ${iconMap[item.type] || '📄'}
-                        </div>
-                        <div>
-                            <div class="font-medium">${item.title}</div>
-                            ${item.category ? `<div class="text-sm text-gray-500">${item.category}</div>` : ''}
-                        </div>
-                    </a>`;
-            }).join('');
-        }
-        
-        function updateActiveItem() {
-            const items = paletteResults.querySelectorAll('.command-item');
-            items.forEach((item, index) => {
-                if (index === currentIndex) {
-                    item.classList.add('active');
-                    item.scrollIntoView({ block: 'nearest' });
                 } else {
-                    item.classList.remove('active');
+                    gsap.to(paletteContent, { scale: 0.95, opacity: 0, duration: 0.3 });
+                    gsap.to(paletteContainer, { opacity: 0, duration: 0.3, onComplete: () => {
+                        paletteContainer.classList.add('hidden');
+                        paletteInput.value = '';
+                        paletteResults.innerHTML = '';
+                    }});
+                }
+            }
+
+            function renderResults(results, query = '') {
+                currentIndex = -1;
+                if (results.length === 0 && query) {
+                    paletteResults.innerHTML = `<div class="p-4 text-center text-gray-500">Tidak ada hasil untuk "<span class="font-semibold">${query}</span>"</div>`;
+                    return;
+                }
+                paletteResults.innerHTML = results.map(item => {
+                    const iconMap = { produk: '🛍️', kategori: '🏷️', lokasi: '📍'};
+                    const colorMap = { produk: 'bg-primary/10 text-primary', kategori: 'bg-accent/10 text-accent', lokasi: 'bg-highlight/20 text-yellow-700'};
+                    return `
+                        <a href="${item.url}" class="command-item flex items-center p-3 rounded-lg hover:bg-gray-100 transition-all duration-300">
+                            <div class="w-10 h-10 rounded-lg flex items-center justify-center mr-3 ${colorMap[item.type] || 'bg-gray-100'}">
+                                ${iconMap[item.type] || '📄'}
+                            </div>
+                            <div>
+                                <div class="font-medium">${item.title}</div>
+                                ${item.category ? `<div class="text-sm text-gray-500">${item.category}</div>` : ''}
+                            </div>
+                        </a>`;
+                }).join('');
+                gsap.from(paletteResults.children, { opacity: 0, y: 10, stagger: 0.1, duration: 0.3 });
+            }
+            
+            function updateActiveItem() {
+                const items = paletteResults.querySelectorAll('.command-item');
+                items.forEach((item, index) => {
+                    if (index === currentIndex) {
+                        item.classList.add('active:bg-primary/10');
+                        item.scrollIntoView({ block: 'nearest' });
+                    } else {
+                        item.classList.remove('active:bg-primary/10');
+                    }
+                });
+            }
+
+            paletteTriggers.forEach(btn => btn.addEventListener('click', () => togglePalette(true)));
+            paletteContainer.addEventListener('click', (e) => { if (e.target === paletteContainer) togglePalette(false); });
+            
+            paletteInput.addEventListener('input', function() {
+                const query = this.value.toLowerCase().trim();
+                if (!query) {
+                    renderResults(searchData.slice(0, 5));
+                    return;
+                }
+                const results = searchData.filter(item => 
+                    item.title.toLowerCase().includes(query) || 
+                    (item.category && item.category.toLowerCase().includes(query))
+                );
+                renderResults(results, query);
+            });
+
+            paletteInput.addEventListener('keydown', function(e) {
+                const items = paletteResults.querySelectorAll('.command-item');
+                if (items.length === 0) return;
+                if (e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    currentIndex = (currentIndex + 1) % items.length;
+                    updateActiveItem();
+                } else if (e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    currentIndex = (currentIndex - 1 + items.length) % items.length;
+                    updateActiveItem();
+                } else if (e.key === 'Enter' && currentIndex > -1) {
+                    e.preventDefault();
+                    items[currentIndex].click();
                 }
             });
-        }
 
-        paletteTriggers.forEach(btn => btn.addEventListener('click', () => togglePalette(true)));
-        paletteContainer.addEventListener('click', (e) => { if (e.target === paletteContainer) togglePalette(false); });
-        
-        paletteInput.addEventListener('input', function() {
-            const query = this.value.toLowerCase().trim();
-            if (!query) {
-                renderResults(searchData.slice(0, 5));
-                return;
-            }
-            const results = searchData.filter(item => 
-                item.title.toLowerCase().includes(query) || 
-                (item.category && item.category.toLowerCase().includes(query))
-            );
-            renderResults(results, query);
+            document.addEventListener('keydown', function(e) {
+                if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
+                    e.preventDefault();
+                    togglePalette(paletteContainer.classList.contains('hidden'));
+                }
+                if (e.key === 'Escape' && !paletteContainer.classList.contains('hidden')) {
+                    togglePalette(false);
+                }
+            });
         });
-
-        paletteInput.addEventListener('keydown', function(e) {
-            const items = paletteResults.querySelectorAll('.command-item');
-            if (items.length === 0) return;
-            if (e.key === 'ArrowDown') {
-                e.preventDefault();
-                currentIndex = (currentIndex + 1) % items.length;
-                updateActiveItem();
-            } else if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                currentIndex = (currentIndex - 1 + items.length) % items.length;
-                updateActiveItem();
-            } else if (e.key === 'Enter' && currentIndex > -1) {
-                e.preventDefault();
-                items[currentIndex].click();
-            }
-        });
-
-        document.addEventListener('keydown', function(e) {
-            if ((e.ctrlKey || e.metaKey) && e.key.toLowerCase() === 'k') {
-                e.preventDefault();
-                togglePalette(paletteContainer.classList.contains('hidden'));
-            }
-            if (e.key === 'Escape' && !paletteContainer.classList.contains('hidden')) {
-                togglePalette(false);
-            }
-        });
-    });
     </script>
+    <script src="js/map.js"></script>
 </body>
 </html>

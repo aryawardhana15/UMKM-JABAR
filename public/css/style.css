@@ -795,3 +795,76 @@ input:focus {
         max-width: calc(100% - 2rem);
     }
 } 
+
+/* Glassmorphism Card */
+.product-card-enhanced {
+  background: rgba(255,255,255,0.7);
+  backdrop-filter: blur(12px);
+  border-radius: 1.5rem;
+  border: 1px solid rgba(255,255,255,0.25);
+  box-shadow: 0 8px 32px rgba(160,90,44,0.08);
+  transition: box-shadow .3s, transform .3s;
+}
+.product-card-enhanced:focus-within, .product-card-enhanced:hover {
+  box-shadow: 0 16px 48px rgba(160,90,44,0.16);
+  transform: translateY(-8px) scale(1.03);
+}
+.badge-popular { background: linear-gradient(90deg, #F9C74F, #A05A2C); color: #fff; animation: pulse 1.5s infinite alternate; }
+.badge-new { background: linear-gradient(90deg, #6B8E23, #F9C74F); color: #fff; animation: pulse 1.5s infinite alternate; }
+.badge-best { background: linear-gradient(90deg, #A05A2C, #6B8E23); color: #fff; animation: pulse 1.5s infinite alternate; }
+@keyframes pulse { 0%{box-shadow:0 0 0 0 #F9C74F44;} 100%{box-shadow:0 0 16px 8px #F9C74F22;} }
+.tilt { will-change: transform; }
+/* Masonry Grid */
+.card-grid-enhanced { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap: 2rem; }
+@media (max-width: 640px) { .card-grid-enhanced { grid-template-columns: 1fr; gap: 1rem; } }
+/* Modal Spring */
+.modal-spring { animation: modalSpring 0.5s cubic-bezier(.68,-0.55,.27,1.55); }
+@keyframes modalSpring { 0%{transform:scale(0.7);} 80%{transform:scale(1.05);} 100%{transform:scale(1);} }
+/* Micro-interaction */
+.btn-enhanced:active { transform: scale(0.97); }
+.btn-enhanced:focus { outline: 2px solid #A05A2C; }
+/* Accessibility fallback */
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
+/* Parallax/zoom image on hover */
+.product-card-enhanced .card-img { transition: transform .5s; }
+.product-card-enhanced:hover .card-img { transform: scale(1.08) rotate(-1deg); }
+/* Quick view modal, chatbot modal, region modal: spring pop-up */
+.modal-spring { animation: modalSpring 0.5s cubic-bezier(.68,-0.55,.27,1.55); }
+/* Badge, button, link: focus-visible for keyboard nav */
+:focus-visible { outline: 2px solid #6B8E23; outline-offset: 2px; }
+
+/* Animated particles/gradient di hero */
+.animate-float { animation: float 6s ease-in-out infinite; }
+@keyframes float { 0%{transform:translateY(0);} 50%{transform:translateY(-16px);} 100%{transform:translateY(0);} }
+.animate-pulse-slow { animation: pulse 3s cubic-bezier(0.4,0,0.6,1) infinite; }
+/* SVG wave divider */
+section > .absolute svg { display: block; width: 100%; height: 80px; }
+/* Scroll to top button */
+#scrollToTopBtn { transition: opacity 0.3s, transform 0.3s; box-shadow: 0 4px 24px #A05A2C33; }
+#scrollToTopBtn.opacity-0 { opacity: 0; pointer-events: none; }
+#scrollToTopBtn.opacity-100 { opacity: 1; pointer-events: auto; }
+#scrollToTopBtn:hover { transform: scale(1.12); }
+/* Testimoni carousel */
+#testimonial-carousel { scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; }
+.testimonial-card { scroll-snap-align: start; }
+#testimonial-prev, #testimonial-next { transition: background 0.2s, color 0.2s; }
+#testimonial-prev:hover, #testimonial-next:hover { background: #A05A2C; color: #fff; }
+@media (max-width: 768px) { .section { padding-left: 1rem; padding-right: 1rem; } }
+.section { padding-top: 6rem; padding-bottom: 6rem; }
+@media (max-width: 640px) { .section { padding-top: 3rem; padding-bottom: 3rem; } }
+
+/* Shine effect di produk card */
+.shine { pointer-events: none; background: linear-gradient(120deg,rgba(255,255,255,0.7) 0%,rgba(255,255,255,0.1) 80%); opacity: 0; transition: opacity 0.3s, transform 0.3s; border-radius: 1.5rem; }
+/* Ripple effect di tombol */
+.ripple { border-radius: inherit; position: absolute; z-index: 10; pointer-events: none; background: rgba(255,255,255,0.4); transform: scale(0); opacity: 0.7; transition: transform 0.4s, opacity 0.4s; }
+.ripple.show { transform: scale(2.5); opacity: 0; transition: transform 0.4s, opacity 0.4s; }
+/* GSAP text reveal */
+.gsap-reveal { display: inline-block; overflow: hidden; vertical-align: bottom; }
+/* Bubble tips */
+#bubble-tips { box-shadow: 0 4px 24px #A05A2C33; animation: bubbleIn 0.5s cubic-bezier(.68,-0.55,.27,1.55); }
+@keyframes bubbleIn { 0%{transform:scale(0.7); opacity:0;} 100%{transform:scale(1); opacity:1;} }
+#bubble-tips:hover { transform: scale(1.08); }
+/* Parallax hero layer */
+.parallax-hero-layer { z-index: 1; pointer-events: none; } 

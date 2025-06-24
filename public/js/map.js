@@ -98,9 +98,22 @@ function closeModal() {
     }, 300);
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    initMap();
-});
+// Pastikan initMap dijalankan otomatis
+if (typeof window !== 'undefined') {
+  document.addEventListener('DOMContentLoaded', () => {
+    try {
+      initMap();
+      // Jika SVG sudah di-inline di HTML, langsung pasang event listener
+      const mapContainer = document.getElementById('jabar-map');
+      if (mapContainer && mapContainer.querySelector('[data-region-id]')) {
+        addMapEventListeners();
+      }
+    } catch (e) {
+      const fallback = document.getElementById('map-fallback');
+      if(fallback) fallback.classList.remove('hidden');
+    }
+  });
+}
 
 // Track Region Visit
 function trackRegionVisit(regionId) {
@@ -170,4 +183,6 @@ typeof window !== 'undefined' && (window.MapFunctions = {
     initMap,
     trackRegionVisit,
     loadVisitedRegions
-}); 
+});
+
+window.openModal = openModal; 
