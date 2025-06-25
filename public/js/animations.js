@@ -235,4 +235,213 @@ document.addEventListener('DOMContentLoaded', function() {
   // Juga jalankan ulang setiap 2 detik (jaga-jaga SVG baru di-load)
   setInterval(ensureMapRegionEvents, 2000);
 
+  // === TIMELINE PERJALANAN (TENTANG) - GSAP SUPER UPGRADE ===
+  const timelineItems = document.querySelectorAll('.timeline-item');
+  timelineItems.forEach((item, i) => {
+    const isRight = item.classList.contains('right-timeline');
+    gsap.from(item, {
+      x: isRight ? -120 : 120,
+      y: 60,
+      scale: 0.85,
+      opacity: 0,
+      boxShadow: '0 0 0px 0px rgba(249,199,79,0)',
+      filter: 'blur(8px)',
+      duration: 1.1,
+      ease: 'power4.out',
+      delay: i * 0.15,
+      scrollTrigger: {
+        trigger: item,
+        start: 'top 85%',
+        toggleActions: 'play none none reverse'
+      },
+      onStart: () => {
+        item.style.zIndex = 10 + (timelineItems.length - i);
+      }
+    });
+    // Hover effect: tilt, scale, shadow
+    item.addEventListener('mouseenter', () => {
+      gsap.to(item, { scale: 1.04, boxShadow: '0 8px 32px 0px #F9C74F55', rotateY: isRight ? 6 : -6, duration: 0.35, filter: 'blur(0px)' });
+    });
+    item.addEventListener('mouseleave', () => {
+      gsap.to(item, { scale: 1, boxShadow: '0 2px 12px 0px #A05A2C22', rotateY: 0, duration: 0.35 });
+    });
+  });
+
+  // Parallax effect untuk garis timeline (desktop)
+  const timelineLine = document.querySelector('.timeline-vertical-line');
+  if (timelineLine && window.innerWidth >= 768) {
+    gsap.fromTo(timelineLine, {
+      scaleY: 0.2,
+      opacity: 0.3
+    }, {
+      scaleY: 1,
+      opacity: 1,
+      transformOrigin: 'center top',
+      duration: 1.5,
+      ease: 'power2.out',
+      scrollTrigger: {
+        trigger: '.timeline-container',
+        start: 'top 80%',
+        end: 'bottom 20%',
+        scrub: 1
+      }
+    });
+  }
+
+  // === NILAI-NILAI KAMI (VALUES) - GSAP RESPONSIVE, CLEAN, SCROLL EFFECT ===
+  function initValuesGSAP() {
+    if (window.gsap && window.ScrollTrigger) {
+      gsap.registerPlugin(ScrollTrigger);
+      // Responsive: Desktop & Mobile
+      const isDesktop = window.innerWidth >= 1024;
+      if (isDesktop) {
+        // DESKTOP: Masonry, Morph, Parallax, Clean
+        const valueCards = document.querySelectorAll('.value-card');
+        valueCards.forEach((card, i) => {
+          // Scroll-linked morph, scale, shadow, icon bounce
+          gsap.to(card, {
+            y: i % 2 === 0 ? -40 : 40,
+            scale: 1.06,
+            borderRadius: '24% 76% 60% 40%/60% 30% 70% 40%',
+            boxShadow: '0 16px 48px 0px #F9C74F55',
+            filter: 'blur(0px)',
+            duration: 1.2,
+            ease: 'expo.inOut',
+            delay: 0.1 + i * 0.08,
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 85%',
+              end: 'bottom 30%',
+              scrub: true,
+              onUpdate: self => {
+                // Morph icon bounce/rotate mengikuti progress scroll
+                const icon = card.querySelector('.icon-anim lottie-player');
+                if(icon) {
+                  icon.setSpeed(1.1 + self.progress * 2.2);
+                  icon.setDirection(1);
+                }
+                // Morph border-radius progresif
+                card.style.borderRadius = self.progress < 0.5 ?
+                  '32px' :
+                  '24% 76% 60% 40%/60% 30% 70% 40%';
+              }
+            }
+          });
+          // Parallax floating saat scroll
+          gsap.to(card, {
+            y: '+=32',
+            ease: 'power1.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.2
+            }
+          });
+          // Hover micro-interaction
+          card.addEventListener('mouseenter', () => {
+            gsap.to(card, { scale: 1.12, rotateY: (i%2===0)?8:-8, borderRadius: '40% 60% 60% 40%/50% 60% 40% 50%', boxShadow: '0 24px 64px 0px #F9C74Fcc', duration: 0.35, ease: 'power2.out' });
+            const icon = card.querySelector('.icon-anim lottie-player');
+            if(icon) icon.setSpeed(3);
+          });
+          card.addEventListener('mouseleave', () => {
+            gsap.to(card, { scale: 1.06, rotateY: 0, borderRadius: '24% 76% 60% 40%/60% 30% 70% 40%', boxShadow: '0 16px 48px 0px #F9C74F55', duration: 0.35, ease: 'power2.out' });
+            const icon = card.querySelector('.icon-anim lottie-player');
+            if(icon) icon.setSpeed(1.1);
+          });
+        });
+        // Parallax shape morph
+        const shape = document.querySelector('.absolute.-top-16.left-1/3');
+        if(shape) {
+          gsap.to(shape, {
+            y: -80,
+            rotate: 18,
+            scale: 1.13,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: '.values-masonry',
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.5
+            }
+          });
+        }
+      } else {
+        // MOBILE: Card Stack, Morph, Parallax, Clean
+        const cards = document.querySelectorAll('.value-card-mobile');
+        cards.forEach((card, i) => {
+          gsap.to(card, {
+            y: -24 + i*8,
+            scale: 1.04,
+            borderRadius: '28% 72% 60% 40%/60% 30% 70% 40%',
+            boxShadow: '0 12px 40px 0px #A05A2C55',
+            filter: 'blur(0px)',
+            duration: 1.1,
+            ease: 'expo.inOut',
+            delay: 0.1 + i * 0.08,
+            scrollTrigger: {
+              trigger: card,
+              start: 'top 97%',
+              end: 'bottom 40%',
+              scrub: true,
+              onUpdate: self => {
+                const icon = card.querySelector('.icon-anim lottie-player');
+                if(icon) {
+                  icon.setSpeed(1.1 + self.progress * 2.2);
+                  icon.setDirection(1);
+                }
+                card.style.borderRadius = self.progress < 0.5 ?
+                  '20px' :
+                  '28% 72% 60% 40%/60% 30% 70% 40%';
+              }
+            }
+          });
+          // Parallax floating saat scroll
+          gsap.to(card, {
+            y: '+=18',
+            ease: 'power1.out',
+            scrollTrigger: {
+              trigger: card,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.2
+            }
+          });
+          // Tap micro-interaction
+          card.addEventListener('touchstart', () => {
+            gsap.to(card, { scale: 1.12, borderRadius: '40% 60% 60% 40%/50% 60% 40% 50%', boxShadow: '0 24px 64px 0px #F9C74Fcc', duration: 0.3, ease: 'power2.out' });
+            const icon = card.querySelector('.icon-anim lottie-player');
+            if(icon) icon.setSpeed(3);
+          });
+          card.addEventListener('touchend', () => {
+            gsap.to(card, { scale: 1.04, borderRadius: '28% 72% 60% 40%/60% 30% 70% 40%', boxShadow: '0 12px 40px 0px #A05A2C55', duration: 0.3, ease: 'power2.out' });
+            const icon = card.querySelector('.icon-anim lottie-player');
+            if(icon) icon.setSpeed(1.1);
+          });
+        });
+        // Parallax shape morph mobile
+        const shape = document.querySelector('.values-cardstack .absolute');
+        if(shape) {
+          gsap.to(shape, {
+            y: 40,
+            rotate: 12,
+            scale: 1.09,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: '.values-cardstack',
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 1.5
+            }
+          });
+        }
+      }
+    } else {
+      // Fallback jika GSAP/ScrollTrigger belum siap
+      setTimeout(initValuesGSAP, 400);
+    }
+  }
+  // Jalankan inisialisasi GSAP untuk Nilai-Nilai Kami
+  initValuesGSAP();
+
 }); 

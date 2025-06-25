@@ -638,6 +638,44 @@
                 top: 0;
             }
         }
+
+        /* === LOGO SLIDER - START === */
+        @keyframes slide {
+            from { transform: translateX(0); }
+            to { transform: translateX(-50%); } /* Geser setengah untuk loop seamless */
+        }
+        .logos {
+            overflow: hidden;
+            padding: 30px 0;
+            background: white;
+            white-space: nowrap;
+            position: relative;
+        }
+        .logos:hover .logos-slide {
+            animation-play-state: paused;
+        }
+        .logos-slide {
+            display: inline-block;
+            animation: slide 30s linear infinite;
+        }
+        .logos-slide img {
+            height: 50px;
+            margin: 0 20px;
+            vertical-align: middle;
+            display: inline-block;
+        }
+        @media (max-width: 768px) {
+            .logos-slide img {
+                height: 40px;
+                margin: 0 15px;
+            }
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .logos-slide {
+                animation: none;
+            }
+        }
+        /* === LOGO SLIDER - END === */
     </style>
     
     <!-- Tailwind Config -->
@@ -1029,53 +1067,57 @@
         </div>
     </section>
 
-    <!-- COMPLETELY FIXED: Logo Slider UMKM - No Overlap on Mobile -->
-    <div class="logo-slider-section">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12" data-aos="fade-up">
-                <div class="inline-flex items-center space-x-2 glassmorphism rounded-full px-6 py-3 mb-6">
-                    <span class="text-2xl">🏢</span>
-                    <span class="font-semibold text-primary">Mitra UMKM</span>
-                </div>
-                <h2 class="text-3xl md:text-4xl font-poppins font-bold text-gray-900 mb-4">
-                    Dipercaya oleh <span class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">100+ UMKM</span>
-                </h2>
-                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
-                    Bergabunglah dengan komunitas UMKM yang telah merasakan manfaat digitalisasi bersama kami
-                </p>
+    <!-- Carousel Logo UMKM (Infinite Auto Slider, Premium) -->
+    <section class="py-14 bg-gradient-to-br from-white via-blue-50 to-accent/10 relative overflow-hidden">
+        <!-- Judul dan header tetap di dalam container agar rapi di tengah -->
+        <div class="container mx-auto px-4 relative z-10">
+             <div class="text-center mb-10" data-aos="fade-up">
+                 <div class="inline-flex items-center space-x-2 glassmorphism shadow-lg rounded-full px-7 py-4 mb-5 border border-primary/20 relative">
+                     <span class="text-3xl animate-bounce">🤝</span>
+                     <span class="font-semibold text-primary text-lg tracking-wide">UMKM Partner</span>
+                     <span class="absolute -top-3 -right-3 animate-pulse-slow text-yellow-400 text-2xl">✨</span>
+                 </div>
+                 <h3 class="text-3xl md:text-4xl font-poppins font-extrabold mb-2 tracking-tight drop-shadow-lg bg-gradient-to-r from-primary via-accent to-highlight bg-clip-text text-transparent animate-gradient-wave inline-block relative">
+                     Logo UMKM Jawa Barat
+                     <span class="block h-1 w-24 mx-auto mt-2 rounded-full bg-gradient-to-r from-primary via-accent to-highlight animate-pulse-slow"></span>
+                 </h3>
+                 <div class="flex justify-center items-center gap-2 mt-3 mb-2">
+                     <span class="inline-block animate-float-fast text-accent text-xl">🌟</span>
+                     <span class="inline-block animate-float-slow text-primary text-lg">🏆</span>
+                     <span class="inline-block animate-float-medium text-highlight text-xl">💡</span>
+                 </div>
+                 <div class="max-w-xl mx-auto glassmorphism px-6 py-4 rounded-xl shadow border border-primary/10 flex items-center gap-3 justify-center">
+                     <svg class="w-7 h-7 text-accent/80 animate-bounce-slow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z"/></svg>
+                     <p class="text-gray-700 text-base md:text-lg font-medium leading-relaxed">
+                         Kolaborasi bersama <span class="bg-gradient-to-r from-accent to-highlight bg-clip-text text-transparent font-bold">UMKM terbaik</span> dari berbagai daerah, membangun ekosistem yang <span class="text-primary font-semibold">solid</span> dan <span class="text-highlight font-semibold">inspiratif</span>.
+                     </p>
+                 </div>
+             </div>
+        </div>
+
+        <!-- Slider diletakkan di luar container agar bisa full-width -->
+        <div class="logos">
+            <div class="logos-slide">
+                <img src="https://via.placeholder.com/120x60/3B82F6/fff?text=UMKM+1" alt="UMKM 1">
+                <img src="https://via.placeholder.com/120x60/10B981/fff?text=UMKM+2" alt="UMKM 2">
+                <img src="https://via.placeholder.com/120x60/F59E0B/fff?text=UMKM+3" alt="UMKM 3">
+                <img src="https://via.placeholder.com/120x60/6366F1/fff?text=UMKM+4" alt="UMKM 4">
+                <img src="https://via.placeholder.com/120x60/EC4899/fff?text=UMKM+5" alt="UMKM 5">
+                <img src="https://via.placeholder.com/120x60/8B5CF6/fff?text=UMKM+6" alt="UMKM 6">
+                <img src="https://via.placeholder.com/120x60/14B8A6/fff?text=UMKM+7" alt="UMKM 7">
+                <img src="https://via.placeholder.com/120x60/F97316/fff?text=UMKM+8" alt="UMKM 8">
+                <!-- Duplikat manual untuk seamless -->
+                <img src="https://via.placeholder.com/120x60/3B82F6/fff?text=UMKM+1" alt="UMKM 1">
+                <img src="https://via.placeholder.com/120x60/10B981/fff?text=UMKM+2" alt="UMKM 2">
+                <img src="https://via.placeholder.com/120x60/F59E0B/fff?text=UMKM+3" alt="UMKM 3">
+                <img src="https://via.placeholder.com/120x60/6366F1/fff?text=UMKM+4" alt="UMKM 4">
+                <img src="https://via.placeholder.com/120x60/EC4899/fff?text=UMKM+5" alt="UMKM 5">
+                <img src="https://via.placeholder.com/120x60/8B5CF6/fff?text=UMKM+6" alt="UMKM 6">
+                <img src="https://via.placeholder.com/120x60/14B8A6/fff?text=UMKM+7" alt="UMKM 7">
+                <img src="https://via.placeholder.com/120x60/F97316/fff?text=UMKM+8" alt="UMKM 8">
             </div>
         </div>
-        
-        <!-- Logo Slider Container -->
-        <div class="logo-slider-container" data-aos="fade-up" data-aos-delay="200">
-            <div class="logo-slider-wrapper">
-                <div class="logo-slider-track">
-                    <!-- First Group -->
-                    <div class="logo-slider-group">
-                        <img src="https://via.placeholder.com/120x60/3B82F6/fff?text=UMKM+1" alt="UMKM Partner 1" class="logo-item">
-                        <img src="https://via.placeholder.com/120x60/10B981/fff?text=UMKM+2" alt="UMKM Partner 2" class="logo-item">
-                        <img src="https://via.placeholder.com/120x60/F59E0B/fff?text=UMKM+3" alt="UMKM Partner 3" class="logo-item">
-                        <img src="https://via.placeholder.com/120x60/6366F1/fff?text=UMKM+4" alt="UMKM Partner 4" class="logo-item">
-                        <img src="https://via.placeholder.com/120x60/EC4899/fff?text=UMKM+5" alt="UMKM Partner 5" class="logo-item">
-                        <img src="https://via.placeholder.com/120x60/8B5CF6/fff?text=UMKM+6" alt="UMKM Partner 6" class="logo-item">
-                        <img src="https://via.placeholder.com/120x60/14B8A6/fff?text=UMKM+7" alt="UMKM Partner 7" class="logo-item">
-                        <img src="https://via.placeholder.com/120x60/F97316/fff?text=UMKM+8" alt="UMKM Partner 8" class="logo-item">
-                    </div>
-                    <!-- Second Group (Duplicate for seamless loop) -->
-                    <div class="logo-slider-group">
-                        <img src="https://via.placeholder.com/120x60/3B82F6/fff?text=UMKM+1" alt="UMKM Partner 1" class="logo-item">
-                        <img src="https://via.placeholder.com/120x60/10B981/fff?text=UMKM+2" alt="UMKM Partner 2" class="logo-item">
-                        <img src="https://via.placeholder.com/120x60/F59E0B/fff?text=UMKM+3" alt="UMKM Partner 3" class="logo-item">
-                        <img src="https://via.placeholder.com/120x60/6366F1/fff?text=UMKM+4" alt="UMKM Partner 4" class="logo-item">
-                        <img src="https://via.placeholder.com/120x60/EC4899/fff?text=UMKM+5" alt="UMKM Partner 5" class="logo-item">
-                        <img src="https://via.placeholder.com/120x60/8B5CF6/fff?text=UMKM+6" alt="UMKM Partner 6" class="logo-item">
-                        <img src="https://via.placeholder.com/120x60/14B8A6/fff?text=UMKM+7" alt="UMKM Partner 7" class="logo-item">
-                        <img src="https://via.placeholder.com/120x60/F97316/fff?text=UMKM+8" alt="UMKM Partner 8" class="logo-item">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    </section>
 
     <!-- Cerita UMKM Section -->
     <section id="cerita-umkm" class="py-24 bg-white relative overflow-hidden">
