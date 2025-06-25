@@ -46,33 +46,194 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* --- Perbaikan Responsive Logo Slider Mobile (override) --- */
-@media (max-width: 640px) {
-    .logos {
-        padding: 8px 0 !important;
-        max-height: 44px !important;
-        min-height: 0 !important;
-        overflow-x: hidden !important;
-        white-space: nowrap !important;
-    }
-    .logos-slide {
-        display: inline-block !important;
-        animation-duration: 12s !important;
-        vertical-align: middle !important;
-        white-space: nowrap !important;
-    }
-    .logos-slide img {
-        height: 32px !important;
-        width: 32px !important;
-        margin: 0 4px !important;
-        padding: 2px !important;
-        border-radius: 7px !important;
-        box-shadow: 1px 1px 2px rgba(0,0,0,0.06) !important;
-        background: linear-gradient(145deg, #f8fafc, #ffffff) !important;
-        display: inline-block !important;
-        vertical-align: middle !important;
-    }
-}
+        /* FIXED: Logo Slider - Completely Responsive & No Overlap */
+        .logo-slider-section {
+            width: 100%;
+            overflow: hidden;
+            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
+            padding: 60px 0;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .logo-slider-container {
+            width: 100%;
+            overflow: hidden;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            padding: 50px 20px;
+            margin: 0 auto;
+            max-width: 1200px;
+            position: relative;
+        }
+
+        .logo-slider-wrapper {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+        }
+
+        .logo-slider-track {
+            display: flex;
+            width: 200%; /* Double width for seamless loop */
+            animation: slideLoop 25s linear infinite;
+            will-change: transform;
+        }
+
+        .logo-slider-group {
+            display: flex;
+            align-items: center;
+            justify-content: space-evenly;
+            width: 50%; /* Each group takes half of track */
+            flex-shrink: 0;
+            gap: 20px;
+        }
+
+        .logo-item {
+            height: 80px;
+            width: 80px;
+            padding: 15px;
+            background: linear-gradient(145deg, #f8fafc, #ffffff);
+            border-radius: 16px;
+            box-shadow: 
+                4px 4px 12px rgba(0,0,0,0.1), 
+                -2px -2px 8px rgba(255,255,255,0.8);
+            object-fit: contain;
+            filter: grayscale(0.3) brightness(1.1);
+            opacity: 0.9;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            flex-shrink: 0;
+            border: 2px solid transparent;
+        }
+
+        .logo-item:hover {
+            filter: grayscale(0) brightness(1.2);
+            opacity: 1;
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 
+                6px 6px 20px rgba(0,0,0,0.15), 
+                -3px -3px 12px rgba(255,255,255,0.9);
+            border-color: rgba(59, 130, 246, 0.3);
+        }
+
+        /* Pause animation on container hover */
+        .logo-slider-container:hover .logo-slider-track {
+            animation-play-state: paused;
+        }
+
+        @keyframes slideLoop {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        /* Tablet Responsive */
+        @media (max-width: 1024px) {
+            .logo-slider-container {
+                padding: 40px 15px;
+                max-width: 900px;
+            }
+            .logo-item {
+                height: 70px;
+                width: 70px;
+                padding: 12px;
+            }
+            .logo-slider-group {
+                gap: 15px;
+            }
+            .logo-slider-track {
+                animation-duration: 22s;
+            }
+        }
+
+        /* Mobile Responsive - FIXED */
+        @media (max-width: 768px) {
+            .logo-slider-section {
+                padding: 40px 0;
+                margin: 30px 0;
+            }
+            .logo-slider-container {
+                padding: 30px 10px;
+                margin: 0 15px;
+                border-radius: 16px;
+                max-width: calc(100vw - 30px);
+            }
+            .logo-item {
+                height: 60px;
+                width: 60px;
+                padding: 10px;
+                border-radius: 12px;
+            }
+            .logo-slider-group {
+                gap: 12px;
+                justify-content: space-between;
+            }
+            .logo-slider-track {
+                animation-duration: 20s;
+            }
+        }
+
+        /* Small Mobile - EXTRA FIXED */
+        @media (max-width: 480px) {
+            .logo-slider-section {
+                padding: 30px 0;
+                margin: 20px 0;
+            }
+            .logo-slider-container {
+                padding: 25px 8px;
+                margin: 0 10px;
+                max-width: calc(100vw - 20px);
+                border-radius: 12px;
+            }
+            .logo-item {
+                height: 50px;
+                width: 50px;
+                padding: 8px;
+                border-radius: 10px;
+                box-shadow: 2px 2px 6px rgba(0,0,0,0.08);
+            }
+            .logo-slider-group {
+                gap: 8px;
+                justify-content: space-around;
+            }
+            .logo-slider-track {
+                animation-duration: 18s;
+            }
+            .logo-item:hover {
+                transform: scale(1.05) translateY(-2px);
+            }
+        }
+
+        /* Extra Small Mobile */
+        @media (max-width: 360px) {
+            .logo-slider-container {
+                padding: 20px 5px;
+                margin: 0 5px;
+                max-width: calc(100vw - 10px);
+            }
+            .logo-item {
+                height: 45px;
+                width: 45px;
+                padding: 6px;
+            }
+            .logo-slider-group {
+                gap: 6px;
+            }
+        }
+
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            .logo-slider-track {
+                animation: none;
+            }
+            .logo-item {
+                transition: none;
+            }
+        }
 
         /* Custom Animations */
         @keyframes gradientWave {
@@ -103,7 +264,6 @@
         /* Product Card Enhancements */
         .product-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
-            /* Optimasi untuk mobile */
             will-change: transform;
             -webkit-transform: translateZ(0);
             transform: translateZ(0);
@@ -213,32 +373,10 @@
             .particle {
                 animation: none !important;
             }
-            .logos {
-                animation: none !important;
-            }
-        }
-
-        /* Mobile Reduced Motion */
-        @media (max-width: 768px) and (prefers-reduced-motion: reduce) {
-            .animate-float-slow,
-            .animate-float-medium,
-            .animate-float-fast {
-                animation: none !important;
-            }
-            .particle {
-                animation: none !important;
-            }
-            .swiper-wrapper {
-                transition: none !important;
-            }
-            .logos {
-                animation: none !important;
-            }
         }
 
         /* Mobile Performance Optimizations */
         @media (max-width: 768px) {
-            /* Kurangi animasi yang berat di mobile */
             .animate-float-slow {
                 animation: float-slow 10s ease-in-out infinite;
             }
@@ -249,7 +387,6 @@
                 animation: float-fast 6s ease-in-out infinite;
             }
             
-            /* Optimasi untuk particle animations */
             .particle {
                 animation-duration: 10s !important;
                 will-change: transform;
@@ -257,28 +394,20 @@
                 transform: translate3d(0, 0, 0);
             }
             
-            /* Kurangi shadow dan blur untuk performa */
             .glassmorphism {
                 backdrop-filter: blur(6px);
                 -webkit-backdrop-filter: blur(6px);
             }
             
-            /* Optimasi untuk transform animations */
             .product-card:hover {
                 transform: translateY(-4px);
                 box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             }
             
-            /* Optimasi untuk animasi di mobile */
             .product-card {
                 transition: transform 0.2s ease, box-shadow 0.2s ease;
             }
-            .product-card:hover {
-                transform: translateY(-4px);
-                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            }
             
-            /* Optimasi untuk floating animations */
             .animate-float-slow,
             .animate-float-medium,
             .animate-float-fast {
@@ -286,16 +415,10 @@
                 -webkit-transform: translate3d(0, 0, 0);
                 transform: translate3d(0, 0, 0);
             }
-            
-            /* Optimasi untuk logo slider di mobile */
-            .logos {
-                animation-duration: 15s; /* Lebih cepat di mobile */
-            }
         }
 
         /* New Story Timeline Styles */
         .story-item {
-            /* This is a container, the animation will be on its children */
             position: relative;
         }
         .story-item .story-content,
@@ -310,12 +433,10 @@
             transform: translateY(0);
         }
         .story-item.is-visible .story-icon {
-            /* A little pop animation for the icon */
             transform: translateY(-50%) translateX(-50%) scale(1);
-            transition-delay: 0.2s; /* Delay to pop after content appears */
+            transition-delay: 0.2s;
         }
         .story-icon {
-            /* Initial state for the animation */
             position: absolute;
             top: 50%;
             left: 50%;
@@ -336,13 +457,12 @@
             transform: scale(1.05);
         }
 
-        /* Responsive adjustments for the icons on mobile */
         @media (max-width: 767px) {
             .story-icon {
-                display: none; /* Hide the central icon on mobile */
+                display: none;
             }
             .story-line-bg, .story-line-progress {
-                left: 1rem; /* Move line to the left */
+                left: 1rem;
             }
         }
 
@@ -462,12 +582,10 @@
             }
         }
 
-        /* Enhanced Hover Effects */
         .group:hover .shadow-lg {
             box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
 
-        /* CTA Visual Item Styles */
         .cta-visual-item {
             animation: float-slow 6s ease-in-out infinite;
         }
@@ -483,251 +601,30 @@
             transform: scale(1.1);
         }
 
-        /* CTA Badge Styles */
         .cta-badge {
             font-size: 0.875rem;
             padding: 0.5rem 1.25rem;
         }
 
-        /* CTA Heading Styles */
         .cta-heading {
             font-size: 2.25rem;
             line-height: 1.2;
             margin-bottom: 1rem;
         }
 
-        /* CTA Description Styles */
         .cta-description {
             font-size: 1rem;
             line-height: 1.6;
             margin-bottom: 2rem;
         }
 
-        /* CTA Illustration Styles */
         .cta-illustration {
             margin-top: 3rem;
             padding: 0 1.5rem;
         }
 
-        /* CTA Floating Elements Styles */
         .cta-floating-elements {
             transform: scale(0.8);
-        }
-
-        /* UMKM Logo Carousel Styles - REMOVED */
-        /* Old complex carousel styles removed for better performance */
-        /* Now using simple CSS animation technique */
-
-        /* Logo Slider CSS Animation Technique - Based on Portfolio Example */
-        /* Container utama */
-        .logos {
-            overflow: hidden;
-            white-space: nowrap;
-            width: 100%;
-            padding: 40px 0;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            position: relative;
-            height: auto;
-            max-height: 100px;
-            min-height: 0;
-            display: block;
-        }
-        @media (max-width: 640px) {
-            .logos {
-                padding: 10px 0;
-                max-height: 54px;
-                min-height: 0;
-                overflow-x: hidden;
-                white-space: nowrap;
-            }
-            .logos-slide {
-                display: inline-block;
-                animation-duration: 14s;
-                vertical-align: middle;
-                white-space: nowrap;
-            }
-            .logos-slide img {
-                height: 36px;
-                width: 36px;
-                margin: 0 6px;
-                padding: 3px;
-                border-radius: 8px;
-                box-shadow: 1px 1px 3px rgba(0,0,0,0.07);
-                background: linear-gradient(145deg, #f8fafc, #ffffff);
-                display: inline-block;
-                vertical-align: middle;
-            }
-        }
-
-        /* Animasi slide horizontal */
-        @keyframes slide {
-            from {
-                transform: translateX(0);
-            }
-            to {
-                transform: translateX(-100%);
-            }
-        }
-
-        /* Container slide */
-        .logos-slide {
-            display: inline-block;
-            animation: 25s slide infinite linear;
-        }
-
-        /* Styling untuk setiap logo */
-        .logos-slide img {
-            height: 70px;
-            width: 70px;
-            margin: 0 20px;
-            padding: 15px;
-            background: linear-gradient(145deg, #f8fafc, #ffffff);
-            border-radius: 15px;
-            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1), -4px -4px 8px rgba(59, 130, 246, 0.1);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            object-fit: contain;
-            filter: grayscale(0.2) brightness(1.1);
-            opacity: 0.85;
-        }
-
-        .logos-slide img:hover {
-            filter: grayscale(0) brightness(1.2);
-            opacity: 1;
-            transform: scale(1.1);
-            box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.15), -4px -4px 12px rgba(59, 130, 246, 0.2);
-        }
-
-        /* Efek hover untuk pause animasi */
-        .logos:hover .logos-slide {
-            animation-play-state: paused;
-        }
-
-        /* Mobile responsive */
-        @media (max-width: 768px) {
-            .logos {
-                padding: 30px 0;
-            }
-            
-            .logos-slide {
-                animation-duration: 20s; /* Lebih cepat di mobile */
-            }
-            
-            .logos-slide img {
-                height: 60px;
-                width: 60px;
-                margin: 0 15px;
-                padding: 12px;
-            }
-        }
-
-        /* Reduced motion support */
-        @media (prefers-reduced-motion: reduce) {
-            .logos-slide {
-                animation: none;
-            }
-        }
-
-        /* --- Tambahan/Perbaikan Responsive Logo Slider --- */
-        .logos {
-            overflow: hidden;
-            white-space: nowrap;
-            width: 100%;
-            padding: 30px 0;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            position: relative;
-        }
-
-        .logos-slide {
-            display: inline-block;
-            /* Jangan gunakan flex di sini! */
-            animation: 20s slide infinite linear;
-            vertical-align: middle;
-        }
-
-        .logos-slide img {
-            height: 48px;
-            width: 48px;
-            margin: 0 10px;
-            padding: 8px;
-            background: linear-gradient(145deg, #f8fafc, #ffffff);
-            border-radius: 12px;
-            box-shadow: 2px 2px 6px rgba(0,0,0,0.08);
-            object-fit: contain;
-            display: inline-block;
-            vertical-align: middle;
-        }
-
-        @media (min-width: 640px) {
-            .logos-slide img {
-                height: 60px;
-                width: 60px;
-                margin: 0 15px;
-                padding: 12px;
-            }
-        }
-        @media (min-width: 1024px) {
-            .logos-slide img {
-                height: 70px;
-                width: 70px;
-                margin: 0 20px;
-                padding: 15px;
-            }
-        }
-
-        /* Hapus property display: flex, align-items, gap, dan sejenisnya dari .logos dan .logos-slide jika masih ada di CSS lama */
-
-        /* Logo Slider CSS Animation Technique - Desktop & Tablet */
-        .logos {
-            overflow: hidden;
-            white-space: nowrap;
-            width: 100%;
-            padding: 40px 0;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
-            position: relative;
-        }
-        .logos-slide {
-            display: inline-block;
-            animation: 25s slide infinite linear;
-            vertical-align: middle;
-        }
-        .logos-slide img {
-            height: 70px;
-            width: 70px;
-            margin: 0 20px;
-            padding: 15px;
-            background: linear-gradient(145deg, #f8fafc, #ffffff);
-            border-radius: 15px;
-            box-shadow: 4px 4px 8px rgba(0,0,0,0.1), -4px -4px 8px rgba(59,130,246,0.1);
-            object-fit: contain;
-            display: inline-block;
-            vertical-align: middle;
-            filter: grayscale(0.2) brightness(1.1);
-            opacity: 0.85;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .logos-slide img:hover {
-            filter: grayscale(0) brightness(1.2);
-            opacity: 1;
-            transform: scale(1.1);
-            box-shadow: 4px 4px 12px rgba(0,0,0,0.15), -4px -4px 12px rgba(59,130,246,0.2);
-        }
-        @media (max-width: 640px) {
-            .logos {
-                padding: 20px 0;
-            }
-            .logos-slide img {
-                height: 44px;
-                width: 44px;
-                margin: 0 8px;
-                padding: 6px;
-                border-radius: 10px;
-            }
         }
 
         @media (max-width: 640px) {
@@ -739,34 +636,6 @@
                 font-size: 0.8rem;
                 min-width: 0;
                 top: 0;
-            }
-        }
-
-        /* --- Perbaikan Responsive Logo Slider Mobile (override) --- */
-        @media (max-width: 640px) {
-            .logos {
-                padding: 8px 0 !important;
-                max-height: 44px !important;
-                min-height: 0 !important;
-                overflow-x: hidden !important;
-                white-space: nowrap !important;
-            }
-            .logos-slide {
-                display: inline-block !important;
-                animation-duration: 12s !important;
-                vertical-align: middle !important;
-                white-space: nowrap !important;
-            }
-            .logos-slide img {
-                height: 32px !important;
-                width: 32px !important;
-                margin: 0 4px !important;
-                padding: 2px !important;
-                border-radius: 7px !important;
-                box-shadow: 1px 1px 2px rgba(0,0,0,0.06) !important;
-                background: linear-gradient(145deg, #f8fafc, #ffffff) !important;
-                display: inline-block !important;
-                vertical-align: middle !important;
             }
         }
     </style>
@@ -993,17 +862,6 @@
                                 </svg>
                             </a>
                         </div>
-                        
-                        <!-- <div class="flex-shrink-0" data-aos="fade-left" data-aos-delay="200">
-                            <div class="w-64 h-64 relative flex flex-col items-center justify-center">
-                                <div class="absolute inset-0 bg-gradient-to-br from-primary/20 to-accent/20 rounded-full animate-pulse-slow"></div>
-                                <img src="https://via.placeholder.com/180x180.png?text=Founder" alt="Arya Wardhana" class="relative z-10 w-44 h-44 rounded-full object-cover border-4 border-white shadow-lg mb-4">
-                                <div class="relative z-10 text-center">
-                                    <h4 class="text-xl font-bold text-primary">Arya Wardhana</h4>
-                                    <p class="text-gray-600 text-sm">Founder JabarUMKM Hub</p>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -1171,61 +1029,53 @@
         </div>
     </section>
 
-    <!-- Carousel Logo UMKM (Infinite Auto Slider, Premium) -->
-    <section class="py-14 bg-gradient-to-br from-white via-blue-50 to-accent/10 relative overflow-hidden">
-        <!-- Animated Gradient Background -->
-        <div class="absolute inset-0 z-0 pointer-events-none">
-            <div class="absolute -top-20 left-1/3 w-96 h-96 bg-gradient-to-tr from-primary/30 via-accent/20 to-highlight/20 rounded-full blur-3xl animate-gradient-wave"></div>
-            <div class="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-br from-accent/20 to-primary/10 rounded-full blur-2xl animate-float-slow"></div>
-        </div>
-        <div class="container mx-auto px-4 relative z-10">
-            <div class="text-center mb-10" data-aos="fade-up">
-                <div class="inline-flex items-center space-x-2 glassmorphism shadow-lg rounded-full px-7 py-4 mb-5 border border-primary/20 relative">
-                    <span class="text-3xl animate-bounce">🤝</span>
-                    <span class="font-semibold text-primary text-lg tracking-wide">UMKM Partner</span>
-                    <span class="absolute -top-3 -right-3 animate-pulse-slow text-yellow-400 text-2xl">✨</span>
+    <!-- COMPLETELY FIXED: Logo Slider UMKM - No Overlap on Mobile -->
+    <div class="logo-slider-section">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-12" data-aos="fade-up">
+                <div class="inline-flex items-center space-x-2 glassmorphism rounded-full px-6 py-3 mb-6">
+                    <span class="text-2xl">🏢</span>
+                    <span class="font-semibold text-primary">Mitra UMKM</span>
                 </div>
-                <h3 class="text-3xl md:text-4xl font-poppins font-extrabold mb-2 tracking-tight drop-shadow-lg bg-gradient-to-r from-primary via-accent to-highlight bg-clip-text text-transparent animate-gradient-wave inline-block relative">
-                    Logo UMKM Jawa Barat
-                    <span class="block h-1 w-24 mx-auto mt-2 rounded-full bg-gradient-to-r from-primary via-accent to-highlight animate-pulse-slow"></span>
-                </h3>
-                <div class="flex justify-center items-center gap-2 mt-3 mb-2">
-                    <span class="inline-block animate-float-fast text-accent text-xl">🌟</span>
-                    <span class="inline-block animate-float-slow text-primary text-lg">🏆</span>
-                    <span class="inline-block animate-float-medium text-highlight text-xl">💡</span>
-                </div>
-                <div class="max-w-xl mx-auto glassmorphism px-6 py-4 rounded-xl shadow border border-primary/10 flex items-center gap-3 justify-center">
-                    <svg class="w-7 h-7 text-accent/80 animate-bounce-slow" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z"/></svg>
-                    <p class="text-gray-700 text-base md:text-lg font-medium leading-relaxed">
-                        Kolaborasi bersama <span class="bg-gradient-to-r from-accent to-highlight bg-clip-text text-transparent font-bold">UMKM terbaik</span> dari berbagai daerah, membangun ekosistem yang <span class="text-primary font-semibold">solid</span> dan <span class="text-highlight font-semibold">inspiratif</span>.
-                    </p>
-                </div>
+                <h2 class="text-3xl md:text-4xl font-poppins font-bold text-gray-900 mb-4">
+                    Dipercaya oleh <span class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">100+ UMKM</span>
+                </h2>
+                <p class="text-lg text-gray-600 max-w-2xl mx-auto">
+                    Bergabunglah dengan komunitas UMKM yang telah merasakan manfaat digitalisasi bersama kami
+                </p>
             </div>
-            
-            <!-- Logo Slider menggunakan teknik CSS Animation -->
-            <div class="logos">
-                <div class="logos-slide">
-                    <img src="https://via.placeholder.com/120x60/3B82F6/fff?text=UMKM+1" alt="UMKM 1">
-                    <img src="https://via.placeholder.com/120x60/10B981/fff?text=UMKM+2" alt="UMKM 2">
-                    <img src="https://via.placeholder.com/120x60/F59E0B/fff?text=UMKM+3" alt="UMKM 3">
-                    <img src="https://via.placeholder.com/120x60/6366F1/fff?text=UMKM+4" alt="UMKM 4">
-                    <img src="https://via.placeholder.com/120x60/EC4899/fff?text=UMKM+5" alt="UMKM 5">
-                    <img src="https://via.placeholder.com/120x60/8B5CF6/fff?text=UMKM+6" alt="UMKM 6">
-                    <img src="https://via.placeholder.com/120x60/14B8A6/fff?text=UMKM+7" alt="UMKM 7">
-                    <img src="https://via.placeholder.com/120x60/F97316/fff?text=UMKM+8" alt="UMKM 8">
-                    <!-- Logo diulang untuk efek seamless -->
-                    <img src="https://via.placeholder.com/120x60/3B82F6/fff?text=UMKM+1" alt="UMKM 1">
-                    <img src="https://via.placeholder.com/120x60/10B981/fff?text=UMKM+2" alt="UMKM 2">
-                    <img src="https://via.placeholder.com/120x60/F59E0B/fff?text=UMKM+3" alt="UMKM 3">
-                    <img src="https://via.placeholder.com/120x60/6366F1/fff?text=UMKM+4" alt="UMKM 4">
-                    <img src="https://via.placeholder.com/120x60/EC4899/fff?text=UMKM+5" alt="UMKM 5">
-                    <img src="https://via.placeholder.com/120x60/8B5CF6/fff?text=UMKM+6" alt="UMKM 6">
-                    <img src="https://via.placeholder.com/120x60/14B8A6/fff?text=UMKM+7" alt="UMKM 7">
-                    <img src="https://via.placeholder.com/120x60/F97316/fff?text=UMKM+8" alt="UMKM 8">
+        </div>
+        
+        <!-- Logo Slider Container -->
+        <div class="logo-slider-container" data-aos="fade-up" data-aos-delay="200">
+            <div class="logo-slider-wrapper">
+                <div class="logo-slider-track">
+                    <!-- First Group -->
+                    <div class="logo-slider-group">
+                        <img src="https://via.placeholder.com/120x60/3B82F6/fff?text=UMKM+1" alt="UMKM Partner 1" class="logo-item">
+                        <img src="https://via.placeholder.com/120x60/10B981/fff?text=UMKM+2" alt="UMKM Partner 2" class="logo-item">
+                        <img src="https://via.placeholder.com/120x60/F59E0B/fff?text=UMKM+3" alt="UMKM Partner 3" class="logo-item">
+                        <img src="https://via.placeholder.com/120x60/6366F1/fff?text=UMKM+4" alt="UMKM Partner 4" class="logo-item">
+                        <img src="https://via.placeholder.com/120x60/EC4899/fff?text=UMKM+5" alt="UMKM Partner 5" class="logo-item">
+                        <img src="https://via.placeholder.com/120x60/8B5CF6/fff?text=UMKM+6" alt="UMKM Partner 6" class="logo-item">
+                        <img src="https://via.placeholder.com/120x60/14B8A6/fff?text=UMKM+7" alt="UMKM Partner 7" class="logo-item">
+                        <img src="https://via.placeholder.com/120x60/F97316/fff?text=UMKM+8" alt="UMKM Partner 8" class="logo-item">
+                    </div>
+                    <!-- Second Group (Duplicate for seamless loop) -->
+                    <div class="logo-slider-group">
+                        <img src="https://via.placeholder.com/120x60/3B82F6/fff?text=UMKM+1" alt="UMKM Partner 1" class="logo-item">
+                        <img src="https://via.placeholder.com/120x60/10B981/fff?text=UMKM+2" alt="UMKM Partner 2" class="logo-item">
+                        <img src="https://via.placeholder.com/120x60/F59E0B/fff?text=UMKM+3" alt="UMKM Partner 3" class="logo-item">
+                        <img src="https://via.placeholder.com/120x60/6366F1/fff?text=UMKM+4" alt="UMKM Partner 4" class="logo-item">
+                        <img src="https://via.placeholder.com/120x60/EC4899/fff?text=UMKM+5" alt="UMKM Partner 5" class="logo-item">
+                        <img src="https://via.placeholder.com/120x60/8B5CF6/fff?text=UMKM+6" alt="UMKM Partner 6" class="logo-item">
+                        <img src="https://via.placeholder.com/120x60/14B8A6/fff?text=UMKM+7" alt="UMKM Partner 7" class="logo-item">
+                        <img src="https://via.placeholder.com/120x60/F97316/fff?text=UMKM+8" alt="UMKM Partner 8" class="logo-item">
+                    </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
     <!-- Cerita UMKM Section -->
     <section id="cerita-umkm" class="py-24 bg-white relative overflow-hidden">
@@ -1343,128 +1193,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Galeri Interaktif Section -->
-
-    <!-- <section class="py-24 bg-white">
-        <div class="container mx-auto px-4">
-           
-            <div class="text-center mb-16" data-aos="fade-up">
-                <div class="inline-flex items-center space-x-2 glassmorphism rounded-full px-6 py-3 mb-6">
-                    <span class="text-2xl">🖼️</span>
-                    <span class="font-semibold text-primary">Galeri Interaktif</span>
-                </div>
-                <h2 class="text-4xl md:text-5xl font-poppins font-bold text-primary mb-6">
-                    Jelajahi <span class="bg-gradient-to-r from-highlight to-accent bg-clip-text text-transparent">Galeri</span> UMKM
-                </h2>
-                <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed mb-8">
-                    Koleksi foto dan dokumentasi kegiatan UMKM dari berbagai daerah di Jawa Barat
-                </p>
-                
-              
-                <div class="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up" data-aos-delay="200">
-                    <button class="filter-btn active px-6 py-3 rounded-full font-semibold transition-all duration-300" data-filter="all">Semua</button>
-                    <button class="filter-btn px-6 py-3 rounded-full font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all duration-300" data-filter="makanan">Makanan</button>
-                    <button class="filter-btn px-6 py-3 rounded-full font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all duration-300" data-filter="fashion">Fashion</button>
-                    <button class="filter-btn px-6 py-3 rounded-full font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all duration-300" data-filter="kerajinan">Kerajinan</button>
-                    <button class="filter-btn px-6 py-3 rounded-full font-semibold bg-gray-100 text-gray-600 hover:bg-gray-200 transition-all duration-300" data-filter="teknologi">Teknologi</button>
-                </div>
-            </div>
-
-         
-            <div class="masonry-grid" data-aos="fade-up" data-aos-delay="400">
-             
-                <div class="masonry-item gallery-item" data-category="makanan">
-                    <a href="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=800&q=80" data-lightbox="gallery" data-title="Produksi Keripik Singkong - Bandung">
-                        <div class="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                            <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Keripik Singkong" class="w-full h-auto">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
-                                <div class="p-4 text-white">
-                                    <h4 class="font-semibold">Produksi Keripik Singkong</h4>
-                                    <p class="text-sm opacity-90">Bandung, Jawa Barat</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-           
-                <div class="masonry-item gallery-item" data-category="fashion">
-                    <a href="https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=800&q=80" data-lightbox="gallery" data-title="Workshop Batik Tradisional - Garut">
-                        <div class="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                            <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=400&q=80" alt="Batik Workshop" class="w-full h-auto">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
-                                <div class="p-4 text-white">
-                                    <h4 class="font-semibold">Workshop Batik Tradisional</h4>
-                                    <p class="text-sm opacity-90">Garut, Jawa Barat</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-
-                <div class="masonry-item gallery-item" data-category="kerajinan">
-                    <a href="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=800&q=80" data-lightbox="gallery" data-title="Pengrajin Tas Rajut - Tasikmalaya">
-                        <div class="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                            <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80" alt="Tas Rajut" class="w-full h-auto">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
-                                <div class="p-4 text-white">
-                                    <h4 class="font-semibold">Pengrajin Tas Rajut</h4>
-                                    <p class="text-sm opacity-90">Tasikmalaya, Jawa Barat</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-                
-                <div class="masonry-item gallery-item" data-category="makanan">
-                    <a href="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=800&q=80" data-lightbox="gallery" data-title="Perkebunan Kopi Arabika - Bandung">
-                        <div class="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                            <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Kopi Arabika" class="w-full h-auto">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
-                                <div class="p-4 text-white">
-                                    <h4 class="font-semibold">Perkebunan Kopi Arabika</h4>
-                                    <p class="text-sm opacity-90">Bandung, Jawa Barat</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-              
-                <div class="masonry-item gallery-item" data-category="teknologi">
-                    <a href="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80" data-lightbox="gallery" data-title="Digitalisasi UMKM - Workshop">
-                        <div class="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                            <img src="https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=400&q=80" alt="Digital Workshop" class="w-full h-auto">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
-                                <div class="p-4 text-white">
-                                    <h4 class="font-semibold">Digitalisasi UMKM</h4>
-                                    <p class="text-sm opacity-90">Workshop Teknologi</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-
-               
-                <div class="masonry-item gallery-item" data-category="fashion">
-                    <a href="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=800&q=80" data-lightbox="gallery" data-title="Fashion Show UMKM - Bandung">
-                        <div class="relative rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105">
-                            <img src="https://images.unsplash.com/photo-1445205170230-053b83016050?auto=format&fit=crop&w=400&q=80" alt="Fashion Show" class="w-full h-auto">
-                            <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end">
-                                <div class="p-4 text-white">
-                                    <h4 class="font-semibold">Fashion Show UMKM</h4>
-                                    <p class="text-sm opacity-90">Bandung, Jawa Barat</p>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </section> -->
 
     <!-- Peta Interaktif -->
     <section id="peta" class="py-20 bg-white">
@@ -1616,6 +1344,7 @@
         <path d="M0 40 Q360 0 720 40T1440 40V60H0V40Z" fill="#f9fafb"/>
       </svg>
     </div>
+    
     <!-- CTA Section - Ajak Bergabung (Super Power Layout) -->
     <section class="pt-8 pb-14 bg-gradient-to-br from-white via-blue-50 to-accent/10 relative overflow-hidden">
         <div class="container mx-auto px-4 relative z-10">
@@ -1763,7 +1492,7 @@
         <div class="glassmorphism rounded-xl shadow-xl w-full max-w-md mx-4 transform transition-all duration-500" id="command-palette-content">
             <div class="relative">
                 <div class="absolute top-4 left-4">
-                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 0 11-14 0 7 7 0 0114 0z"></path></svg>
+                    <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </div>
                 <input type="text" id="command-palette-input" placeholder="Cari produk..." class="w-full pl-12 pr-16 py-4 text-lg border-b border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary rounded-t-xl">
                 <div class="absolute top-3.5 right-4">
@@ -1939,18 +1668,6 @@
                 });
             }
 
-            // --- Command Palette ---
-            // ... (copy dari script lama, tidak diubah)
-
-            // --- Gallery Filter ---
-            // ... (copy dari script lama, tidak diubah)
-
-            // --- Chatbot ---
-            // ... (copy dari script lama, tidak diubah)
-
-            // --- Map Functionality ---
-            // ... (copy dari script lama, tidak diubah)
-
             // --- GSAP Story Section ---
             if (window.gsap && window.ScrollTrigger) {
                 gsap.registerPlugin(ScrollTrigger);
@@ -1981,12 +1698,191 @@
                 }
             }
 
-            // --- Logo Slider (CSS Animation) ---
-            const logosSlide = document.querySelector('.logos-slide');
-            if (logosSlide) {
-                const copy = logosSlide.cloneNode(true);
-                document.querySelector('.logos').appendChild(copy);
+            // --- Command Palette ---
+            const commandPalette = document.getElementById('command-palette-container');
+            const commandInput = document.getElementById('command-palette-input');
+            const commandResults = document.getElementById('command-palette-results');
+            
+            // Sample data for search
+            const searchData = [
+                { name: 'Batik Garut', category: 'Fashion', price: 'Rp 150.000', url: '#' },
+                { name: 'Keripik Singkong', category: 'Makanan', price: 'Rp 25.000', url: '#' },
+                { name: 'Tas Rajut', category: 'Kerajinan', price: 'Rp 200.000', url: '#' },
+                { name: 'Kopi Arabika', category: 'Minuman', price: 'Rp 85.000', url: '#' },
+                { name: 'Dodol Garut', category: 'Makanan', price: 'Rp 35.000', url: '#' }
+            ];
+
+            // Open command palette
+            document.querySelectorAll('[data-toggle="command-palette"]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    commandPalette.classList.remove('hidden');
+                    commandInput.focus();
+                });
+            });
+
+            // Close command palette
+            function closeCommandPalette() {
+                commandPalette.classList.add('hidden');
+                commandInput.value = '';
+                commandResults.innerHTML = '';
             }
+
+            // ESC key to close
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape') {
+                    closeCommandPalette();
+                }
+            });
+
+            // Click outside to close
+            commandPalette.addEventListener('click', (e) => {
+                if (e.target === commandPalette) {
+                    closeCommandPalette();
+                }
+            });
+
+            // Search functionality
+            commandInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase();
+                if (query.length === 0) {
+                    commandResults.innerHTML = '';
+                    return;
+                }
+
+                const results = searchData.filter(item => 
+                    item.name.toLowerCase().includes(query) || 
+                    item.category.toLowerCase().includes(query)
+                );
+
+                commandResults.innerHTML = results.map(item => `
+                    <div class="p-3 hover:bg-gray-100 rounded-lg cursor-pointer flex items-center justify-between">
+                        <div>
+                            <div class="font-semibold text-gray-900">${item.name}</div>
+                            <div class="text-sm text-gray-500">${item.category}</div>
+                        </div>
+                        <div class="text-primary font-semibold">${item.price}</div>
+                    </div>
+                `).join('');
+            });
+
+            // --- Chatbot ---
+            const chatbotBtn = document.getElementById('chatbot-btn');
+            const chatbotModal = document.getElementById('chatbot-modal');
+            const closeChatbot = document.getElementById('close-chatbot');
+            const chatMessages = document.getElementById('chat-messages');
+            const chatInput = document.getElementById('chat-input');
+            const sendChat = document.getElementById('send-chat');
+
+            // Initial bot message
+            const initialMessage = `
+                <div class="chat-message bot bg-gray-100 p-3 rounded-lg">
+                    <p class="text-sm">Halo! Saya JabarUMKM Assistant. Ada yang bisa saya bantu tentang produk UMKM Jawa Barat?</p>
+                </div>
+            `;
+            chatMessages.innerHTML = initialMessage;
+
+            // Open chatbot
+            chatbotBtn.addEventListener('click', () => {
+                chatbotModal.classList.remove('hidden');
+            });
+
+            // Close chatbot
+            closeChatbot.addEventListener('click', () => {
+                chatbotModal.classList.add('hidden');
+            });
+
+            // Send message
+            function sendMessage() {
+                const message = chatInput.value.trim();
+                if (!message) return;
+
+                // Add user message
+                const userMessage = `
+                    <div class="chat-message user bg-primary text-white p-3 rounded-lg ml-auto">
+                        <p class="text-sm">${message}</p>
+                    </div>
+                `;
+                chatMessages.insertAdjacentHTML('beforeend', userMessage);
+
+                // Clear input
+                chatInput.value = '';
+
+                // Simulate bot response
+                setTimeout(() => {
+                    const botResponse = `
+                        <div class="chat-message bot bg-gray-100 p-3 rounded-lg">
+                            <p class="text-sm">Terima kasih atas pertanyaan Anda tentang "${message}". Tim kami akan segera membantu Anda!</p>
+                        </div>
+                    `;
+                    chatMessages.insertAdjacentHTML('beforeend', botResponse);
+                    chatMessages.scrollTop = chatMessages.scrollHeight;
+                }, 1000);
+
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+
+            sendChat.addEventListener('click', sendMessage);
+            chatInput.addEventListener('keypress', (e) => {
+                if (e.key === 'Enter') {
+                    sendMessage();
+                }
+            });
+
+            // --- Map Functionality ---
+            const regionModal = document.getElementById('region-modal');
+            const closeModalBtn = document.getElementById('close-modal-btn');
+            const modalRegionName = document.getElementById('modal-region-name');
+            const modalRegionDescription = document.getElementById('modal-region-description');
+            const modalRegionIcon = document.getElementById('modal-region-icon');
+
+            const regionData = {
+                bandung: {
+                    name: 'Bandung',
+                    description: 'Pusat fashion dan kuliner dengan berbagai produk UMKM kreatif seperti batik, tas, dan makanan khas.',
+                    icon: '🎨'
+                },
+                sumedang: {
+                    name: 'Sumedang',
+                    description: 'Terkenal dengan tahu Sumedang dan berbagai produk olahan makanan tradisional.',
+                    icon: '🥘'
+                },
+                tasikmalaya: {
+                    name: 'Tasikmalaya',
+                    description: 'Sentra kerajinan tangan seperti tas rajut, bordir, dan produk anyaman.',
+                    icon: '🧶'
+                },
+                garut: {
+                    name: 'Garut',
+                    description: 'Penghasil dodol terkenal dan berbagai produk makanan tradisional lainnya.',
+                    icon: '🍯'
+                }
+            };
+
+            // Map region click handlers
+            document.querySelectorAll('.map-region').forEach(region => {
+                region.addEventListener('click', (e) => {
+                    const regionId = e.target.getAttribute('data-region-id');
+                    const data = regionData[regionId];
+                    
+                    if (data) {
+                        modalRegionName.textContent = data.name;
+                        modalRegionDescription.textContent = data.description;
+                        modalRegionIcon.textContent = data.icon;
+                        regionModal.classList.remove('hidden');
+                    }
+                });
+            });
+
+            // Close modal
+            closeModalBtn.addEventListener('click', () => {
+                regionModal.classList.add('hidden');
+            });
+
+            regionModal.addEventListener('click', (e) => {
+                if (e.target === regionModal) {
+                    regionModal.classList.add('hidden');
+                }
+            });
         });
     </script>
 </body>
