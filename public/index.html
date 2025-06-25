@@ -1892,7 +1892,7 @@
                 onComplete: () => document.getElementById('loading-screen').style.display = 'none'
             });
 
-            // Hero Section Particles - Optimasi untuk mobile
+            // Hero Section Particles 
             gsap.utils.toArray('.particle').forEach((particle, i) => {
                 const isMobile = window.innerWidth <= 768;
                 const isLowEndDevice = navigator.hardwareConcurrency <= 4;
