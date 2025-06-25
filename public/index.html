@@ -185,7 +185,7 @@
             .particle {
                 animation: none !important;
             }
-            .umkm-logo-carousel {
+            .logos {
                 animation: none !important;
             }
         }
@@ -202,6 +202,9 @@
             }
             .swiper-wrapper {
                 transition: none !important;
+            }
+            .logos {
+                animation: none !important;
             }
         }
 
@@ -256,14 +259,9 @@
                 transform: translate3d(0, 0, 0);
             }
             
-            /* Optimasi khusus untuk carousel di mobile */
-            .umkm-logo-carousel {
-                -webkit-overflow-scrolling: touch;
-                overflow-scrolling: touch;
-            }
-            
-            .umkm-logo-carousel-inner {
-                transition: none; /* Hapus transition di mobile untuk performa */
+            /* Optimasi untuk logo slider di mobile */
+            .logos {
+                animation-duration: 15s; /* Lebih cepat di mobile */
             }
         }
 
@@ -488,147 +486,87 @@
             transform: scale(0.8);
         }
 
-        /* UMKM Logo Carousel Styles */
-        .umkm-logo-carousel {
-            will-change: transform;
-            user-select: none;
-            display: flex;
-            align-items: center;
-            /* Optimasi untuk mobile */
-            -webkit-transform: translateZ(0);
-            transform: translateZ(0);
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            -webkit-perspective: 1000px;
-            perspective: 1000px;
-            /* Hardware acceleration */
-            -webkit-transform-style: preserve-3d;
-            transform-style: preserve-3d;
-            /* Tambahan optimasi untuk smooth animation */
-            -webkit-overflow-scrolling: touch;
-            overflow-scrolling: touch;
+        /* UMKM Logo Carousel Styles - REMOVED */
+        /* Old complex carousel styles removed for better performance */
+        /* Now using simple CSS animation technique */
+
+        /* Logo Slider CSS Animation Technique - Based on Portfolio Example */
+        /* Container utama */
+        .logos {
+            overflow: hidden;
+            padding: 40px 0;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+            white-space: nowrap;
+            position: relative;
         }
-        .umkm-logo-carousel-inner {
-            /* Optimasi untuk animasi smooth */
-            will-change: transform;
-            -webkit-transform: translate3d(0, 0, 0);
-            transform: translate3d(0, 0, 0);
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
-            /* Tambahan optimasi untuk mencegah patah-patah */
-            -webkit-transform-style: preserve-3d;
-            transform-style: preserve-3d;
-            /* Smooth animation */
-            transition: transform 0.1s linear;
+
+        /* Animasi slide horizontal */
+        @keyframes slide {
+            from {
+                transform: translateX(0);
+            }
+            to {
+                transform: translateX(-100%);
+            }
         }
-        .logo-item {
+
+        /* Container slide */
+        .logos-slide {
+            display: inline-block;
+            animation: 25s slide infinite linear;
+        }
+
+        /* Styling untuk setiap logo */
+        .logos-slide img {
+            height: 70px;
+            width: 70px;
+            margin: 0 20px;
+            padding: 15px;
+            background: linear-gradient(145deg, #f8fafc, #ffffff);
+            border-radius: 15px;
+            box-shadow: 4px 4px 8px rgba(0, 0, 0, 0.1), -4px -4px 8px rgba(59, 130, 246, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            object-fit: contain;
             filter: grayscale(0.2) brightness(1.1);
             opacity: 0.85;
-            transition: filter 0.3s, opacity 0.3s, transform 0.3s;
-            margin-right: 3rem;
-            /* Optimasi untuk mobile */
-            -webkit-transform: translateZ(0);
-            transform: translateZ(0);
-            -webkit-backface-visibility: hidden;
-            backface-visibility: hidden;
         }
-        .logo-item:last-child {
-            margin-right: 0;
-        }
-        .logo-item:hover {
-            filter: grayscale(0) brightness(1.2) drop-shadow(0 4px 16px rgba(59,130,246,0.10));
+
+        .logos-slide img:hover {
+            filter: grayscale(0) brightness(1.2);
             opacity: 1;
-            z-index: 2;
+            transform: scale(1.1);
+            box-shadow: 4px 4px 12px rgba(0, 0, 0, 0.15), -4px -4px 12px rgba(59, 130, 246, 0.2);
         }
+
+        /* Efek hover untuk pause animasi */
+        .logos:hover .logos-slide {
+            animation-play-state: paused;
+        }
+
+        /* Mobile responsive */
         @media (max-width: 768px) {
-            .logo-item {
-                height: 2.5rem;
-                padding: 0.5rem;
-                margin-right: 1.5rem;
-                /* Optimasi tambahan untuk mobile */
-                -webkit-transform: translate3d(0, 0, 0);
-                transform: translate3d(0, 0, 0);
+            .logos {
+                padding: 30px 0;
             }
-            .umkm-logo-carousel {
-                /* Optimasi performa untuk mobile */
-                -webkit-overflow-scrolling: touch;
-                overflow-scrolling: touch;
+            
+            .logos-slide {
+                animation-duration: 20s; /* Lebih cepat di mobile */
+            }
+            
+            .logos-slide img {
+                height: 60px;
+                width: 60px;
+                margin: 0 15px;
+                padding: 12px;
             }
         }
 
-        /* Hero Typing Animation Fix */
-        .hero-title-fixed {
-            min-width: 0;
-            min-height: 2.5em;
-            overflow: hidden;
-            line-height: 1.1;
-        }
-        .typed-wrapper {
-            display: inline-block;
-            min-width: 0;
-            min-height: 1.2em;
-            vertical-align: bottom;
-            font-family: 'Fira Mono', 'Menlo', 'Monaco', 'Consolas', monospace;
-            position: relative;
-            top: 0;
-        }
-        #typed-text, .typed-cursor {
-            display: inline-block;
-            width: 100%;
-            white-space: nowrap;
-            overflow: hidden;
-            vertical-align: bottom;
-        }
-        @media (max-width: 640px) {
-            .hero-title-fixed {
-                min-width: 180px;
-            }
-            .typed-wrapper {
-                min-width: 120px;
-                top: -0.3em;
-            }
-        }
-        .hero-fixed-height {
-            min-height: 400px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        @media (max-width: 640px) {
-            .hero-fixed-height {
-                min-height: 140px;
-                padding-top: 80px;
-                padding-bottom: 32px;
-            }
-            .hero-title-fixed {
-                font-size: 2rem;
-                min-height: 1.8em;
-            }
-            .typed-wrapper {
-                min-width: 0;
-                font-size: 1.1rem;
-            }
-        }
-        /* Hide Typed.js Cursor */
-        .typed-cursor {
-            display: none !important;
-        }
-
-        /* Device Performance Detection */
-        @media (max-width: 768px) {
-            /* Deteksi device dengan performa rendah */
-            @media (max-resolution: 1.5dppx) {
-                .animate-float-slow,
-                .animate-float-medium,
-                .animate-float-fast {
-                    animation: none !important;
-                }
-                .particle {
-                    animation: none !important;
-                }
-                .umkm-logo-carousel {
-                    animation: none !important;
-                }
+        /* Reduced motion support */
+        @media (prefers-reduced-motion: reduce) {
+            .logos-slide {
+                animation: none;
             }
         }
     </style>
@@ -1063,20 +1001,28 @@
                     </p>
                 </div>
             </div>
-            <div class="relative w-full overflow-x-hidden">
-                <div class="umkm-logo-carousel flex items-center py-6 px-2 md:px-8 rounded-2xl overflow-x-hidden">
-                    <div class="umkm-logo-carousel-inner flex items-center" id="umkmLogoCarousel">
-                      <!-- Placeholder logos -->
-                      <img src="https://via.placeholder.com/120x60/3B82F6/fff?text=UMKM+1" alt="UMKM 1" class="logo-item rounded-xl shadow-md bg-white/80 p-2 h-16 w-auto object-contain transition-transform hover:scale-110 hover:shadow-2xl hover:ring-4 hover:ring-primary/20">
-                      <img src="https://via.placeholder.com/120x60/10B981/fff?text=UMKM+2" alt="UMKM 2" class="logo-item rounded-xl shadow-md bg-white/80 p-2 h-16 w-auto object-contain transition-transform hover:scale-110 hover:shadow-2xl hover:ring-4 hover:ring-accent/20">
-                      <img src="https://via.placeholder.com/120x60/F59E0B/fff?text=UMKM+3" alt="UMKM 3" class="logo-item rounded-xl shadow-md bg-white/80 p-2 h-16 w-auto object-contain transition-transform hover:scale-110 hover:shadow-2xl hover:ring-4 hover:ring-yellow-400/20">
-                      <img src="https://via.placeholder.com/120x60/6366F1/fff?text=UMKM+4" alt="UMKM 4" class="logo-item rounded-xl shadow-md bg-white/80 p-2 h-16 w-auto object-contain transition-transform hover:scale-110 hover:shadow-2xl hover:ring-4 hover:ring-indigo-400/20">
-                      <img src="https://via.placeholder.com/120x60/EC4899/fff?text=UMKM+5" alt="UMKM 5" class="logo-item rounded-xl shadow-md bg-white/80 p-2 h-16 w-auto object-contain transition-transform hover:scale-110 hover:shadow-2xl hover:ring-4 hover:ring-pink-400/20">
-                      <img src="https://via.placeholder.com/120x60/10B981/fff?text=UMKM+6" alt="UMKM 6" class="logo-item rounded-xl shadow-md bg-white/80 p-2 h-16 w-auto object-contain transition-transform hover:scale-110 hover:shadow-2xl hover:ring-4 hover:ring-accent/20">
-                      <img src="https://via.placeholder.com/120x60/F59E0B/fff?text=UMKM+7" alt="UMKM 7" class="logo-item rounded-xl shadow-md bg-white/80 p-2 h-16 w-auto object-contain transition-transform hover:scale-110 hover:shadow-2xl hover:ring-4 hover:ring-yellow-400/20">
-                      <img src="https://via.placeholder.com/120x60/3B82F6/fff?text=UMKM+8" alt="UMKM 8" class="logo-item rounded-xl shadow-md bg-white/80 p-2 h-16 w-auto object-contain transition-transform hover:scale-110 hover:shadow-2xl hover:ring-4 hover:ring-primary/20">
-                    </div>
-                 </div>
+            
+            <!-- Logo Slider menggunakan teknik CSS Animation -->
+            <div class="logos">
+                <div class="logos-slide">
+                    <img src="https://via.placeholder.com/120x60/3B82F6/fff?text=UMKM+1" alt="UMKM 1">
+                    <img src="https://via.placeholder.com/120x60/10B981/fff?text=UMKM+2" alt="UMKM 2">
+                    <img src="https://via.placeholder.com/120x60/F59E0B/fff?text=UMKM+3" alt="UMKM 3">
+                    <img src="https://via.placeholder.com/120x60/6366F1/fff?text=UMKM+4" alt="UMKM 4">
+                    <img src="https://via.placeholder.com/120x60/EC4899/fff?text=UMKM+5" alt="UMKM 5">
+                    <img src="https://via.placeholder.com/120x60/8B5CF6/fff?text=UMKM+6" alt="UMKM 6">
+                    <img src="https://via.placeholder.com/120x60/14B8A6/fff?text=UMKM+7" alt="UMKM 7">
+                    <img src="https://via.placeholder.com/120x60/F97316/fff?text=UMKM+8" alt="UMKM 8">
+                    <!-- Logo diulang untuk efek seamless -->
+                    <img src="https://via.placeholder.com/120x60/3B82F6/fff?text=UMKM+1" alt="UMKM 1">
+                    <img src="https://via.placeholder.com/120x60/10B981/fff?text=UMKM+2" alt="UMKM 2">
+                    <img src="https://via.placeholder.com/120x60/F59E0B/fff?text=UMKM+3" alt="UMKM 3">
+                    <img src="https://via.placeholder.com/120x60/6366F1/fff?text=UMKM+4" alt="UMKM 4">
+                    <img src="https://via.placeholder.com/120x60/EC4899/fff?text=UMKM+5" alt="UMKM 5">
+                    <img src="https://via.placeholder.com/120x60/8B5CF6/fff?text=UMKM+6" alt="UMKM 6">
+                    <img src="https://via.placeholder.com/120x60/14B8A6/fff?text=UMKM+7" alt="UMKM 7">
+                    <img src="https://via.placeholder.com/120x60/F97316/fff?text=UMKM+8" alt="UMKM 8">
+                </div>
             </div>
         </div>
     </section>
@@ -2053,136 +1999,18 @@
             }
         });
 
-        // UMKM Logo Carousel Infinite Auto Slider
-        document.addEventListener('DOMContentLoaded', function() {
-            const carousel = document.getElementById('umkmLogoCarousel');
-            if (!carousel) return;
-            
-            // Deteksi device lemah
-            const isLowEndDevice = navigator.hardwareConcurrency <= 4 || 
-                                 window.devicePixelRatio > 2 || 
-                                 /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            
-            // Duplikasi isi agar seamless (4x)
-            const logos = Array.from(carousel.children);
-            for (let i = 0; i < 3; i++) {
-                logos.forEach(logo => {
-                    const clone = logo.cloneNode(true);
-                    carousel.appendChild(clone);
-                });
-            }
-            
-            let scrollAmount = 0;
-            let setWidth = 0;
-            let animationId = null;
-            let lastTime = 0;
-            
-            function updateWidth() {
-                // Hitung lebar satu set logo (bukan seluruh scrollWidth)
-                let width = 0;
-                for (let i = 0; i < logos.length; i++) {
-                    width += logos[i].offsetWidth + parseFloat(getComputedStyle(logos[i]).marginRight || 0);
-                }
-                setWidth = width;
-            }
-            
-            updateWidth();
-            window.addEventListener('resize', updateWidth);
-            
-            function getScrollSpeed() {
-                // Kurangi kecepatan untuk animasi yang lebih smooth
-                if (isLowEndDevice) {
-                    return window.innerWidth <= 640 ? 1.5 : 0.8; // Lebih lambat untuk device lemah
-                }
-                return window.innerWidth <= 640 ? 2.8 : 1.4;
-            }
-            
-            function animateCarousel(currentTime) {
-                if (!lastTime) lastTime = currentTime;
-                const deltaTime = currentTime - lastTime;
-                lastTime = currentTime;
-                
-                // Batasi deltaTime untuk mencegah lompatan besar
-                const clampedDeltaTime = Math.min(deltaTime, 50); // Max 50ms
-                
-                // Gunakan deltaTime untuk animasi yang lebih smooth
-                const speed = getScrollSpeed();
-                scrollAmount += (speed * clampedDeltaTime) / 16; // Normalize to 60fps
-                
-                if (scrollAmount >= setWidth) {
-                    // Reset tanpa transition untuk seamless loop
-                    carousel.style.transition = 'none';
-                    scrollAmount = 0;
-                    carousel.style.transform = `translate3d(0, 0, 0)`;
-                    // Force reflow
-                    void carousel.offsetWidth;
-                    carousel.style.transition = '';
-                } else {
-                    // Gunakan transform3d untuk hardware acceleration dengan rounding
-                    const roundedScrollAmount = Math.round(scrollAmount * 100) / 100;
-                    carousel.style.transform = `translate3d(-${roundedScrollAmount}px, 0, 0)`;
-                }
-                
-                animationId = requestAnimationFrame(animateCarousel);
-            }
-            
-            // Start animation hanya jika bukan device lemah
-            if (!isLowEndDevice) {
-                animationId = requestAnimationFrame(animateCarousel);
-            }
-            
-            // Pause animation when tab is not visible
-            document.addEventListener('visibilitychange', () => {
-                if (document.hidden) {
-                    if (animationId) {
-                        cancelAnimationFrame(animationId);
-                        animationId = null;
-                    }
-                } else {
-                    if (!animationId && !isLowEndDevice) {
-                        lastTime = 0;
-                        animationId = requestAnimationFrame(animateCarousel);
-                    }
-                }
-            });
-        });
+        // UMKM Logo Carousel - Replaced with CSS Animation Technique
+        // Old complex JavaScript carousel removed for better performance and reliability
+        // Now using simple CSS animation with JavaScript only for cloning logos
 
-        // Device Performance Detection and Animation Optimization
+
+        // Logo Slider JavaScript (Simple CSS Animation Technique)
         document.addEventListener('DOMContentLoaded', function() {
-            // Deteksi performa device
-            const isLowEndDevice = navigator.hardwareConcurrency <= 4 || 
-                                 window.devicePixelRatio > 2 || 
-                                 /Android|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            
-            // Deteksi preferensi reduced motion
-            const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            
-            // Nonaktifkan animasi berat jika device lemah atau user memilih reduced motion
-            if (isLowEndDevice || prefersReducedMotion) {
-                // Nonaktifkan floating animations
-                const floatingElements = document.querySelectorAll('.animate-float-slow, .animate-float-medium, .animate-float-fast');
-                floatingElements.forEach(el => {
-                    el.style.animation = 'none';
-                });
-                
-                // Nonaktifkan particle animations
-                const particles = document.querySelectorAll('.particle');
-                particles.forEach(particle => {
-                    particle.style.animation = 'none';
-                });
-                
-                // Nonaktifkan carousel animation
-                const carousel = document.getElementById('umkmLogoCarousel');
-                if (carousel) {
-                    carousel.style.animation = 'none';
-                }
-                
-                // Kurangi blur effect
-                const glassmorphismElements = document.querySelectorAll('.glassmorphism');
-                glassmorphismElements.forEach(el => {
-                    el.style.backdropFilter = 'blur(4px)';
-                    el.style.webkitBackdropFilter = 'blur(4px)';
-                });
+            // Clone logos untuk infinite scroll effect
+            const logosSlide = document.querySelector('.logos-slide');
+            if (logosSlide) {
+                const copy = logosSlide.cloneNode(true);
+                document.querySelector('.logos').appendChild(copy);
             }
         });
     </script>
