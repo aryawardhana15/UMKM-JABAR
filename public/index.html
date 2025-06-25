@@ -75,6 +75,10 @@
         /* Product Card Enhancements */
         .product-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
+            /* Optimasi untuk mobile */
+            will-change: transform;
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
         }
         .product-card:hover {
             transform: translateY(-8px);
@@ -177,6 +181,79 @@
             }
             .product-card {
                 transition: none !important;
+            }
+            .particle {
+                animation: none !important;
+            }
+            .umkm-logo-carousel {
+                animation: none !important;
+            }
+        }
+
+        /* Mobile Reduced Motion */
+        @media (max-width: 768px) and (prefers-reduced-motion: reduce) {
+            .animate-float-slow,
+            .animate-float-medium,
+            .animate-float-fast {
+                animation: none !important;
+            }
+            .particle {
+                animation: none !important;
+            }
+            .swiper-wrapper {
+                transition: none !important;
+            }
+        }
+
+        /* Mobile Performance Optimizations */
+        @media (max-width: 768px) {
+            /* Kurangi animasi yang berat di mobile */
+            .animate-float-slow {
+                animation: float-slow 8s ease-in-out infinite;
+            }
+            .animate-float-medium {
+                animation: float-medium 6s ease-in-out infinite;
+            }
+            .animate-float-fast {
+                animation: float-fast 4s ease-in-out infinite;
+            }
+            
+            /* Optimasi untuk particle animations */
+            .particle {
+                animation-duration: 8s !important;
+                will-change: transform;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+            
+            /* Kurangi shadow dan blur untuk performa */
+            .glassmorphism {
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+            }
+            
+            /* Optimasi untuk transform animations */
+            .product-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            /* Optimasi untuk animasi di mobile */
+            .product-card {
+                transition: transform 0.2s ease, box-shadow 0.2s ease;
+            }
+            .product-card:hover {
+                transform: translateY(-4px);
+                box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            }
+            
+            /* Optimasi untuk floating animations */
+            .animate-float-slow,
+            .animate-float-medium,
+            .animate-float-fast {
+                will-change: transform;
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
             }
         }
 
@@ -407,12 +484,35 @@
             user-select: none;
             display: flex;
             align-items: center;
+            /* Optimasi untuk mobile */
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            -webkit-perspective: 1000px;
+            perspective: 1000px;
+            /* Hardware acceleration */
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+        }
+        .umkm-logo-carousel-inner {
+            /* Optimasi untuk animasi smooth */
+            will-change: transform;
+            -webkit-transform: translate3d(0, 0, 0);
+            transform: translate3d(0, 0, 0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
         }
         .logo-item {
             filter: grayscale(0.2) brightness(1.1);
             opacity: 0.85;
             transition: filter 0.3s, opacity 0.3s, transform 0.3s;
             margin-right: 3rem;
+            /* Optimasi untuk mobile */
+            -webkit-transform: translateZ(0);
+            transform: translateZ(0);
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
         }
         .logo-item:last-child {
             margin-right: 0;
@@ -427,6 +527,14 @@
                 height: 2.5rem;
                 padding: 0.5rem;
                 margin-right: 1.5rem;
+                /* Optimasi tambahan untuk mobile */
+                -webkit-transform: translate3d(0, 0, 0);
+                transform: translate3d(0, 0, 0);
+            }
+            .umkm-logo-carousel {
+                /* Optimasi performa untuk mobile */
+                -webkit-overflow-scrolling: touch;
+                overflow-scrolling: touch;
             }
         }
 
@@ -1550,7 +1658,11 @@
         AOS.init({
             duration: 1000,
             once: true,
-            offset: 100
+            offset: 100,
+            // Optimasi untuk mobile
+            disable: window.innerWidth < 768 ? false : false, // Tetap aktif di mobile tapi dengan optimasi
+            throttleDelay: 99, // Optimasi throttle
+            debounceDelay: 50, // Optimasi debounce
         });
 
         // Initialize Swiper
@@ -1570,6 +1682,11 @@
                 nextEl: '.swiper-button-next',
                 prevEl: '.swiper-button-prev',
             },
+            // Optimasi untuk mobile
+            speed: 600,
+            touchRatio: 1,
+            touchAngle: 45,
+            grabCursor: true,
             breakpoints: {
                 640: {
                     slidesPerView: 2,
@@ -1690,16 +1807,17 @@
                 onComplete: () => document.getElementById('loading-screen').style.display = 'none'
             });
 
-            // Hero Section Particles
+            // Hero Section Particles - Optimasi untuk mobile
             gsap.utils.toArray('.particle').forEach((particle, i) => {
+                const isMobile = window.innerWidth <= 768;
                 gsap.to(particle, {
-                    y: -100,
+                    y: isMobile ? -50 : -100, // Kurangi jarak di mobile
                     opacity: 0.3,
-                    duration: 5 + i,
+                    duration: isMobile ? 8 + i : 5 + i, // Lebih lambat di mobile
                     repeat: -1,
                     yoyo: true,
                     ease: 'sine.inOut',
-                    delay: i * 0.5
+                    delay: i * (isMobile ? 1 : 0.5) // Delay lebih lama di mobile
                 });
             });
 
@@ -1898,6 +2016,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             const carousel = document.getElementById('umkmLogoCarousel');
             if (!carousel) return;
+            
             // Duplikasi isi agar seamless (4x)
             const logos = Array.from(carousel.children);
             for (let i = 0; i < 3; i++) {
@@ -1906,8 +2025,12 @@
                     carousel.appendChild(clone);
                 });
             }
+            
             let scrollAmount = 0;
             let setWidth = 0;
+            let animationId = null;
+            let lastTime = 0;
+            
             function updateWidth() {
                 // Hitung lebar satu set logo (bukan seluruh scrollWidth)
                 let width = 0;
@@ -1916,25 +2039,57 @@
                 }
                 setWidth = width;
             }
+            
             updateWidth();
             window.addEventListener('resize', updateWidth);
+            
             function getScrollSpeed() {
-                return window.innerWidth <= 640 ? 2.7 : 1.1;
+                // Percepat kecepatan di mobile dan desktop
+                return window.innerWidth <= 640 ? 4.5 : 2.2;
             }
-            function animateCarousel() {
-                scrollAmount += getScrollSpeed();
+            
+            function animateCarousel(currentTime) {
+                if (!lastTime) lastTime = currentTime;
+                const deltaTime = currentTime - lastTime;
+                lastTime = currentTime;
+                
+                // Gunakan deltaTime untuk animasi yang lebih smooth
+                const speed = getScrollSpeed();
+                scrollAmount += (speed * deltaTime) / 16; // Normalize to 60fps
+                
                 if (scrollAmount >= setWidth) {
+                    // Reset tanpa transition untuk seamless loop
                     carousel.style.transition = 'none';
                     scrollAmount = 0;
-                    carousel.style.transform = `translateX(0)`;
+                    carousel.style.transform = `translate3d(0, 0, 0)`;
+                    // Force reflow
                     void carousel.offsetWidth;
                     carousel.style.transition = '';
                 } else {
-                    carousel.style.transform = `translateX(-${scrollAmount}px)`;
+                    // Gunakan transform3d untuk hardware acceleration
+                    carousel.style.transform = `translate3d(-${scrollAmount}px, 0, 0)`;
                 }
-                requestAnimationFrame(animateCarousel);
+                
+                animationId = requestAnimationFrame(animateCarousel);
             }
-            animateCarousel();
+            
+            // Start animation
+            animationId = requestAnimationFrame(animateCarousel);
+            
+            // Pause animation when tab is not visible
+            document.addEventListener('visibilitychange', () => {
+                if (document.hidden) {
+                    if (animationId) {
+                        cancelAnimationFrame(animationId);
+                        animationId = null;
+                    }
+                } else {
+                    if (!animationId) {
+                        lastTime = 0;
+                        animationId = requestAnimationFrame(animateCarousel);
+                    }
+                }
+            });
         });
     </script>
 </body>
