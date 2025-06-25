@@ -50,16 +50,40 @@
             }
         }
     </script>
+
+    <!-- Loading Screen dari tentang.html -->
+    <style>
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #A05A2C, #6B8E23, #F9C74F);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        @media (max-width: 640px) {
+           .statistik {
+                padding-bottom: 250px;
+            }
+            
+        }
+    </style>
 </head>
 <body class="font-inter bg-background text-text overflow-x-hidden">
-    <!-- Loading Screen -->
-    <div id="loading-screen" class="fixed inset-0 bg-gradient-to-br from-primary via-accent to-highlight z-[9999] flex items-center justify-center">
-        <div class="text-center">
-            <div class="w-20 h-20 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <h2 class="text-white text-2xl font-poppins font-bold mb-2">JabarUMKM Hub</h2>
-            <p class="text-white/80">Memuat koleksi badge...</p>
-        </div>
+<!-- Loading Screen (dari tentang.html) -->
+<div id="loading-screen" class="loading-screen">
+    <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_UJNc2t.json" background="transparent" speed="1" style="width: 120px; height: 120px;" loop autoplay></lottie-player>
+    <div id="loading-text" class="mt-4 text-white text-lg md:text-xl font-bold animate-pulse">Memuat Konten...</div>
+    <div class="w-48 h-2 bg-white/30 rounded-full mt-4 overflow-hidden">
+        <div id="progress-bar" class="h-full bg-accent rounded-full transition-all duration-300" style="width: 0%"></div>
     </div>
+</div>
 
     <!-- Header/Navbar -->
     <header class="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-lg z-50 transition-all duration-300" id="navbar">
@@ -81,6 +105,9 @@
                     </a>
                     <a href="badge.html" class="nav-link-animated text-primary font-semibold relative active">
                         Badge
+                    </a>
+                      <a href="produk.html" class="nav-link-animated text-primary font-semibold relative active">
+                        Produk
                     </a>
                     <a href="kontak.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300 relative">Kontak</a>
 
@@ -107,6 +134,7 @@
                     <a href="index.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Beranda</a>
                     <a href="tentang.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Tentang</a>
                     <a href="badge.html" class="text-primary font-semibold py-2 px-4 rounded-lg bg-primary/10">Badge</a>
+                    <a href="produk.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Produk</a>
                     <a href="kontak.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Kontak</a>
                     <button class="bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-full font-medium mt-2">
                         Mulai Eksplorasi
@@ -338,8 +366,8 @@
     </section>
 
     <!-- Achievement Section -->
-    <section class="py-20 bg-white">
-        <div class="container mx-auto px-4">
+    <section class="py-20 bg-white ">
+        <div class="container mx-auto px-4 pb-20">
             <div class="text-center mb-16">
                 <div class="inline-flex items-center space-x-2 bg-gradient-to-r from-primary/10 to-accent/10 rounded-full px-6 py-3 mb-6" data-aos="fade-down">
                     <span class="text-2xl">🎯</span>
@@ -353,7 +381,7 @@
                 </p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            <div class="statistik grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 ">
                 <div class="bg-gradient-to-br from-primary/10 to-accent/10 rounded-3xl p-8 text-center" data-aos="fade-up" data-aos-delay="100">
                     <div class="text-6xl mb-4">🗺️</div>
                     <div class="text-3xl font-bold text-primary mb-2">2</div>
@@ -381,39 +409,11 @@
         </div>
     </section>
 
-    <!-- Call to Action -->
-    <section class="py-20 bg-gradient-to-br from-primary to-accent text-white relative overflow-hidden">
-        <!-- Background Pattern -->
-        <div class="absolute inset-0 opacity-10">
-            <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 30px 30px;"></div>
-        </div>
-        
-        <div class="container mx-auto px-4 relative z-10 text-center">
-            <div class="max-w-4xl mx-auto">
-                <h2 class="text-4xl md:text-5xl font-poppins font-bold mb-8" data-aos="fade-up">
-                    Siap Mengumpulkan <span class="bg-gradient-to-r from-highlight to-white bg-clip-text text-transparent">Badge</span> Lainnya?
-                </h2>
-                <p class="text-xl mb-12 text-white/90 leading-relaxed" data-aos="fade-up" data-aos-delay="200">
-                    Jelajahi lebih banyak produk UMKM Jawa Barat dan buka badge eksklusif lainnya. 
-                    Setiap kunjungan membawa Anda lebih dekat ke pencapaian berikutnya!
-                </p>
-                <div class="flex flex-col sm:flex-row gap-6 justify-center items-center" data-aos="fade-up" data-aos-delay="400">
-                    <a href="index.html" class="group bg-white text-primary px-10 py-4 rounded-full font-semibold text-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 transform">
-                        <span class="flex items-center space-x-2">
-                            <span>Mulai Eksplorasi</span>
-                            <span class="text-2xl group-hover:translate-x-1 transition-transform">🚀</span>
-                        </span>
-                    </a>
-                    <a href="tentang.html" class="group border-2 border-white text-white px-10 py-4 rounded-full font-semibold text-lg hover:bg-white hover:text-primary transition-all duration-300 transform hover:scale-105">
-                        <span class="flex items-center space-x-2">
-                            <span>Pelajari Lebih Lanjut</span>
-                            <span class="text-2xl group-hover:rotate-12 transition-transform">📚</span>
-                        </span>
-                    </a>
-                </div>
-            </div>
-        </div>
+    <section class="py-20 bg-gradient-to-br from-primary/5 to-accent/5 ">
     </section>
+
+    <!-- Call to Action -->
+ 
 
     <!-- Footer -->
     <footer class="bg-gradient-to-br from-primary to-accent text-white py-16 relative overflow-hidden">
@@ -515,5 +515,42 @@
             </div>
         </div>
     </div>
+
+    <!-- Additional Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Loading Screen
+        const loadingScreen = document.getElementById('loading-screen');
+        const progressBar = document.getElementById('progress-bar');
+        const loadingText = document.getElementById('loading-text');
+        const texts = ["Memuat Konten...", "Mempersiapkan pengalaman...", "Hampir selesai..."];
+        let textIndex = 0;
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += 3;
+            if (progressBar) progressBar.style.width = progress + '%';
+            if (progress > 33 && textIndex === 0) {
+                textIndex++;
+                if(loadingText) loadingText.innerText = texts[textIndex];
+            }
+            if (progress > 66 && textIndex === 1) {
+                textIndex++;
+                if(loadingText) loadingText.innerText = texts[textIndex];
+            }
+            if (progress >= 100) {
+                clearInterval(interval);
+                gsap.to(loadingScreen, {
+                    opacity: 0,
+                    duration: 0.8,
+                    onComplete: () => {
+                        if(loadingScreen) loadingScreen.style.display = 'none';
+                    }
+                });
+            }
+        }, 30);
+    });
+    </script>
 </body>
 </html> 

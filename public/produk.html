@@ -861,73 +861,95 @@
         max-height: 50vh !important;
     }
 }
+
+/* Loading Screen dari tentang.html */
+.loading-screen {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, #A05A2C, #6B8E23, #F9C74F);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
 </style>
 </head>
 
 <body class="bg-light font-inter min-h-screen">
+<!-- Loading Screen (dari tentang.html) -->
+<div id="loading-screen" class="loading-screen">
+    <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_UJNc2t.json" background="transparent" speed="1" style="width: 120px; height: 120px;" loop autoplay></lottie-player>
+    <div id="loading-text" class="mt-4 text-white text-lg md:text-xl font-bold animate-pulse">Memuat Konten...</div>
+    <div class="w-48 h-2 bg-white/30 rounded-full mt-4 overflow-hidden">
+        <div id="progress-bar" class="h-full bg-accent rounded-full transition-all duration-300" style="width: 0%"></div>
+    </div>
+</div>
+
 <!-- Enhanced Header/Navbar -->
 <header class="fixed top-0 w-full navbar z-50 transition-all duration-300" id="navbar">
-    <nav class="container mx-auto px-6 py-4">
-            <div class="flex items-center justify-between">
-            <!-- Logo -->
-                <div class="flex items-center space-x-3 group cursor-pointer" onclick="window.location.href='index.html'">
-                <div class="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-2xl flex items-center justify-center transform group-hover:scale-110 transition-all duration-300 shadow-medium">
-                    <span class="text-white font-bold text-xl">J</span>
-                    </div>
-                <div>
-                    <span class="font-poppins font-bold text-2xl text-gradient">JabarUMKM</span>
-                    <div class="text-xs text-gray-500 font-medium">Premium Hub</div>
-                </div>
+    <nav class="container mx-auto px-4 py-3">
+        <div class="flex items-center justify-between">
+          <!-- Logo -->
+          <div class="flex items-center space-x-3 group cursor-pointer" onclick="window.location.href='index.html'">
+            <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+              <span class="text-white font-bold text-lg">J</span>
             </div>
-
-            <!-- Desktop Navigation -->
-            <div class="hidden lg:flex items-center space-x-8">
-                <a href="index.html" class="nav-link">Beranda</a>
-                <a href="tentang.html" class="nav-link">Tentang</a>
-                <a href="badge.html" class="nav-link">Badge</a>
-                <a href="kontak.html" class="nav-link">Kontak</a>
-                
-                    <!-- Cart Button Desktop -->
-                <button id="cart-btn-desktop" class="relative p-3 rounded-2xl hover:bg-gray-100 transition-all duration-300 group" aria-label="Buka Keranjang">
-                    <svg class="w-6 h-6 text-gray-600 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A2 2 0 007.5 19h9a2 2 0 001.85-1.3L17 13M7 13V6a1 1 0 011-1h5a1 1 0 011 1v7"></path>
-                    </svg>
-                    <span id="cart-badge-desktop" class="absolute -top-1 -right-1 bg-accent text-white text-xs font-bold rounded-full px-2 py-1 min-w-[20px] text-center hidden animate-bounce-gentle"></span>
-                    </button>
-                </div>
-
-            <!-- Mobile Menu Button -->
-            <div class="lg:hidden flex items-center space-x-3">
-                <button id="cart-btn-mobile" class="relative p-2 rounded-xl hover:bg-gray-100 transition-all duration-300 group" aria-label="Buka Keranjang">
-                    <svg class="w-6 h-6 text-gray-600 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A2 2 0 007.5 19h9a2 2 0 001.85-1.3L17 13M7 13V6a1 1 0 011-1h5a1 1 0 011 1v7"></path>
-                    </svg>
-                    <span id="cart-badge-mobile" class="absolute -top-1 -right-1 bg-accent text-white text-xs font-bold rounded-full px-2 py-1 min-w-[20px] text-center hidden animate-bounce-gentle"></span>
-                    </button>
-                <button id="mobile-menu-btn" class="p-2 rounded-xl hover:bg-gray-100 transition-all duration-300">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                    </svg>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Mobile Menu -->
-        <div id="mobile-menu" class="lg:hidden hidden mt-6 pb-4">
-            <div class="glass rounded-2xl p-6 shadow-medium">
-                <div class="flex flex-col space-y-4">
-                    <a href="index.html" class="nav-link py-3 px-4 rounded-xl hover:bg-gray-50 transition-all">Beranda</a>
-                    <a href="tentang.html" class="nav-link py-3 px-4 rounded-xl hover:bg-gray-50 transition-all">Tentang</a>
-                    <a href="badge.html" class="nav-link py-3 px-4 rounded-xl hover:bg-gray-50 transition-all">Badge</a>
-                    <a href="kontak.html" class="nav-link py-3 px-4 rounded-xl hover:bg-gray-50 transition-all">Kontak</a>
-                    <button class="btn-primary mt-4 w-full">
-                        <i class="fas fa-rocket mr-2"></i>
-                        Mulai Eksplorasi
-                    </button>
-                </div>
-                </div>
-            </div>
-        </nav>
+            <span class="font-poppins font-bold text-2xl text-primary group-hover:text-accent transition-colors duration-300">
+              JabarUMKM Hub
+            </span>
+          </div>
+      
+          <!-- Desktop Menu -->
+          <div class="hidden md:flex items-center space-x-6">
+            <a href="index.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300">Beranda</a>
+            <a href="tentang.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300">Tentang</a>
+            <a href="badge.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300">Badge</a>
+            <a href="produk.html" class="nav-link-animated text-primary font-semibold relative">Produk</a>
+            <a href="kontak.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300">Kontak</a>
+      
+            <button id="cart-btn-desktop" class="relative p-3 rounded-2xl hover:bg-gray-100 transition-all duration-300 group" aria-label="Buka Keranjang">
+              <svg class="w-6 h-6 text-gray-600 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A2 2 0 007.5 19h9a2 2 0 001.85-1.3L17 13M7 13V6a1 1 0 011-1h5a1 1 0 011 1v7" />
+              </svg>
+              <span id="cart-badge-desktop" class="absolute -top-1 -right-1 bg-accent text-white text-xs font-bold rounded-full px-2 py-1 min-w-[20px] text-center hidden animate-bounce-gentle"></span>
+            </button>
+          </div>
+      
+          <!-- Mobile Menu Toggle -->
+          <div class="md:hidden flex items-center space-x-2">
+            <button id="cart-btn-mobile" class="relative p-3 rounded-2xl hover:bg-gray-100 transition-all duration-300 group" aria-label="Buka Keranjang">
+              <svg class="w-6 h-6 text-gray-600 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A2 2 0 007.5 19h9a2 2 0 001.85-1.3L17 13M7 13V6a1 1 0 011-1h5a1 1 0 011 1v7" />
+              </svg>
+              <span id="cart-badge-mobile" class="absolute -top-1 -right-1 bg-accent text-white text-xs font-bold rounded-full px-2 py-1 min-w-[20px] text-center hidden animate-bounce-gentle"></span>
+            </button>
+      
+            <button id="mobile-menu-btn" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-expanded="false">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+              </svg>
+            </button>
+          </div>
+        </div>
+      
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4">
+          <div class="flex flex-col space-y-4 bg-white rounded-xl p-4 shadow-lg">
+            <a href="index.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Beranda</a>
+            <a href="tentang.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Tentang</a>
+            <a href="badge.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Badge</a>
+            <a href="kontak.html" class="text-primary font-semibold py-2 px-4 rounded-lg bg-primary/10">Kontak</a>
+            <button class="bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-full font-medium mt-2">
+              Mulai Eksplorasi
+            </button>
+          </div>
+        </div>
+      </nav>
+      
     </header>
 
 <!-- FIXED: Enhanced Hero Slider with Mobile Optimization -->
@@ -1157,7 +1179,7 @@
                             </h3>
                             <div class="flex items-center gap-2 mb-3">
                                 <span class="text-xl font-bold text-accent">Rp 25.000</span>
-                                <span class="text-sm text-gray-500 line-through">Rp 35.000</span>
+                               
                             </div>
                             <div class="flex items-center gap-1 mb-3">
                                 <div class="flex text-yellow-400">
@@ -1167,13 +1189,13 @@
                                     <i class="fas fa-star text-sm"></i>
                                     <i class="fas fa-star text-sm"></i>
                                 </div>
-                                <span class="text-xs text-gray-500 ml-1">(4.8)</span>
+                            
                             </div>
                         </div>
                         <div class="card-actions">
                             <button class="btn-primary w-full group/btn py-2 px-4 rounded-md bg-primary text-white hover:bg-primary-dark transition-colors">
                                 <i class="fas fa-shopping-cart mr-2 group-hover/btn:scale-110 transition-transform"></i>
-                                Beli Sekarang
+                                
                             </button>
                         </div>
                     </div>
@@ -1201,7 +1223,7 @@
                             </h3>
                             <div class="flex items-center gap-2 mb-3">
                                 <span class="text-xl font-bold text-accent">Rp 150.000</span>
-                                <span class="text-sm text-gray-500 line-through">Rp 200.000</span>
+                                
                             </div>
                             <div class="flex items-center gap-1 mb-3">
                                 <div class="flex text-yellow-400">
@@ -1211,13 +1233,12 @@
                                     <i class="fas fa-star text-sm"></i>
                                     <i class="fas fa-star text-sm"></i>
                                 </div>
-                                <span class="text-xs text-gray-500 ml-1">(4.9)</span>
+                               
                             </div>
                         </div>
                         <div class="card-actions">
                             <button class="btn-primary w-full group/btn py-2 px-4 rounded-md bg-primary text-white hover:bg-primary-dark transition-colors">
                                 <i class="fas fa-shopping-cart mr-2 group-hover/btn:scale-110 transition-transform"></i>
-                                Beli Sekarang
                             </button>
                         </div>
                     </div>
@@ -1245,7 +1266,7 @@
                             </h3>
                             <div class="flex items-center gap-2 mb-3">
                                 <span class="text-xl font-bold text-accent">Rp 45.000</span>
-                                <span class="text-sm text-gray-500 line-through">Rp 60.000</span>
+                             
                             </div>
                             <div class="flex items-center gap-1 mb-3">
                                 <div class="flex text-yellow-400">
@@ -1255,13 +1276,13 @@
                                     <i class="fas fa-star text-sm"></i>
                                     <i class="fas fa-star-half-alt text-sm"></i>
                                 </div>
-                                <span class="text-xs text-gray-500 ml-1">(4.7)</span>
+                               
                             </div>
                         </div>
                         <div class="card-actions">
                             <button class="btn-primary w-full group/btn py-2 px-4 rounded-md bg-primary text-white hover:bg-primary-dark transition-colors">
                                 <i class="fas fa-shopping-cart mr-2 group-hover/btn:scale-110 transition-transform"></i>
-                                Beli Sekarang
+                              
                             </button>
                         </div>
                     </div>
@@ -1289,7 +1310,7 @@
                             </h3>
                             <div class="flex items-center gap-2 mb-3">
                                 <span class="text-xl font-bold text-accent">Rp 85.000</span>
-                                <span class="text-sm text-gray-500 line-through">Rp 120.000</span>
+                                
                             </div>
                             <div class="flex items-center gap-1 mb-3">
                                 <div class="flex text-yellow-400">
@@ -1299,13 +1320,12 @@
                                     <i class="fas fa-star text-sm"></i>
                                     <i class="fas fa-star text-sm"></i>
                                 </div>
-                                <span class="text-xs text-gray-500 ml-1">(4.9)</span>
+                              
                             </div>
                         </div>
                         <div class="card-actions">
                             <button class="btn-primary w-full group/btn py-2 px-4 rounded-md bg-primary text-white hover:bg-primary-dark transition-colors">
                                 <i class="fas fa-shopping-cart mr-2 group-hover/btn:scale-110 transition-transform"></i>
-                                Beli Sekarang
                             </button>
                         </div>
                     </div>
@@ -1333,7 +1353,7 @@
                             </h3>
                             <div class="flex items-center gap-2 mb-3">
                                 <span class="text-xl font-bold text-accent">Rp 40.000</span>
-                                <span class="text-sm text-gray-500 line-through">Rp 50.000</span>
+                                
                             </div>
                             <div class="flex items-center gap-1 mb-3">
                                 <div class="flex text-yellow-400">
@@ -1343,13 +1363,13 @@
                                     <i class="fas fa-star text-sm"></i>
                                     <i class="fas fa-star-half-alt text-sm"></i>
                                 </div>
-                                <span class="text-xs text-gray-500 ml-1">(4.6)</span>
+                              
                             </div>
                         </div>
                         <div class="card-actions">
                             <button class="btn-primary w-full group/btn py-2 px-4 rounded-md bg-primary text-white hover:bg-primary-dark transition-colors">
                                 <i class="fas fa-shopping-cart mr-2 group-hover/btn:scale-110 transition-transform"></i>
-                                Beli Sekarang
+                            
                             </button>
                         </div>
                     </div>
@@ -1434,7 +1454,7 @@
             </div>
         
     <!-- [DIKOSONGKAN] Product Grid - Akan diisi oleh produk.js -->
-    <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+    <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-4 xl:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
         <!-- KONTEN STATIS DIHAPUS, JavaScript akan mengisi bagian ini -->
                     </div>
         
@@ -2358,6 +2378,42 @@
 <script src="js/data.js"></script>
 <script src="js/cart.js"></script>
 <script src="js/produk.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Loading Screen
+    const loadingScreen = document.getElementById('loading-screen');
+    const progressBar = document.getElementById('progress-bar');
+    const loadingText = document.getElementById('loading-text');
+    const texts = ["Memuat Konten...", "Mempersiapkan pengalaman...", "Hampir selesai..."];
+    let textIndex = 0;
+    let progress = 0;
+    const interval = setInterval(() => {
+        progress += 3;
+        if (progressBar) progressBar.style.width = progress + '%';
+        if (progress > 33 && textIndex === 0) {
+            textIndex++;
+            if(loadingText) loadingText.innerText = texts[textIndex];
+        }
+        if (progress > 66 && textIndex === 1) {
+            textIndex++;
+            if(loadingText) loadingText.innerText = texts[textIndex];
+        }
+        if (progress >= 100) {
+            clearInterval(interval);
+            gsap.to(loadingScreen, {
+                opacity: 0,
+                duration: 0.8,
+                onComplete: () => {
+                    if(loadingScreen) loadingScreen.style.display = 'none';
+                }
+            });
+        }
+    }, 30);
+});
+</script>
 
 </body>
 </html>

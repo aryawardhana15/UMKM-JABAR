@@ -676,6 +676,21 @@
             }
         }
         /* === LOGO SLIDER - END === */
+
+        /* Loading Screen dari tentang.html */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #A05A2C, #6B8E23, #F9C74F);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
     </style>
     
     <!-- Tailwind Config -->
@@ -684,11 +699,14 @@
             theme: {
                 extend: {
                     colors: {
-                        primary: '#3B82F6',
-                        accent: '#10B981',
-                        highlight: '#F59E0B',
-                        background: '#FAF9F6',
-                        text: '#333333'
+                        primary: '#2C5530',
+                        secondary: '#8B4513',
+                        accent: '#DAA520',
+                        success: '#10B981',
+                        warning: '#F59E0B',
+                        danger: '#EF4444',
+                        light: '#F8FAFC',
+                        dark: '#1E293B'
                     },
                     fontFamily: {
                         'inter': ['Inter', 'sans-serif'],
@@ -732,14 +750,14 @@
     </script>
 </head>
 <body class="font-inter text-text overflow-x-hidden">
-    <!-- Loading Screen -->
-    <div id="loading-screen" class="fixed inset-0 bg-gradient-to-br from-primary via-accent to-highlight z-[9999] flex items-center justify-center animate-gradient-wave">
-        <div class="text-center glassmorphism p-8 rounded-2xl">
-            <div class="w-20 h-20 border-4 border-white border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-            <h2 class="text-white text-2xl font-poppins font-bold mb-2">JabarUMKM Hub</h2>
-            <p class="text-white/80">Memuat pengalaman terbaik...</p>
-        </div>
+<!-- Loading Screen (dari tentang.html) -->
+<div id="loading-screen" class="loading-screen">
+    <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_UJNc2t.json" background="transparent" speed="1" style="width: 120px; height: 120px;" loop autoplay></lottie-player>
+    <div id="loading-text" class="mt-4 text-white text-lg md:text-xl font-bold animate-pulse">Memuat Konten...</div>
+    <div class="w-48 h-2 bg-white/30 rounded-full mt-4 overflow-hidden">
+        <div id="progress-bar" class="h-full bg-accent rounded-full transition-all duration-300" style="width: 0%"></div>
     </div>
+</div>
 
     <!-- Header/Navbar -->
     <header class="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-lg z-50 transition-all duration-300" id="navbar">
@@ -916,7 +934,7 @@
                     <span class="font-semibold text-primary">Produk Unggulan</span>
                 </div>
                 <h2 class="text-4xl md:text-5xl font-poppins font-bold text-primary mb-6">
-                    Temukan <span class="bg-gradient-to-r from-highlight to-accent bg-clip-text text-transparent">Produk UMKM</span> Terbaik
+                    Temukan <span class="bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">Produk UMKM</span> Terbaik
                 </h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                     Koleksi produk unggulan dari UMKM terpilih di Jawa Barat. Kualitas terjamin dengan harga terbaik.
@@ -1129,7 +1147,7 @@
                     <span class="font-semibold text-primary">Cerita UMKM</span>
                 </div>
                 <h2 class="text-4xl md:text-5xl font-poppins font-bold text-gray-900 mb-6">
-                    Kisah <span class="bg-gradient-to-r from-highlight to-accent bg-clip-text text-transparent">Inspiratif</span> di Balik Usaha
+                    Kisah <span class="bg-gradient-to-r from-highlight to-accent bg-clip-text text-primary">Inspiratif</span> di Balik Usaha
                 </h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                     Setiap produk memiliki cerita. Dengarkan perjalanan para pelaku UMKM Jawa Barat dalam membangun mimpi mereka.
@@ -1245,7 +1263,7 @@
                     <span class="font-semibold text-primary">Peta Interaktif</span>
                 </div>
                 <h2 class="text-4xl md:text-5xl font-poppins font-bold text-primary mb-6 animate-slide-up">
-                    Jelajahi Kekayaan <span class="bg-gradient-to-r from-highlight to-accent bg-clip-text text-transparent">UMKM Jawa Barat</span>
+                    Jelajahi Kekayaan <span class="bg-gradient-to-r from-highlight to-accent bg-clip-text text-accent">UMKM Jawa Barat</span>
                 </h2>
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed animate-fade-in">
                     Klik pada sebuah daerah di peta untuk melihat potensi UMKM dan produk unggulannya.
@@ -1399,7 +1417,7 @@
                             <span class="font-semibold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Mari Bergabung</span>
                         </div>
                         <h2 class="cta-heading text-4xl md:text-5xl font-poppins font-bold text-gray-900 mb-6 leading-tight">
-                            Jadilah Bagian dari <span class="bg-gradient-to-r from-highlight to-accent bg-clip-text text-transparent animate-pulse">Perubahan</span>
+                            Jadilah Bagian dari <span class="bg-gradient-to-r from-highlight to-accent bg-clip-text text-accent animate-pulse">Perubahan</span>
                         </h2>
                         <p class="cta-description text-lg md:text-xl text-gray-600 mb-8">
                             Bergabunglah dengan kami untuk mengembangkan UMKM Jawa Barat. Bersama-sama kita bisa menciptakan dampak positif bagi ekonomi lokal.
@@ -1926,6 +1944,41 @@
                 }
             });
         });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Loading Screen
+        const loadingScreen = document.getElementById('loading-screen');
+        const progressBar = document.getElementById('progress-bar');
+        const loadingText = document.getElementById('loading-text');
+        const texts = ["Memuat Konten...", "Mempersiapkan pengalaman...", "Hampir selesai..."];
+        let textIndex = 0;
+        let progress = 0;
+        const interval = setInterval(() => {
+            progress += 3;
+            if (progressBar) progressBar.style.width = progress + '%';
+            if (progress > 33 && textIndex === 0) {
+                textIndex++;
+                if(loadingText) loadingText.innerText = texts[textIndex];
+            }
+            if (progress > 66 && textIndex === 1) {
+                textIndex++;
+                if(loadingText) loadingText.innerText = texts[textIndex];
+            }
+            if (progress >= 100) {
+                clearInterval(interval);
+                gsap.to(loadingScreen, {
+                    opacity: 0,
+                    duration: 0.8,
+                    onComplete: () => {
+                        if(loadingScreen) loadingScreen.style.display = 'none';
+                    }
+                });
+            }
+        }, 30);
+    });
     </script>
 </body>
 </html>
