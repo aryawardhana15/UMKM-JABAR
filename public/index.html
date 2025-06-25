@@ -695,7 +695,7 @@
                 min-height: 1.5em;
             }
             .typed-wrapper {
-                font-size: 0.7rem;
+                font-size: 0.8rem;
                 min-width: 0;
                 top: 0;
             }
@@ -833,7 +833,7 @@
                 
                 <h1 class="text-4xl md:text-6xl font-poppins font-black text-primary mb-8 leading-tight animate-slide-up hero-title-fixed">
                     Jelajahi <span class="typed-wrapper font-mono" style="position:relative;display:inline-block;">
-                        <span id="typed-text" class="bg-gradient-to-r from-highlight via-accent to-primary  text-transparent"></span>
+                        <span id="typed-text" class="bg-gradient-to-r from-highlight via-accent to-primary bg-clip-text text-transparent">Cita Rasa</span>
                         <span class="typed-placeholder" style="visibility:hidden;position:absolute;left:0;top:0;white-space:nowrap;">
                             Cita Rasa Kekayaan Budaya Produk Lokal Inovasi Digital
                         </span>
@@ -1940,11 +1940,15 @@
             });
 
             // Typed.js for Hero Text
-            new Typed('#typed-text', {
-                strings: ['Cita Rasa', 'Kekayaan Budaya', 'Produk Lokal', 'Inovasi Digital'],
-                typeSpeed: 100,
-                backSpeed: 50,
-                loop: true
+            document.addEventListener('DOMContentLoaded', function() {
+                if (window.Typed && document.getElementById('typed-text')) {
+                    new Typed('#typed-text', {
+                        strings: ['Cita Rasa', 'Kekayaan Budaya', 'Produk Lokal', 'Inovasi Digital'],
+                        typeSpeed: 100,
+                        backSpeed: 50,
+                        loop: true
+                    });
+                }
             });
 
             // Mobile Menu Toggle
