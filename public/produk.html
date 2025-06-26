@@ -889,68 +889,68 @@
     </div>
 </div>
 
-<!-- Enhanced Header/Navbar -->
-<header class="fixed top-0 w-full navbar z-50 transition-all duration-300" id="navbar">
-    <nav class="container mx-auto px-4 py-3">
-        <div class="flex items-center justify-between">
-          <!-- Logo -->
-          <div class="flex items-center space-x-3 group cursor-pointer" onclick="window.location.href='index.html'">
-            <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
-              <span class="text-white font-bold text-lg">J</span>
-            </div>
-            <span class="font-poppins font-bold text-2xl text-primary group-hover:text-accent transition-colors duration-300">
-              JabarUMKM Hub
-            </span>
-          </div>
-      
-          <!-- Desktop Menu -->
-          <div class="hidden md:flex items-center space-x-6">
-            <a href="index.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300">Beranda</a>
-            <a href="tentang.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300">Tentang</a>
-            <a href="badge.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300">Badge</a>
-            <a href="produk.html" class="nav-link-animated text-primary font-semibold relative">Produk</a>
-            <a href="kontak.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300">Kontak</a>
-      
-            <button id="cart-btn-desktop" class="relative p-3 rounded-2xl hover:bg-gray-100 transition-all duration-300 group" aria-label="Buka Keranjang">
+  <header class="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-lg z-50 transition-all duration-300" id="navbar">
+        <nav class="container mx-auto px-4 py-4">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center space-x-3 group cursor-pointer">
+                    <div class="w-10 h-10 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center transform group-hover:scale-110 transition-transform duration-300">
+                        <span class="text-white font-bold text-lg">J</span>
+                    </div>
+                    <span class="font-poppins font-bold text-2xl text-primary group-hover:text-accent transition-colors duration-300">JabarUMKM Hub</span>
+                </div>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="index.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300 relative">Beranda</a>
+                    <a href="tentang.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300 relative">
+                        Tentang
+                    </a>
+                    <a href="badge.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300 relative">
+                        Badge
+                    </a>
+                    <a href="produk.html" class="nav-link-animated text-primary font-semibold relative active">
+                        Produk
+                    </a>
+                    <a href="kontak.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300 relative">Kontak</a>
+
+                    <!-- Tombol Search Desktop -->
+                    <button id="cart-btn-desktop" class="relative p-3 rounded-2xl hover:bg-gray-100 transition-all duration-300 group" aria-label="Buka Keranjang">
               <svg class="w-6 h-6 text-gray-600 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A2 2 0 007.5 19h9a2 2 0 001.85-1.3L17 13M7 13V6a1 1 0 011-1h5a1 1 0 011 1v7" />
               </svg>
               <span id="cart-badge-desktop" class="absolute -top-1 -right-1 bg-accent text-white text-xs font-bold rounded-full px-2 py-1 min-w-[20px] text-center hidden animate-bounce-gentle"></span>
             </button>
-          </div>
-      
-          <!-- Mobile Menu Toggle -->
-          <div class="md:hidden flex items-center space-x-2">
-            <button id="cart-btn-mobile" class="relative p-3 rounded-2xl hover:bg-gray-100 transition-all duration-300 group" aria-label="Buka Keranjang">
+                </div>
+                
+                <div class="md:hidden flex items-center space-x-2">
+                    <!-- Tombol Search Mobile -->
+                    <button id="cart-btn-mobile" class="relative p-3 rounded-2xl hover:bg-gray-100 transition-all duration-300 group" aria-label="Buka Keranjang">
               <svg class="w-6 h-6 text-gray-600 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13l-1.35 2.7A2 2 0 007.5 19h9a2 2 0 001.85-1.3L17 13M7 13V6a1 1 0 011-1h5a1 1 0 011 1v7" />
               </svg>
               <span id="cart-badge-mobile" class="absolute -top-1 -right-1 bg-accent text-white text-xs font-bold rounded-full px-2 py-1 min-w-[20px] text-center hidden animate-bounce-gentle"></span>
             </button>
-      
-            <button id="mobile-menu-btn" class="p-2 rounded-lg hover:bg-gray-100 transition-colors" aria-expanded="false">
-              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
-              </svg>
-            </button>
-          </div>
-        </div>
-      
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4">
-          <div class="flex flex-col space-y-4 bg-white rounded-xl p-4 shadow-lg">
-            <a href="index.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Beranda</a>
-            <a href="tentang.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Tentang</a>
-            <a href="badge.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Badge</a>
-            <a href="kontak.html" class="text-primary font-semibold py-2 px-4 rounded-lg bg-primary/10">Kontak</a>
-            <button class="bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-full font-medium mt-2">
-              Mulai Eksplorasi
-            </button>
-          </div>
-        </div>
-      </nav>
-      
+                    <button id="mobile-menu-btn" class="p-2 rounded-lg hover:bg-gray-100 transition-colors">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4">
+                <div class="flex flex-col space-y-4 bg-white rounded-xl p-4 shadow-lg">
+                    <a href="index.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Beranda</a>
+                    <a href="tentang.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Tentang</a>
+                    <a href="badge.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Badge</a>
+                    <a href="badge.html" class="text-primary font-semibold py-2 px-4 rounded-lg bg-primary/10">Badge</a>
+                    <a href="kontak.html" class="text-gray-600 hover:text-primary transition-colors py-2 px-4 rounded-lg hover:bg-gray-50">Kontak</a>
+                    <button class="bg-gradient-to-r from-primary to-accent text-white px-6 py-3 rounded-full font-medium mt-2">
+                        Mulai Eksplorasi
+                    </button>
+                </div>
+            </div>
+        </nav>
     </header>
+
 
 <!-- FIXED: Enhanced Hero Slider with Mobile Optimization -->
 <section class="mt-20 w-full overflow-hidden">
