@@ -111,15 +111,15 @@
                     </a>
                     <a href="kontak.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300 relative">Kontak</a>
 
-                    <!-- New Command Palette trigger -->
+                    <!-- Tombol Search Desktop -->
                     <button id="command-palette-trigger-desktop" class="ml-6 p-2 rounded-full hover:bg-gray-200 transition-colors duration-300 group" aria-label="Buka Command Palette">
                         <svg class="w-6 h-6 text-gray-500 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     </button>
                 </div>
                 
                 <div class="md:hidden flex items-center space-x-2">
-                    <!-- Mobile Search Trigger -->
-                     <button id="command-palette-trigger-mobile" class="p-2 rounded-full hover:bg-gray-200 transition-colors duration-300 group" aria-label="Buka Pencarian">
+                    <!-- Tombol Search Mobile -->
+                    <button id="command-palette-trigger-mobile" class="p-2 rounded-full hover:bg-gray-200 transition-colors duration-300 group md:hidden" aria-label="Buka Command Palette">
                         <svg class="w-6 h-6 text-gray-500 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     </button>
                     <button id="mobile-menu-btn" class="p-2 rounded-lg hover:bg-gray-100 transition-colors">
@@ -487,7 +487,8 @@
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
     <script src="js/main.js"></script>
     <script src="js/badge.js"></script>
-    <script src="js/command-palette.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/command-palette-new.js"></script>
     <script>
         AOS.init({
             duration: 1000,
@@ -495,23 +496,22 @@
         });
     </script>
 
-    <!-- Command Palette -->
-    <div id="command-palette" class="fixed inset-0 bg-gray-900 bg-opacity-75 z-[9999] hidden items-start justify-center pt-20">
-        <div class="bg-white rounded-xl shadow-2xl w-full max-w-lg transform transition-all opacity-0 scale-95" id="command-palette-content">
+    <!-- Command Palette Baru -->
+    <div id="command-palette" class="fixed inset-0 bg-gray-900/50 backdrop-blur-sm z-[9999] hidden flex items-center justify-center transition-all duration-300">
+        <div id="command-palette-content" class="glassmorphism bg-white rounded-xl shadow-xl w-full max-w-md mx-4 transform transition-all duration-300 opacity-0 scale-95">
             <div class="relative">
-                <div class="absolute top-3.5 left-4">
+                <div class="absolute top-4 left-4">
                     <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                 </div>
-                <input type="text" id="command-palette-input" placeholder="Ketik perintah atau cari..." class="w-full pl-12 pr-4 py-4 text-lg border-b border-gray-200 focus:outline-none rounded-t-xl">
-                <div class="absolute top-0 right-0 p-3">
-                    <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-400 bg-gray-100 border border-gray-200 rounded-lg">ESC</kbd>
+                <input type="text" id="command-palette-input" placeholder="Ketik perintah atau cari..." class="w-full pl-12 pr-16 py-4 text-lg border-b border-gray-200 focus:outline-none focus:ring-2 focus:ring-primary rounded-t-xl">
+                <div class="absolute top-3.5 right-4">
+                    <kbd class="px-2 py-1.5 text-xs font-semibold text-gray-500 bg-gray-100 border border-gray-200 rounded-md">ESC</kbd>
                 </div>
             </div>
-            <div id="command-palette-results" class="max-h-96 overflow-y-auto p-2">
-                <!-- Search results will be injected here -->
-            </div>
-            <div class="p-3 border-t border-gray-200 text-xs text-gray-500 flex justify-between bg-gray-50 rounded-b-xl">
-                <div>Gunakan <kbd class="px-1.5 py-1 text-xs font-semibold text-gray-800 bg-white border border-gray-200 rounded-md">↑</kbd> <kbd class="px-1.5 py-1 text-xs font-semibold text-gray-800 bg-white border border-gray-200 rounded-md">↓</kbd> untuk navigasi dan <kbd class="px-1.5 py-1 text-xs font-semibold text-gray-800 bg-white border border-gray-200 rounded-md">Enter</kbd> untuk memilih.</div>
+            <div id="command-palette-results" class="max-h-[60vh] overflow-y-auto p-2"></div>
+            <div class="p-3 border-t border-gray-200 text-xs text-gray-500 flex justify-between items-center bg-gray-50 rounded-b-xl">
+                <span>Gunakan <kbd class="px-1.5 py-1 font-semibold text-gray-800 bg-white border border-gray-200 rounded-md">↑</kbd> <kbd class="px-1.5 py-1 font-semibold text-gray-800 bg-white border border-gray-200 rounded-md">↓</kbd></span>
+                <span>Tekan <kbd class="px-1.5 py-1 font-semibold text-gray-800 bg-white border border-gray-200 rounded-md">Enter</kbd> untuk memilih</span>
             </div>
         </div>
     </div>

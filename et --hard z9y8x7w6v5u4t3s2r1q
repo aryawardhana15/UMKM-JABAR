@@ -1,0 +1,191 @@
+[33mcommit 2fe003a7e292ac27e55cfd3e862ef7cdd56bb197[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Thu Jun 26 16:49:41 2025 +0700
+
+    fix(command-palette): Resolve display and animation issues
+
+[33mcommit 013a58f52765292f380f71874a21b91e80988a10[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Thu Jun 26 02:44:12 2025 +0700
+
+    fix bug
+
+[33mcommit 9050c824d0db55f5726715fb9be7296b934e2d3a[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Thu Jun 26 00:20:46 2025 +0700
+
+    fix bug
+
+[33mcommit e505793115b02958abfd05b12729c15954a305a0[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Thu Jun 26 00:19:25 2025 +0700
+
+    fix bug in about page
+
+[33mcommit a206952b3c0de60a7bd34f21369d50764b8aaaad[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Wed Jun 25 15:24:53 2025 +0700
+
+    fix bug
+
+[33mcommit 15774d0356aaeaad9c05c7bc26001ca15eb37799[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Wed Jun 25 15:13:25 2025 +0700
+
+    fix bug
+
+[33mcommit 94ff668bbfa0c18c9a39978b537b3f498ec1b402[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Wed Jun 25 15:11:58 2025 +0700
+
+    fix bug
+
+[33mcommit 95d80834b6b415dac471f3cfdea38c7df7e5f78f[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Wed Jun 25 13:56:58 2025 +0700
+
+    fix bug slider infinite
+
+[33mcommit 27f0e3a910b1eaf3435fab52ef696f0f1dfff4cd[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Wed Jun 25 13:44:45 2025 +0700
+
+    fix bug typing in responsive HP
+
+[33mcommit 4c43b82688768682552b4cdfe021d889c1ddf000[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Wed Jun 25 13:31:42 2025 +0700
+
+    fix bug typing
+
+[33mcommit bfd6b813c8ed63a3715ac71b38e7920dd4ff1d6b[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Wed Jun 25 12:14:25 2025 +0700
+
+    fix bug
+
+[33mcommit 6cfc5bfa25af416cb9ed8a763321a3d66e702c11[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Wed Jun 25 12:13:14 2025 +0700
+
+    fix bug
+
+[33mcommit 5ccc3e4c1623c0a55673d5de3133d982509e76c2[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Wed Jun 25 12:09:22 2025 +0700
+
+    fix bug animation
+
+[33mcommit 8f7ac6c74c99ce792ded59d9ad90a56aa4cb488e[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Wed Jun 25 12:00:43 2025 +0700
+
+    fix bug
+
+[33mcommit 4f7f97bd67b9b521cf3d2f2926fdf610124e4b75[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Wed Jun 25 11:58:10 2025 +0700
+
+    fix bug
+
+[33mcommit 122b93a0894ae2285e08c26945212ffb5c205f20[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Wed Jun 25 11:52:34 2025 +0700
+
+    fix bug animation
+
+[33mcommit 6547b25962fde2baab11403294e5fd203e753077[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Wed Jun 25 11:50:30 2025 +0700
+
+    cek animation responsive
+
+[33mcommit 6dd3e052cca964816f939a4e040cbc7cb2bf8a4c[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Wed Jun 25 11:46:49 2025 +0700
+
+    test bug animation
+
+[33mcommit fb574d74ad285723ccff9e83f10a7cbaa6733752[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Wed Jun 25 11:13:54 2025 +0700
+
+    test bug2
+
+[33mcommit bfee9e6714f4258ae35c2fdfc74aff32bae8663f[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Wed Jun 25 11:09:22 2025 +0700
+
+    test animation bug
+
+[33mcommit 5636527250abf9ed0802a7461cda8dcf53a99ab5[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Wed Jun 25 11:00:01 2025 +0700
+
+    fix bug animation
+
+[33mcommit c0e4bff95fe6ccd0a588cabc8a9f1dc457a0ab15[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Wed Jun 25 00:19:27 2025 +0700
+
+    fix bug animation logo umkm
+
+[33mcommit a1b3eddebb676155f6f1fec3ab367050dea2ec31[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Tue Jun 24 23:40:49 2025 +0700
+
+    fix bug animate typing
+
+[33mcommit 10770d479d72d8dd7d2f7e6b1dc81c78cb271e7b[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Tue Jun 24 23:13:00 2025 +0700
+
+    fix bug type animation
+
+[33mcommit 7f837ec8691f1421b7bf4cf570aead5e2afd7c22[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Tue Jun 24 22:46:23 2025 +0700
+
+    add caraousel logo umkm
+
+[33mcommit 88b822f830383191ecddb22fa8183750c89a5daf[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Tue Jun 24 22:06:46 2025 +0700
+
+    upgrade and fix style in index page
+
+[33mcommit bcc6f627a111a2e963199a8000e06277a62bac61[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Tue Jun 24 18:39:02 2025 +0700
+
+    erase and fix bug filter
+
+[33mcommit d098e7eeaf07cb029d5eea5012ed549a1f3a2fd7[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Tue Jun 24 18:36:53 2025 +0700
+
+    Fixed cart badge and cart modal to update in real-time after adding products, ensuring accurate feedback for users and  Refactored product card and quick view modal so both Buy buttons now reliably add products to the cart with correct quantity handling.
+
+[33mcommit 6429072b2bb4f8f8e8be4097a249af2236cd17fe[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Tue Jun 24 13:57:28 2025 +0700
+
+    Redesign product page: improved Hot Deals section, professional card UI, and mobile-friendly layout
+
+[33mcommit 91b429461ac707e6426ee07a4e4535f342a77a98[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Mon Jun 23 23:37:55 2025 +0700
+
+    fix bug
+
+[33mcommit a19810dd68719494fc7843945d693a5e63ad1b53[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Mon Jun 23 23:27:52 2025 +0700
+
+    fix bug
+
+[33mcommit 05219ceb6ff4b90a7fe140c913469e5457c113a1[m
+Author: aryawardhana15 <wardhanahafiz567@gmail.com>
+Date:   Mon Jun 23 22:00:57 2025 +0700
+
+    first commit
