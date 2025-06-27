@@ -68,13 +68,37 @@ function openModal(regionId) {
 
     document.getElementById('modal-region-icon').textContent = data.icon;
     document.getElementById('modal-region-name').textContent = data.name;
-    document.getElementById('modal-region-description').textContent = data.description;
+    
+    // Ambil produk dari window.products sesuai daerah
+    let produkList = [];
+    if (window.products) {
+        produkList = window.products
+            .filter(p => (p.daerah || '').toLowerCase() === regionId.toLowerCase())
+            .map(p => p.name);
+    }
+    let produkText = '';
+    if (produkList.length > 0) {
+        produkText = '<br><br><b>Produk UMKM:</b><ul style="margin:0.5em 0 0 1.2em;padding:0">';
+        produkList.forEach(nama => {
+            produkText += `<li style="text-align:left;list-style:disc">${nama}</li>`;
+        });
+        produkText += '</ul>';
+    } else {
+        produkText = '<br><br><i>Tidak ada produk terdaftar untuk kota ini.</i>';
+    }
+    document.getElementById('modal-region-description').innerHTML = data.description + produkText;
+
     const modalLink = document.getElementById('modal-region-link');
     modalLink.href = `produk.html?daerah=${regionId}`;
     modalLink.onclick = function(e) {
         e.preventDefault();
         window.location.href = `produk.html?daerah=${regionId}`;
     };
+    
+    // Tambahkan render produk per daerah jika fungsi tersedia
+    if (typeof window.renderRegionProducts === 'function') {
+        window.renderRegionProducts(regionId);
+    }
     
     modal.classList.remove('hidden');
     modal.classList.add('flex');
@@ -89,13 +113,14 @@ function closeModal() {
     const modal = document.getElementById('region-modal');
     const content = document.getElementById('region-modal-content');
 
+    // Reset animasi
     modal.style.opacity = '0';
     content.style.transform = 'scale(0.95)';
     content.style.opacity = '0';
-    setTimeout(() => {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-    }, 300);
+
+    // Langsung tutup modal tanpa delay
+    modal.classList.add('hidden');
+    modal.classList.remove('flex');
 }
 
 // Pastikan initMap dijalankan otomatis
@@ -185,4 +210,13 @@ typeof window !== 'undefined' && (window.MapFunctions = {
     loadVisitedRegions
 });
 
-window.openModal = openModal; 
+window.openModal = openModal;
+
+document.addEventListener('DOMContentLoaded', function() {
+    var modal = document.getElementById('region-modal');
+    if (modal) {
+        modal.onclick = function(e) {
+            if (e.target === modal) closeModal();
+        };
+    }
+}); 
