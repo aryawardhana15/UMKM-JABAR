@@ -47,194 +47,41 @@
         }
 
         /* FIXED: Logo Slider - Completely Responsive & No Overlap */
-        .logo-slider-section {
-            width: 100%;
-            overflow: hidden;
-            background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
-            padding: 60px 0;
-            margin: 40px 0;
-            position: relative;
-        }
-
-        .logo-slider-container {
-            width: 100%;
-            overflow: hidden;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            padding: 50px 20px;
-            margin: 0 auto;
-            max-width: 1200px;
-            position: relative;
-        }
-
-        .logo-slider-wrapper {
-            overflow: hidden;
-            width: 100%;
-            position: relative;
-        }
-
-        .logo-slider-track {
-            display: flex;
-            width: 200%; /* Double width for seamless loop */
-            animation: slideLoop 25s linear infinite;
-            will-change: transform;
-        }
-
-        .logo-slider-group {
-            display: flex;
-            align-items: center;
-            justify-content: space-evenly;
-            width: 50%; /* Each group takes half of track */
-            flex-shrink: 0;
-            gap: 20px;
-        }
-
-        .logo-item {
-            height: 80px;
-            width: 80px;
-            padding: 15px;
-            background: linear-gradient(145deg, #f8fafc, #ffffff);
-            border-radius: 16px;
-            box-shadow: 
-                4px 4px 12px rgba(0,0,0,0.1), 
-                -2px -2px 8px rgba(255,255,255,0.8);
-            object-fit: contain;
-            filter: grayscale(0.3) brightness(1.1);
-            opacity: 0.9;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-            flex-shrink: 0;
-            border: 2px solid transparent;
-        }
-
-        .logo-item:hover {
-            filter: grayscale(0) brightness(1.2);
-            opacity: 1;
-            transform: scale(1.1) translateY(-5px);
-            box-shadow: 
-                6px 6px 20px rgba(0,0,0,0.15), 
-                -3px -3px 12px rgba(255,255,255,0.9);
-            border-color: rgba(59, 130, 246, 0.3);
-        }
-
-        /* Pause animation on container hover */
-        .logo-slider-container:hover .logo-slider-track {
-            animation-play-state: paused;
-        }
-
-        @keyframes slideLoop {
-            0% {
-                transform: translateX(0);
-            }
-            100% {
-                transform: translateX(-50%);
-            }
-        }
-
-        /* Tablet Responsive */
-        @media (max-width: 1024px) {
-            .logo-slider-container {
-                padding: 40px 15px;
-                max-width: 900px;
-            }
-            .logo-item {
-                height: 70px;
-                width: 70px;
-                padding: 12px;
-            }
-            .logo-slider-group {
-                gap: 15px;
-            }
-            .logo-slider-track {
-                animation-duration: 22s;
-            }
-        }
-
-        /* Mobile Responsive - FIXED */
-        @media (max-width: 768px) {
-            .logo-slider-section {
-                padding: 40px 0;
-                margin: 30px 0;
-            }
-            .logo-slider-container {
-                padding: 30px 10px;
-                margin: 0 15px;
-                border-radius: 16px;
-                max-width: calc(100vw - 30px);
-            }
-            .logo-item {
-                height: 60px;
-                width: 60px;
-                padding: 10px;
-                border-radius: 12px;
-            }
-            .logo-slider-group {
-                gap: 12px;
-                justify-content: space-between;
-            }
-            .logo-slider-track {
-                animation-duration: 20s;
-            }
-        }
-
-        /* Small Mobile - EXTRA FIXED */
-        @media (max-width: 480px) {
-            .logo-slider-section {
-                padding: 30px 0;
-                margin: 20px 0;
-            }
-            .logo-slider-container {
-                padding: 25px 8px;
-                margin: 0 10px;
-                max-width: calc(100vw - 20px);
-                border-radius: 12px;
-            }
-            .logo-item {
-                height: 50px;
-                width: 50px;
-                padding: 8px;
-                border-radius: 10px;
-                box-shadow: 2px 2px 6px rgba(0,0,0,0.08);
-            }
-            .logo-slider-group {
-                gap: 8px;
-                justify-content: space-around;
-            }
-            .logo-slider-track {
-                animation-duration: 18s;
-            }
-            .logo-item:hover {
-                transform: scale(1.05) translateY(-2px);
-            }
-        }
-
-        /* Extra Small Mobile */
-        @media (max-width: 360px) {
-            .logo-slider-container {
-                padding: 20px 5px;
-                margin: 0 5px;
-                max-width: calc(100vw - 10px);
-            }
-            .logo-item {
-                height: 45px;
-                width: 45px;
-                padding: 6px;
-            }
-            .logo-slider-group {
-                gap: 6px;
-            }
-        }
-
-        /* Reduced motion support */
-        @media (prefers-reduced-motion: reduce) {
-            .logo-slider-track {
-                animation: none;
-            }
-            .logo-item {
-                transition: none;
-            }
-        }
-
+        .logos {
+      overflow: hidden;
+      white-space: nowrap;
+      position: relative;
+    }
+    
+    .logos-slide {
+      display: inline-flex;
+      white-space: nowrap;
+      animation: scroll 30s linear infinite;
+    }
+    
+    .logos-slide img {
+      height: auto;
+      width: 120px;
+      max-width: 100%;
+    }
+    
+    @keyframes scroll {
+      0% {
+        transform: translateX(0);
+      }
+    
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+    
+    /* Responsive optional tweak (bisa disesuaikan) */
+    @media (max-width: 768px) {
+      .logos-slide img {
+        width: 90px;
+        margin: 0 0.5rem;
+      }
+    }
         /* Custom Animations */
         @keyframes gradientWave {
             0% { background-position: 0% 50%; }
@@ -1098,8 +945,8 @@
     </section>
 
     <!-- Carousel Logo UMKM (Infinite Auto Slider, Premium) -->
-    <section class="py-14 bg-gradient-to-br from-white via-blue-50 to-accent/10 relative overflow-hidden">
-        <!-- Judul dan header tetap di dalam container agar rapi di tengah -->
+    <!-- <section class="py-14 bg-gradient-to-br from-white via-blue-50 to-accent/10 relative overflow-hidden">
+ 
         <div class="container mx-auto px-4 relative z-10">
              <div class="text-center mb-10" data-aos="fade-up">
                  <div class="inline-flex items-center space-x-2 glassmorphism shadow-lg rounded-full px-7 py-4 mb-5 border border-primary/20 relative">
@@ -1125,7 +972,7 @@
              </div>
         </div>
 
-        <!-- Slider diletakkan di luar container agar bisa full-width -->
+    
         <div class="logos">
             <div class="logos-slide">
                 <img src="https://via.placeholder.com/120x60/3B82F6/fff?text=UMKM+1" alt="UMKM 1">
@@ -1136,7 +983,62 @@
                 <img src="https://via.placeholder.com/120x60/8B5CF6/fff?text=UMKM+6" alt="UMKM 6">
                 <img src="https://via.placeholder.com/120x60/14B8A6/fff?text=UMKM+7" alt="UMKM 7">
                 <img src="https://via.placeholder.com/120x60/F97316/fff?text=UMKM+8" alt="UMKM 8">
-                <!-- Duplikat manual untuk seamless -->
+             
+                <img src="https://via.placeholder.com/120x60/3B82F6/fff?text=UMKM+1" alt="UMKM 1">
+                <img src="https://via.placeholder.com/120x60/10B981/fff?text=UMKM+2" alt="UMKM 2">
+                <img src="https://via.placeholder.com/120x60/F59E0B/fff?text=UMKM+3" alt="UMKM 3">
+                <img src="https://via.placeholder.com/120x60/6366F1/fff?text=UMKM+4" alt="UMKM 4">
+                <img src="https://via.placeholder.com/120x60/EC4899/fff?text=UMKM+5" alt="UMKM 5">
+                <img src="https://via.placeholder.com/120x60/8B5CF6/fff?text=UMKM+6" alt="UMKM 6">
+                <img src="https://via.placeholder.com/120x60/14B8A6/fff?text=UMKM+7" alt="UMKM 7">
+                <img src="https://via.placeholder.com/120x60/F97316/fff?text=UMKM+8" alt="UMKM 8">
+            </div>
+        </div>
+    </section> -->
+    <section class="py-14 bg-gradient-to-br from-white via-blue-50 to-accent/10 relative overflow-hidden">
+        <!-- Header -->
+        <div class="container mx-auto px-4 relative z-10">
+            <div class="text-center mb-10" data-aos="fade-up">
+                <div class="inline-flex items-center space-x-2 glassmorphism shadow-lg rounded-full px-7 py-4 mb-5 border border-primary/20 relative">
+                    <span class="text-3xl animate-bounce">🤝</span>
+                    <span class="font-semibold text-primary text-lg tracking-wide">UMKM Partner</span>
+                    <span class="absolute -top-3 -right-3 animate-pulse-slow text-yellow-400 text-2xl">✨</span>
+                </div>
+                <h3 class="text-3xl md:text-4xl font-poppins font-extrabold mb-2 tracking-tight drop-shadow-lg bg-gradient-to-r from-primary via-accent to-highlight bg-clip-text text-transparent animate-gradient-wave inline-block relative">
+                    Logo UMKM Jawa Barat
+                    <span class="block h-1 w-24 mx-auto mt-2 rounded-full bg-gradient-to-r from-primary via-accent to-highlight animate-pulse-slow"></span>
+                </h3>
+                <div class="flex justify-center items-center gap-2 mt-3 mb-2">
+                    <span class="inline-block animate-float-fast text-accent text-xl">🌟</span>
+                    <span class="inline-block animate-float-slow text-primary text-lg">🏆</span>
+                    <span class="inline-block animate-float-medium text-highlight text-xl">💡</span>
+                </div>
+                <div class="max-w-xl mx-auto glassmorphism px-6 py-4 rounded-xl shadow border border-primary/10 flex items-center gap-3 justify-center">
+                    <svg class="w-7 h-7 text-accent/80 animate-bounce-slow" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                              d="M13 16h-1v-4h-1m1-4h.01M12 20a8 8 0 100-16 8 8 0 000 16z"/>
+                    </svg>
+                    <p class="text-gray-700 text-base md:text-lg font-medium leading-relaxed">
+                        Kolaborasi bersama <span class="bg-gradient-to-r from-accent to-highlight bg-clip-text text-transparent font-bold">UMKM terbaik</span> dari berbagai daerah, membangun ekosistem yang <span class="text-primary font-semibold">solid</span> dan <span class="text-highlight font-semibold">inspiratif</span>.
+                    </p>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Slider -->
+        <div class="logos w-full overflow-hidden relative">
+            <div class="logos-slide flex items-center gap-6">
+                <!-- Isi asli -->
+                <img src="https://via.placeholder.com/120x60/3B82F6/fff?text=UMKM+1" alt="UMKM 1">
+                <img src="https://via.placeholder.com/120x60/10B981/fff?text=UMKM+2" alt="UMKM 2">
+                <img src="https://via.placeholder.com/120x60/F59E0B/fff?text=UMKM+3" alt="UMKM 3">
+                <img src="https://via.placeholder.com/120x60/6366F1/fff?text=UMKM+4" alt="UMKM 4">
+                <img src="https://via.placeholder.com/120x60/EC4899/fff?text=UMKM+5" alt="UMKM 5">
+                <img src="https://via.placeholder.com/120x60/8B5CF6/fff?text=UMKM+6" alt="UMKM 6">
+                <img src="https://via.placeholder.com/120x60/14B8A6/fff?text=UMKM+7" alt="UMKM 7">
+                <img src="https://via.placeholder.com/120x60/F97316/fff?text=UMKM+8" alt="UMKM 8">
+    
+                <!-- Duplikat isi -->
                 <img src="https://via.placeholder.com/120x60/3B82F6/fff?text=UMKM+1" alt="UMKM 1">
                 <img src="https://via.placeholder.com/120x60/10B981/fff?text=UMKM+2" alt="UMKM 2">
                 <img src="https://via.placeholder.com/120x60/F59E0B/fff?text=UMKM+3" alt="UMKM 3">
@@ -1148,7 +1050,9 @@
             </div>
         </div>
     </section>
-
+    
+  
+    
     <!-- Cerita UMKM Section -->
     <section id="cerita-umkm" class="py-24 bg-white relative overflow-hidden">
         <div class="container mx-auto px-4">
