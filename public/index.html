@@ -5,40 +5,39 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etaloka.id - Digitalisasi UMKM Jawa Barat</title>
     <meta name="description" content="Website edukatif dan eksploratif untuk mendukung digitalisasi produk UMKM dari berbagai kabupaten/kota di Jawa Barat">
-    
-    <!-- TailwindCSS CDN -->
+  
     <script src="https://cdn.tailwindcss.com"></script>
     
-    <!-- Google Fonts -->
+ 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     
-    <!-- AOS (Animate On Scroll) -->
+   
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
-    <!-- Swiper.js -->
+  
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     
-    <!-- Lightbox.js -->
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
     
-    <!-- GSAP and ScrollTrigger -->
+ 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
     
-    <!-- Vanilla Tilt.js -->
+    
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js" defer></script>
     
-    <!-- Typed.js -->
+ 
     <script src="https://cdn.jsdelivr.net/npm/typed.js@2.0.12" defer></script>
     
-    <!-- Custom CSS -->
+   
     <style>
-        /* Glassmorphism Effect */
+     
         .glassmorphism {
             background: rgba(255, 255, 255, 0.3);
             backdrop-filter: blur(12px);
@@ -46,7 +45,7 @@
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        /* FIXED: Logo Slider - Completely Responsive & No Overlap */
+       
         .logos {
       overflow: hidden;
       white-space: nowrap;
@@ -75,14 +74,14 @@
       }
     }
     
-    /* Responsive optional tweak (bisa disesuaikan) */
+    
     @media (max-width: 768px) {
       .logos-slide img {
         width: 90px;
         margin: 0 0.5rem;
       }
     }
-        /* Custom Animations */
+       
         @keyframes gradientWave {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
@@ -95,20 +94,20 @@
             animation: gradientWave 15s ease infinite;
         }
 
-        /* Parallax Background */
+     
         .parallax-bg {
             background-attachment: fixed;
             background-size: cover;
             background-position: center;
         }
 
-        /* Scrollbar Styling */
+     
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #FAF9F6; }
         ::-webkit-scrollbar-thumb { background: #3B82F6; border-radius: 3px; }
         ::-webkit-scrollbar-thumb:hover { background: #10B981; }
 
-        /* Product Card Enhancements */
+ 
         .product-card {
             transition: transform 0.3s ease, box-shadow 0.3s ease;
             will-change: transform;
@@ -120,7 +119,7 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
 
-        /* Swiper Custom Styles */
+        
         .swiper-pagination-bullet {
             background: #3B82F6;
             opacity: 0.5;
@@ -130,7 +129,7 @@
             background: #F59E0B;
         }
 
-        /* Timeline Styles */
+     
         .timeline-item {
             position: relative;
         }
@@ -158,7 +157,7 @@
             box-shadow: 0 0 0 3px #F59E0B;
         }
 
-        /* Gallery Filter Buttons */
+       
         .filter-btn {
             transition: all 0.3s ease;
         }
@@ -168,7 +167,7 @@
             transform: scale(1.05);
         }
 
-        /* Masonry Grid */
+      
         .masonry-grid {
             column-count: 3;
             column-gap: 1rem;
@@ -188,7 +187,7 @@
             margin-bottom: 1rem;
         }
 
-        /* Chatbot Styles */
+       
         .chat-bubble {
             animation: bounce 2s infinite;
         }
@@ -206,7 +205,7 @@
             color: #374151;
         }
 
-        /* Reduced Motion Fallback */
+        
         @media (prefers-reduced-motion: reduce) {
             .animate-float, .animate-pulse-slow, .animate-bounce-slow, .animate-slide-up,
             .animate-slide-down, .animate-fade-in, .animate-scale-in, .animate-rotate-slow,
@@ -222,7 +221,7 @@
             }
         }
 
-        /* Mobile Performance Optimizations */
+      
         @media (max-width: 768px) {
             .animate-float-slow {
                 animation: float-slow 10s ease-in-out infinite;
@@ -264,7 +263,7 @@
             }
         }
 
-        /* New Story Timeline Styles */
+        
         .story-item {
             position: relative;
         }
@@ -390,7 +389,7 @@
             animation: float-fast 3s ease-in-out infinite;
         }
 
-        /* Mobile Responsive Enhancement */
+       
         @media (max-width: 768px) {
             .cta-content {
                 text-align: center;
@@ -486,10 +485,10 @@
             }
         }
 
-        /* === LOGO SLIDER - START === */
+       
         @keyframes slide {
             from { transform: translateX(0); }
-            to { transform: translateX(-50%); } /* Geser setengah untuk loop seamless */
+            to { transform: translateX(-50%); } 
         }
         .logos {
             overflow: hidden;
@@ -522,9 +521,9 @@
                 animation: none;
             }
         }
-        /* === LOGO SLIDER - END === */
+      
 
-        /* Loading Screen dari tentang.html */
+       
         .loading-screen {
             position: fixed;
             top: 0;
@@ -540,7 +539,7 @@
         }
     </style>
     
-    <!-- Tailwind Config -->
+  
     <script>
         tailwind.config = {
             theme: {
@@ -597,7 +596,6 @@
     </script>
 </head>
 <body class="font-inter text-text overflow-x-hidden">
-<!-- Loading Screen (dari tentang.html) -->
 <div id="loading-screen" class="loading-screen">
     <lottie-player src="https://assets2.lottiefiles.com/packages/lf20_UJNc2t.json" background="transparent" speed="1" style="width: 120px; height: 120px;" loop autoplay></lottie-player>
     <div id="loading-text" class="mt-4 text-white text-lg md:text-xl font-bold animate-pulse">Memuat Konten...</div>
@@ -606,7 +604,7 @@
     </div>
 </div>
 
-    <!-- Header/Navbar -->
+  
     <header class="fixed top-0 w-full bg-white/95 backdrop-blur-md shadow-lg z-50 transition-all duration-300" id="navbar">
         <nav class="container mx-auto px-4 py-4">
             <div class="flex items-center justify-between">
@@ -632,14 +630,14 @@
                     </a>
                     <a href="kontak.html" class="nav-link-animated text-gray-600 hover:text-primary transition-colors duration-300 relative">Kontak</a>
 
-                    <!-- Tombol Search Desktop -->
+                    
                     <button id="command-palette-trigger-desktop" class="ml-6 p-2 rounded-full hover:bg-gray-200 transition-colors duration-300 group" aria-label="Buka Command Palette">
                         <svg class="w-6 h-6 text-gray-500 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     </button>
                 </div>
                 
                 <div class="md:hidden flex items-center space-x-2">
-                    <!-- Tombol Search Mobile -->
+                  
                     <button id="command-palette-trigger-mobile" class="p-2 rounded-full hover:bg-gray-200 transition-colors duration-300 group md:hidden" aria-label="Buka Command Palette">
                         <svg class="w-6 h-6 text-gray-500 group-hover:text-primary transition-colors" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path></svg>
                     </button>
@@ -649,7 +647,7 @@
                 </div>
             </div>
             
-            <!-- Mobile Menu -->
+       
             <div id="mobile-menu" class="md:hidden hidden mt-4 pb-4">
                 <div class="flex flex-col space-y-4 bg-white rounded-xl p-4 shadow-lg">
                     <a href="index.html" class="text-primary font-semibold py-2 px-4 rounded-lg bg-primary/10">Beranda</a> 
@@ -665,9 +663,9 @@
         </nav>
     </header>
 
-    <!-- Hero Section -->
+   
     <section class="pt-32 pb-20 bg-gradient-to-br from-primary/5 via-accent/5 to-highlight/5 relative overflow-hidden hero-fixed-height flex items-center justify-center">
-        <!-- Animated Background Particles -->
+      
         <div class="absolute inset-0 overflow-hidden">
             <div class="particle absolute top-20 left-10 w-20 h-20 bg-highlight/20 rounded-full"></div>
             <div class="particle absolute top-40 right-20 w-16 h-16 bg-primary/20 rounded-full"></div>
@@ -708,7 +706,7 @@
                     </a>
                 </div>
                 
-                <!-- Stats -->
+              
            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16">
                 <div class="text-center" data-aos="fade-up" data-aos-delay="200">
         <div class="text-4xl font-bold text-primary mb-2" id="stats-regions">19</div>
@@ -727,12 +725,12 @@
         </div>
     </section>
 
-    <!-- Sekilas Tentang Kami Section -->
+    
     <section class="py-20 bg-white relative overflow-hidden">
         <div class="container mx-auto px-4">
             <div class="max-w-4xl mx-auto">
                 <div class="glassmorphism rounded-3xl p-8 md:p-12 shadow-2xl relative" data-aos="fade-up" data-aos-duration="1000">
-                    <!-- Background Illustration -->
+                
                     <div class="absolute top-0 right-0 w-32 h-32 opacity-10">
                         <svg viewBox="0 0 100 100" class="w-full h-full">
                             <circle cx="50" cy="50" r="40" fill="currentColor" class="text-primary"/>
@@ -783,168 +781,131 @@
         </div>
     </section>
 
-    <!-- Produk UMKM Unggulan Section -->
+  
     <section class="py-24 bg-gray-50/50">
         <div class="container mx-auto px-4">
-            <!-- Section Header -->
+         
             <div class="text-center mb-16" data-aos="fade-up">
                 <div class="inline-flex items-center space-x-2 glassmorphism rounded-full px-6 py-3 mb-6">
                     <span class="text-2xl">🛍️</span>
                     <span class="font-semibold text-primary">Produk Unggulan</span>
                 </div>
-                <!-- KOTAK HIGHLIGHT BARU MULAI -->
+               
                
                 
                 <h2 class="text-4xl md:text-5xl font-poppins font-bold text-primary mb-6">
                     Temukan <span class="bg-gradient-to-r from-secondary to-accent bg-clip-text text-transparent">Produk UMKM</span> Terbaik
                 </h2>
-                <!-- <div class="mx-auto mb-6 max-w-xl">
-                  <div class="relative rounded-2xl overflow-hidden shadow-2xl border-4 border-transparent bg-gradient-to-br from-primary via-accent to-highlight p-1 group">
-                    <div class="rounded-2xl overflow-hidden bg-white/60 glassmorphism">
-                      <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=600&q=80"
-                           alt="Produk UMKM Jawa Barat"
-                           class="w-full h-48 md:h-64 object-cover transition-transform duration-300 group-hover:scale-105" />
-                    </div>
-                  </div>
-                </div> -->
+         
                 <p class="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
                     Koleksi produk unggulan dari UMKM terpilih di Jawa Barat. Kualitas terjamin dengan harga terbaik.
                 </p>
             </div>
 
-            <!-- Product Slider -->
+         
             <div class="swiper productSwiper" data-aos="fade-up" data-aos-delay="200">
                 <div class="swiper-wrapper">
-                    <!-- Batik Garut -->
                     <div class="swiper-slide">
                         <div class="product-card glassmorphism rounded-2xl overflow-hidden flex flex-col h-full" data-tilt data-tilt-max="10">
                             <div class="relative h-48">
-                                <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=400&q=80" alt="Batik Garut" class="w-full h-full object-cover" loading="lazy">
+                                <img src="assets/img/dodol garut.png" alt="Dodol Picnic Khas Garut" class="w-full h-full object-cover" loading="lazy">
                                 <div class="absolute top-4 left-4">
-                                    <span class="bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 text-xs font-semibold px-3 py-1.5 rounded-full shadow">Terlaris</span>
-                                </div>
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
-                                    <button class="bg-white text-primary px-4 py-2 rounded-full text-sm font-semibold transform translate-y-4 hover:translate-y-0 transition-transform duration-300">Quick View</button>
+                                    <span class="bg-gradient-to-r from-red-400 to-red-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow">Tradisional</span>
                                 </div>
                             </div>
                             <div class="p-6 flex-1 flex flex-col">
-                                <h4 class="text-xl font-bold text-gray-900 mb-2">Batik Garut</h4>
-                                <p class="text-2xl font-semibold text-primary mb-2">Rp 150.000</p>
-                                <div class="flex gap-0.5 text-yellow-400 mb-3">
-                                    <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
-                                </div>
-                                <p class="text-gray-600 mb-4 flex-1">Batik tradisional Garut dengan motif khas yang menggambarkan kekayaan budaya Jawa Barat</p>
-                                <button class="w-full bg-gradient-to-r from-primary to-accent text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">Lihat Detail</button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Keripik Singkong -->
-                    <div class="swiper-slide">
-                        <div class="product-card glassmorphism rounded-2xl overflow-hidden flex flex-col h-full" data-tilt data-tilt-max="10">
-                            <div class="relative h-48">
-                                <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=400&q=80" alt="Keripik Singkong" class="w-full h-full object-cover" loading="lazy">
-                                <div class="absolute top-4 left-4">
-                                    <span class="bg-gradient-to-r from-green-400 to-green-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow">Baru</span>
-                                </div>
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
-                                    <button class="bg-white text-primary px-4 py-2 rounded-full text-sm font-semibold transform translate-y-4 hover:translate-y-0 transition-transform duration-300">Quick View</button>
-                                </div>
-                            </div>
-                            <div class="p-6 flex-1 flex flex-col">
-                                <h4 class="text-xl font-bold text-gray-900 mb-2">Keripik Singkong</h4>
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">Dodol Picnic Khas Garut</h4>
                                 <p class="text-2xl font-semibold text-primary mb-2">Rp 25.000</p>
                                 <div class="flex gap-0.5 text-yellow-400 mb-3">
                                     <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
                                 </div>
-                                <p class="text-gray-600 mb-4 flex-1">Keripik singkong renyah dengan berbagai varian rasa dari UMKM Bandung</p>
-                                <button class="w-full bg-gradient-to-r from-primary to-accent text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">Lihat Detail</button>
+                                <p class="text-gray-600 mb-4 flex-1">Dodol Garut asli dengan berbagai varian rasa, oleh-oleh wajib khas kota Intan.</p>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Tas Rajut -->
                     <div class="swiper-slide">
                         <div class="product-card glassmorphism rounded-2xl overflow-hidden flex flex-col h-full" data-tilt data-tilt-max="10">
                             <div class="relative h-48">
-                                <img src="https://images.unsplash.com/photo-1512436991641-6745cdb1723f?auto=format&fit=crop&w=400&q=80" alt="Tas Rajut" class="w-full h-full object-cover" loading="lazy">
+                                <img src="assets/img/keripik macih.png" alt="Keripik Pedas Maicih" class="w-full h-full object-cover" loading="lazy">
+                                <div class="absolute top-4 left-4">
+                                    <span class="bg-gradient-to-r from-green-400 to-green-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow">Baru</span>
+                                </div>
+                            </div>
+                            <div class="p-6 flex-1 flex flex-col">
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">Keripik Pedas Maicih</h4>
+                                <p class="text-2xl font-semibold text-primary mb-2">Rp 30.000</p>
+                                <div class="flex gap-0.5 text-yellow-400 mb-3">
+                                    <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
+                                </div>
+                                <p class="text-gray-600 mb-4 flex-1">Keripik singkong renyah dengan bumbu pedas legendaris yang akan membuatmu ketagihan.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="product-card glassmorphism rounded-2xl overflow-hidden flex flex-col h-full" data-tilt data-tilt-max="10">
+                            <div class="relative h-48">
+                                <img src="assets/img/tas rajut.png" alt="Tas Rajut" class="w-full h-full object-cover" loading="lazy">
                                 <div class="absolute top-4 left-4">
                                     <span class="bg-gradient-to-r from-amber-400 to-amber-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow">Handmade</span>
-                                </div>
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
-                                    <button class="bg-white text-primary px-4 py-2 rounded-full text-sm font-semibold transform translate-y-4 hover:translate-y-0 transition-transform duration-300">Quick View</button>
                                 </div>
                             </div>
                             <div class="p-6 flex-1 flex flex-col">
                                 <h4 class="text-xl font-bold text-gray-900 mb-2">Tas Rajut</h4>
-                                <p class="text-2xl font-semibold text-primary mb-2">Rp 200.000</p>
+                                <p class="text-2xl font-semibold text-primary mb-2">(lihat data.js)</p>
                                 <div class="flex gap-0.5 text-yellow-400 mb-3">
                                     <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
                                 </div>
-                                <p class="text-gray-600 mb-4 flex-1">Tas rajut handmade dengan desain unik dan berkualitas tinggi dari pengrajin lokal</p>
-                                <button class="w-full bg-gradient-to-r from-primary to-accent text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">Lihat Detail</button>
+                                <p class="text-gray-600 mb-4 flex-1">Tas rajut handmade dengan desain unik dan berkualitas tinggi dari pengrajin lokal.</p>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Kopi Arabika -->
                     <div class="swiper-slide">
                         <div class="product-card glassmorphism rounded-2xl overflow-hidden flex flex-col h-full" data-tilt data-tilt-max="10">
                             <div class="relative h-48">
-                                <img src="https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=400&q=80" alt="Kopi Arabika" class="w-full h-full object-cover" loading="lazy">
+                                <img src="assets/img/kopi arabika.png" alt="Kopi Arabika" class="w-full h-full object-cover" loading="lazy">
                                 <div class="absolute top-4 left-4">
                                     <span class="bg-gradient-to-r from-purple-400 to-purple-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow">Premium</span>
-                                </div>
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
-                                    <button class="bg-white text-primary px-4 py-2 rounded-full text-sm font-semibold transform translate-y-4 hover:translate-y-0 transition-transform duration-300">Quick View</button>
                                 </div>
                             </div>
                             <div class="p-6 flex-1 flex flex-col">
                                 <h4 class="text-xl font-bold text-gray-900 mb-2">Kopi Arabika</h4>
-                                <p class="text-2xl font-semibold text-primary mb-2">Rp 85.000</p>
+                                <p class="text-2xl font-semibold text-primary mb-2">(lihat data.js)</p>
                                 <div class="flex gap-0.5 text-yellow-400 mb-3">
                                     <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
                                 </div>
-                                <p class="text-gray-600 mb-4 flex-1">Kopi arabika premium dari perkebunan di Jawa Barat dengan cita rasa yang khas</p>
-                                <button class="w-full bg-gradient-to-r from-primary to-accent text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">Lihat Detail</button>
+                                <p class="text-gray-600 mb-4 flex-1">Kopi arabika premium dari perkebunan di Jawa Barat dengan cita rasa yang khas.</p>
                             </div>
                         </div>
                     </div>
-
-                    <!-- Dodol Garut -->
                     <div class="swiper-slide">
                         <div class="product-card glassmorphism rounded-2xl overflow-hidden flex flex-col h-full" data-tilt data-tilt-max="10">
                             <div class="relative h-48">
-                                <img src="https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=400&q=80" alt="Dodol Garut" class="w-full h-full object-cover" loading="lazy">
+                                <img src="assets/img/brownis amanda.png" alt="Brownies Kukus Amanda" class="w-full h-full object-cover" loading="lazy">
                                 <div class="absolute top-4 left-4">
-                                    <span class="bg-gradient-to-r from-red-400 to-red-500 text-white text-xs font-semibold px-3 py-1.5 rounded-full shadow">Tradisional</span>
-                                </div>
-                                <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
-                                    <button class="bg-white text-primary px-4 py-2 rounded-full text-sm font-semibold transform translate-y-4 hover:translate-y-0 transition-transform duration-300">Quick View</button>
+                                    <span class="bg-gradient-to-r from-yellow-400 to-yellow-500 text-gray-900 text-xs font-semibold px-3 py-1.5 rounded-full shadow">Best Seller</span>
                                 </div>
                             </div>
                             <div class="p-6 flex-1 flex flex-col">
-                                <h4 class="text-xl font-bold text-gray-900 mb-2">Dodol Garut</h4>
-                                <p class="text-2xl font-semibold text-primary mb-2">Rp 35.000</p>
+                                <h4 class="text-xl font-bold text-gray-900 mb-2">Brownies Kukus Amanda</h4>
+                                <p class="text-2xl font-semibold text-primary mb-2">Rp 55.000</p>
                                 <div class="flex gap-0.5 text-yellow-400 mb-3">
                                     <span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span><span>⭐</span>
                                 </div>
-                                <p class="text-gray-600 mb-4 flex-1">Dodol tradisional Garut dengan cita rasa manis dan tekstur kenyal yang khas</p>
-                                <button class="w-full bg-gradient-to-r from-primary to-accent text-white font-semibold py-3 px-6 rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300">Lihat Detail</button>
+                                <p class="text-gray-600 mb-4 flex-1">Brownies kukus legendaris dari Bandung dengan rasa cokelat yang kaya dan tekstur yang lembut.</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 
-                <!-- Pagination -->
+                
                 <div class="swiper-pagination mt-8"></div>
                 
-                <!-- Navigation -->
+              
                 <div class="swiper-button-next"></div>
                 <div class="swiper-button-prev"></div>
             </div>
 
-            <!-- View All Button -->
+     
             <div class="text-center mt-12" data-aos="fade-up" data-aos-delay="400">
                 <a href="produk.html" class="inline-flex items-center space-x-2 glassmorphism px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transform transition-all duration-300 hover:scale-105 group">
                     <span class="font-semibold text-primary group-hover:text-accent transition-colors">Lihat Semua Produk</span>
@@ -959,7 +920,7 @@
  
        
     <section class="py-14 bg-gradient-to-br from-white via-blue-50 to-accent/10 relative overflow-hidden">
-        <!-- Header -->
+       
         <div class="container mx-auto px-4 relative z-10">
             <div class="text-center mb-10" data-aos="fade-up">
                 <div class="inline-flex items-center space-x-2 glassmorphism shadow-lg rounded-full px-7 py-4 mb-5 border border-primary/20 relative">
@@ -988,10 +949,10 @@
             </div>
         </div>
     
-        <!-- Slider -->
+  
         <div class="logos w-full overflow-hidden relative">
             <div class="logos-slide flex items-center gap-6">
-                <!-- Isi asli -->
+ 
                 <img src="assets/img/logo1.png" alt="UMKM 1">
                 <img src="assets/img/logo2.png" alt="UMKM 2">
                 <img src="assets/img/logo3.png" alt="UMKM 3">
@@ -1001,7 +962,16 @@
                 <img src="assets/img/logo2.png" alt="UMKM 7">
                 <img src="assets/img/logo3.png" alt="UMKM 8">
     
-                <!-- Duplikat isi -->
+        
+                <img src="assets/img/logo1.png" alt="UMKM 1">
+                <img src="assets/img/logo2.png" alt="UMKM 2">
+                <img src="assets/img/logo3.png" alt="UMKM 3">
+                <img src="assets/img/logo4.png" alt="UMKM 4">
+                <img src="assets/img/logo5.png" alt="UMKM 5">
+                <img src="assets/img/logo1.png" alt="UMKM 6">
+                <img src="assets/img/logo2.png" alt="UMKM 7">
+                <img src="assets/img/logo3.png" alt="UMKM 8">
+
                 <img src="assets/img/logo1.png" alt="UMKM 1">
                 <img src="assets/img/logo2.png" alt="UMKM 2">
                 <img src="assets/img/logo3.png" alt="UMKM 3">
@@ -1034,10 +1004,10 @@
     
   
     
-    <!-- Cerita UMKM Section -->
+
     <section id="cerita-umkm" class="py-24 bg-white relative overflow-hidden">
         <div class="container mx-auto px-4">
-            <!-- Section Header -->
+     
             <div class="text-center mb-20" data-aos="fade-up">
                 <div class="inline-flex items-center space-x-2 bg-primary/10 rounded-full px-6 py-3 mb-6">
                     <span class="text-2xl">📖</span>
@@ -1051,14 +1021,14 @@
                 </p>
             </div>
 
-            <!-- Enhanced Timeline -->
+      
             <div class="relative max-w-5xl mx-auto">
-                <!-- The vertical line -->
+       
                 <div class="story-line-bg absolute top-0 left-1/2 w-1 h-full bg-gray-200 rounded-full -translate-x-1/2"></div>
-                <!-- The animated progress line -->
+     
                 <div class="story-line-progress absolute top-0 left-1/2 w-1 h-0 bg-gradient-to-b from-primary via-accent to-green-500 rounded-full -translate-x-1/2"></div>
 
-                <!-- Story 1: Ahmad Suryadi -->
+       
                 <div class="story-item md:mb-24 mb-16">
                     <div class="story-content flex flex-col md:flex-row items-center">
                         <div class="md:w-5/12 md:pr-8">
@@ -1080,7 +1050,7 @@
                             </div>
                         </div>
                         <div class="md:w-7/12 mt-6 md:mt-0">
-                            <img src="https://images.unsplash.com/photo-1509395176047-4a66953fd231?auto=format&fit=crop&w=500&q=80" alt="Batik Workshop" class="rounded-2xl shadow-xl w-full h-80 object-cover story-image">
+                            <img src="assets/img/batik tulis bandung.png.jpg" alt="Batik Workshop" class="rounded-2xl shadow-xl w-full h-80 object-cover story-image">
                         </div>
                     </div>
                     <div class="story-icon absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-white rounded-full flex items-center justify-center shadow-lg border-4 border-primary">
@@ -1088,7 +1058,7 @@
                     </div>
                 </div>
 
-                <!-- Story 2: Siti Nurhaliza -->
+   
                 <div class="story-item md:mb-24 mb-16">
                     <div class="story-content flex flex-col md:flex-row-reverse items-center">
                         <div class="md:w-5/12 md:pl-8">
@@ -1097,7 +1067,7 @@
                                     <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?auto=format&fit=crop&w=100&q=80" alt="Siti Nurhaliza" class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-accent/50">
                                     <div>
                                         <h4 class="font-bold text-lg text-gray-900">Siti Nurhaliza</h4>
-                                        <p class="text-accent font-medium">Founder Keripik Nusantara</p>
+                                        <p class="text-accent font-medium">Founder Makanan Nusantara</p>
                                     </div>
                                 </div>
                                 <blockquote class="text-gray-600 italic leading-relaxed text-base">
@@ -1118,7 +1088,7 @@
                     </div>
                 </div>
 
-                <!-- Story 3: Budi Santoso -->
+        
                 <div class="story-item">
                     <div class="story-content flex flex-col md:flex-row items-center">
                         <div class="md:w-5/12 md:pr-8">
@@ -1127,7 +1097,7 @@
                                     <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=100&q=80" alt="Budi Santoso" class="w-16 h-16 rounded-full object-cover mr-4 border-2 border-highlight/50">
                                     <div>
                                         <h4 class="font-bold text-lg text-gray-900">Budi Santoso</h4>
-                                        <p class="text-highlight font-medium">Pengrajin Tas Rajut</p>
+                                        <p class="text-highlight font-medium">Pengrajin Baju Rajut</p>
                                     </div>
                                 </div>
                                 <blockquote class="text-gray-600 italic leading-relaxed text-base">
@@ -1151,7 +1121,7 @@
         </div>
     </section>
 
-    <!-- Peta Interaktif -->
+ 
     <section id="peta" class="py-20 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
@@ -1209,6 +1179,20 @@
                                     .region-label { font-family: 'Poppins', sans-serif; font-size: 10px; font-weight: 600; fill: #2d3748; text-anchor: middle; filter: url(#textOutline); paint-order: stroke; stroke: white; stroke-width: 2px; stroke-linecap: round; stroke-linejoin: round; }
                                     .city-label { font-family: 'Poppins', sans-serif; font-size: 8px; font-weight: 500; fill: #2d3748; text-anchor: middle; }
                                     .title { font-family: 'Poppins', sans-serif; font-size: 28px; font-weight: 700; fill: #2d3748; text-anchor: middle; }
+                                    .footer-partners {
+                                        display: flex;
+                                        align-items: center;
+                                        gap: 12px;
+                                        margin-top: 16px;
+                                        justify-content: center; /* Tengah */
+                                      }
+                                      
+                                      .partner-logo {
+                                        height: 40px; /* Atur sesuai kebutuhan */
+                                        width: auto;
+                                        object-fit: contain;
+                                        filter: drop-shadow(0 2px 6px rgba(0,0,0,0.1));
+                                      }
                                 </style>
                             </defs>
                             <rect width="800" height="600" fill="url(#landGradient)"/>
@@ -1295,18 +1279,17 @@
         </div>
     </section>
 
-    <!-- Wave Transition -->
+
     <div class="-mt-2">
       <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-12">
         <path d="M0 40 Q360 0 720 40T1440 40V60H0V40Z" fill="#f9fafb"/>
       </svg>
     </div>
-    
-    <!-- CTA Section - Ajak Bergabung (Super Power Layout) -->
+
     <section class="pt-8 pb-14 bg-gradient-to-br from-white via-blue-50 to-accent/10 relative overflow-hidden">
         <div class="container mx-auto px-4 relative z-10">
             <div class="flex flex-wrap items-center -mx-4">
-                <!-- Left Column: Text Content -->
+                
                 <div class="w-full lg:w-1/2 px-4 mb-12 lg:mb-0">
                     <div class="cta-content max-w-lg mx-auto lg:mx-0" data-aos="fade-right">
                         <div class="cta-badge inline-flex items-center space-x-2 bg-white/80 backdrop-blur-sm rounded-full px-6 py-3 mb-8 shadow-sm">
@@ -1336,34 +1319,29 @@
                     </div>
                 </div>
                 
-                <!-- Right Column: Interactive Grid -->
+              
                 <div class="w-full lg:w-1/2 px-4">
                     <div class="cta-illustration relative" data-aos="fade-left">
-                        <!-- Grid Layout -->
+                     
                         <div class="grid grid-cols-2 gap-4 md:gap-6 max-w-lg mx-auto">
-                            <!-- Image 1 -->
                             <div class="relative group" data-aos="zoom-in" data-aos-delay="100">
                                 <div class="absolute inset-0 bg-gradient-to-r from-primary to-accent rounded-lg transform rotate-6 group-hover:rotate-12 transition-transform"></div>
-                                <img src="https://via.placeholder.com/300x300/6366F1/FFFFFF?text=Produk+Lokal" alt="Produk Lokal" class="relative z-10 rounded-lg shadow-lg transform group-hover:-translate-y-2 transition-transform">
+                                <img src="assets/img/batik tulis bandung.png" alt="Batik Tulis Khas Bandung" class="relative z-10 rounded-lg shadow-lg transform group-hover:-translate-y-2 transition-transform">
                             </div>
-                            <!-- Image 2 -->
                             <div class="relative group mt-8" data-aos="zoom-in" data-aos-delay="200">
                                 <div class="absolute inset-0 bg-gradient-to-r from-highlight to-accent rounded-lg transform -rotate-6 group-hover:-rotate-12 transition-transform"></div>
-                                <img src="https://via.placeholder.com/300x300/EC4899/FFFFFF?text=UMKM" alt="UMKM" class="relative z-10 rounded-lg shadow-lg transform group-hover:-translate-y-2 transition-transform">
+                                <img src="assets/img/batik cirebon.png" alt="Kain Batik Megamendung" class="relative z-10 rounded-lg shadow-lg transform group-hover:-translate-y-2 transition-transform">
                             </div>
-                            <!-- Image 3 -->
                             <div class="relative group -mt-4" data-aos="zoom-in" data-aos-delay="300">
                                 <div class="absolute inset-0 bg-gradient-to-r from-accent to-highlight rounded-lg transform -rotate-6 group-hover:-rotate-12 transition-transform"></div>
-                                <img src="https://via.placeholder.com/300x300/8B5CF6/FFFFFF?text=Komunitas" alt="Komunitas" class="relative z-10 rounded-lg shadow-lg transform group-hover:-translate-y-2 transition-transform">
+                                <img src="assets/img/jaket kulit domba.png" alt="Jaket Kulit Domba Asli" class="relative z-10 rounded-lg shadow-lg transform group-hover:-translate-y-2 transition-transform">
                             </div>
-                            <!-- Image 4 -->
                             <div class="relative group mt-8" data-aos="zoom-in" data-aos-delay="400">
                                 <div class="absolute inset-0 bg-gradient-to-r from-primary to-highlight rounded-lg transform rotate-6 group-hover:rotate-12 transition-transform"></div>
-                                <img src="https://via.placeholder.com/300x300/10B981/FFFFFF?text=Kolaborasi" alt="Kolaborasi" class="relative z-10 rounded-lg shadow-lg transform group-hover:-translate-y-2 transition-transform">
+                                <img src="assets/img/keripik macih.png" alt="Keripik Pedas Maicih" class="relative z-10 rounded-lg shadow-lg transform group-hover:-translate-y-2 transition-transform">
                             </div>
                         </div>
 
-                        <!-- Floating Elements -->
                         <div class="absolute inset-0 pointer-events-none">
                             <div class="absolute top-0 left-1/4 w-16 h-16 bg-primary/10 rounded-full animate-float-slow"></div>
                             <div class="absolute bottom-1/4 right-0 w-20 h-20 bg-accent/10 rounded-full animate-float-medium"></div>
@@ -1375,12 +1353,13 @@
         </div>
     </section>
 
-    <!-- Footer -->
+ 
       <footer class="bg-gradient-to-br from-primary to-accent text-white py-12 md:py-16 relative overflow-hidden">
-        <!-- Background Pattern -->
+
         <div class="absolute inset-0 opacity-10">
             <div class="absolute inset-0" style="background-image: radial-gradient(circle at 1px 1px, white 1px, transparent 0); background-size: 30px 30px;"></div>
         </div>
+       
         
         <div class="container mx-auto px-4 relative z-10">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-6 md:gap-8">
@@ -1405,6 +1384,7 @@
                         <a href="#" class="w-8 h-8 md:w-10 md:h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors">
                             <span class="text-sm md:text-lg">💬</span>
                         </a>
+                        
                     </div>
                 </div>
                 
@@ -1438,12 +1418,16 @@
             </div>
             
             <div class="border-t border-white/20 mt-8 md:mt-12 pt-6 md:pt-8 text-center text-white/60">
+                <div class="flex flex-col items-center mb-4">
+                  <span class="mb-2 text-white/80 text-sm md:text-base">Partner:</span>
+                  <img src="assets/img/LOGO ITS DAY PNG.png" alt="ITS Day Logo" class="h-10 md:h-12 w-auto object-contain" style="background:transparent;"/>
+                </div>
                 <p class="text-sm md:text-base">&copy; 2024 Etaloka.id. Dibuat dengan ❤️ untuk UMKM Jawa Barat.</p>
             </div>
         </div>
     </footer>
 
-    <!-- Command Palette Baru -->
+ 
     <div id="command-palette" class="fixed inset-0 bg-gray-900/50 backdrop-blur-sm z-[9999] hidden flex items-center justify-center transition-all duration-300">
         <div id="command-palette-content" class="glassmorphism bg-white rounded-xl shadow-xl w-full max-w-md mx-4 transform transition-all duration-300 opacity-0 scale-95">
             <div class="relative">
@@ -1462,108 +1446,31 @@
             </div>
         </div>
     </div>
- 
-    <script>
-    // Command Palette: ambil data dari window.products
-    document.addEventListener('DOMContentLoaded', function() {
-        const commandPalette = document.getElementById('command-palette');
-        const commandInput = document.getElementById('command-palette-input');
-        const commandResults = document.getElementById('command-palette-results');
-        const triggerDesktop = document.getElementById('command-palette-trigger-desktop');
-        const triggerMobile = document.getElementById('command-palette-trigger-mobile');
+    <script src="js/command-palette.js"></script>
 
-        // Buka command palette
-        function openPalette() {
-            commandPalette.classList.remove('hidden');
-            commandPalette.classList.add('flex');
-            commandInput.value = '';
-            commandResults.innerHTML = '';
-            setTimeout(() => commandInput.focus(), 100);
-        }
-        if (triggerDesktop) triggerDesktop.addEventListener('click', openPalette);
-        if (triggerMobile) triggerMobile.addEventListener('click', openPalette);
 
-        // Tutup command palette
-        function closePalette() {
-            commandPalette.classList.add('hidden');
-            commandPalette.classList.remove('flex');
-            commandInput.value = '';
-            commandResults.innerHTML = '';
-        }
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') closePalette();
-        });
-        commandPalette.addEventListener('click', (e) => {
-            if (e.target === commandPalette) closePalette();
-        });
-
-        // Pencarian produk
-        commandInput.addEventListener('input', function(e) {
-            const query = e.target.value.toLowerCase();
-            if (!window.products) return;
-            if (query.length === 0) {
-                commandResults.innerHTML = '';
-                return;
-            }
-            const results = window.products.filter(item =>
-                item.name.toLowerCase().includes(query) ||
-                (item.daerah && item.daerah.toLowerCase().includes(query)) ||
-                (item.description && item.description.toLowerCase().includes(query))
-            );
-            if (results.length === 0) {
-                commandResults.innerHTML = '<div class="p-3 text-gray-500">Tidak ada produk ditemukan.</div>';
-                return;
-            }
-            commandResults.innerHTML = results.map(item => `
-                <div class="p-3 hover:bg-gray-100 rounded-lg cursor-pointer flex items-center justify-between" data-id="${item.id}">
-                    <div class="flex items-center gap-3">
-                        <img src="${item.image}" alt="${item.name}" class="w-10 h-10 rounded object-cover border" />
-                        <div>
-                            <div class="font-semibold text-gray-900">${item.name}</div>
-                            <div class="text-xs text-gray-500">${item.daerah ? item.daerah.charAt(0).toUpperCase() + item.daerah.slice(1) : ''}</div>
-                        </div>
-                    </div>
-                    <div class="text-primary font-semibold whitespace-nowrap">${item.price}</div>
-                </div>
-            `).join('');
-        });
-
-        // Klik hasil produk
-        commandResults.addEventListener('click', function(e) {
-            let target = e.target;
-            while (target && !target.dataset.id && target !== commandResults) {
-                target = target.parentElement;
-            }
-            if (target && target.dataset.id) {
-                window.location.href = `produk.html?id=${encodeURIComponent(target.dataset.id)}`;
-            }
-        });
-    });
-    </script>
-
-    <!-- Region Info Modal -->
     <div id="region-modal" class="fixed inset-0 bg-gray-900/50 backdrop-blur-sm z-[9998] hidden flex items-center justify-center transition-all duration-500">
         <div id="region-modal-content" class="glassmorphism rounded-2xl shadow-xl w-full max-w-2xl p-10 text-center transform transition-all duration-300">
             <div class="relative">
                 <div id="modal-region-icon" class="text-6xl mb-4 animate-bounce-slow">🗺️</div>
                 <h3 id="modal-region-name" class="text-3xl font-poppins font-bold text-primary mb-3">Nama Daerah</h3>
                 <p id="modal-region-description" class="text-gray-600 mb-8">Deskripsi kesan tentang potensi UMKM di daerah ini.</p>
-                <!-- Produk Daerah (akan diisi dinamis) -->
+               
                 <div id="modal-region-products" class="mb-4"></div>
                 <a href="#" id="modal-region-link" class="bg-gradient-to-r from-accent to-primary text-white font-bold py-3 px-8 rounded-full inline-block transition-all duration-300 transform hover:scale-105">Lihat Produk Unggulan</a>
             </div>
         </div>
     </div>
 
-    <!-- Enhanced Chatbot Bubble -->
+ 
     <button id="chatbot-btn" class="fixed bottom-8 right-8 w-16 h-16 chatbot-bubble rounded-2xl shadow-strong flex items-center justify-center hover:scale-110 transition-all duration-300 z-50 group">
         <i class="fas fa-comments text-2xl text-white group-hover:scale-110 transition-transform"></i>
     </button>
 
-    <!-- Enhanced Chatbot Modal -->
+  
     <div id="chatbot-modal" class="fixed bottom-28 right-8 z-[9999] hidden">
         <div class="chatbot-modal w-80 h-96 flex flex-col">
-            <!-- Header -->
+ 
             <div class="px-6 py-4 bg-gradient-to-r from-primary to-accent rounded-t-2xl flex items-center justify-between">
                 <div class="flex items-center space-x-3">
                     <div class="w-10 h-10 bg-white/20 rounded-xl flex items-center justify-center">
@@ -1578,7 +1485,7 @@
                     <i class="fas fa-times text-sm"></i>
                 </button>
             </div>
-            <!-- Messages -->
+     
             <div id="chat-messages" class="flex-1 overflow-y-auto p-4 bg-gray-50 space-y-3">
                 <div class="flex justify-start">
                     <div class="max-w-[80%] p-3 rounded-2xl bg-white border shadow-sm">
@@ -1597,7 +1504,7 @@
                     </div>
                 </div>
             </div>
-            <!-- Input -->
+        
             <div class="p-4 bg-white border-t rounded-b-2xl">
                 <div class="flex items-center space-x-3">
                     <input type="text" id="chat-input" class="flex-1 form-input py-2 text-sm" placeholder="Ketik pesan...">
@@ -1609,7 +1516,7 @@
         </div>
     </div>
 
-    <!-- Tambahkan script chatbot agar interaksi sama dengan produk.html -->
+    
     <script>
     function initializeChatbot() {
         const chatbotBtn = document.getElementById('chatbot-btn');
@@ -1641,7 +1548,7 @@
             addMessage('user', message);
             chatInput.value = '';
 
-            // Simulate bot response
+          
             setTimeout(() => {
                 const botResponse = generateBotResponse(message);
                 addMessage('bot', botResponse);
@@ -1696,15 +1603,15 @@
     document.addEventListener('DOMContentLoaded', initializeChatbot);
     </script>
 
-    <!-- Scripts -->
+   
     <script>
-        // Helper: Deteksi mobile
+  
         function isMobile() {
             return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || window.innerWidth <= 768;
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            // --- AOS ---
+            
             if (window.AOS) {
                 AOS.init({
                     duration: 1000,
@@ -1715,7 +1622,7 @@
                 });
             }
 
-            // --- Swiper ---
+         
             if (window.Swiper) {
                 new Swiper('.productSwiper', {
                     slidesPerView: 1,
@@ -1754,9 +1661,9 @@
                 });
             }
 
-            // --- GSAP Animations ---
+            
             if (window.gsap) {
-                // Loading Screen
+                
                 gsap.to('#loading-screen', {
                     opacity: 0,
                     duration: 1,
@@ -1767,7 +1674,7 @@
                     }
                 });
 
-                // Hero Section Particles
+             
                 const particles = document.querySelectorAll('.particle');
                 particles.forEach((particle, i) => {
                     gsap.to(particle, {
@@ -1782,7 +1689,7 @@
                 });
             }
 
-            // --- Typed.js ---
+           
             if (window.Typed && document.getElementById('typed-text')) {
                 new Typed('#typed-text', {
                     strings: ['Cita Rasa', 'Kekayaan Budaya', 'Produk Lokal', 'Inovasi Digital'],
@@ -1792,7 +1699,7 @@
                 });
             }
 
-            // --- Mobile Menu Toggle ---
+       
             const mobileMenuBtn = document.getElementById('mobile-menu-btn');
             const mobileMenu = document.getElementById('mobile-menu');
             if (mobileMenuBtn && mobileMenu) {
@@ -1801,7 +1708,7 @@
                 });
             }
 
-            // --- GSAP Story Section ---
+            
             if (window.gsap && window.ScrollTrigger) {
                 gsap.registerPlugin(ScrollTrigger);
                 const storiesSection = document.querySelector('#cerita-umkm');
@@ -1831,12 +1738,12 @@
                 }
             }
 
-            // --- Command Palette ---
+        
             const commandPalette = document.getElementById('command-palette-container');
             const commandInput = document.getElementById('command-palette-input');
             const commandResults = document.getElementById('command-palette-results');
             
-            // Sample data for search
+          
             const searchData = [
                 { name: 'Batik Garut', category: 'Fashion', price: 'Rp 150.000', url: '#' },
                 { name: 'Keripik Singkong', category: 'Makanan', price: 'Rp 25.000', url: '#' },
@@ -1845,7 +1752,7 @@
                 { name: 'Dodol Garut', category: 'Makanan', price: 'Rp 35.000', url: '#' }
             ];
 
-            // Open command palette
+    
             document.querySelectorAll('[data-toggle="command-palette"]').forEach(btn => {
                 btn.addEventListener('click', () => {
                     commandPalette.classList.remove('hidden');
@@ -1853,28 +1760,28 @@
                 });
             });
 
-            // Close command palette
+           
             function closeCommandPalette() {
                 commandPalette.classList.add('hidden');
                 commandInput.value = '';
                 commandResults.innerHTML = '';
             }
 
-            // ESC key to close
+          
             document.addEventListener('keydown', (e) => {
                 if (e.key === 'Escape') {
                     closeCommandPalette();
                 }
             });
 
-            // Click outside to close
+        
             commandPalette.addEventListener('click', (e) => {
                 if (e.target === commandPalette) {
                     closeCommandPalette();
                 }
             });
 
-            // Search functionality
+    
             commandInput.addEventListener('input', (e) => {
                 const query = e.target.value.toLowerCase();
                 if (query.length === 0) {
@@ -1898,7 +1805,7 @@
                 `).join('');
             });
 
-            // --- Chatbot ---
+          
             const chatbotBtn = document.getElementById('chatbot-btn');
             const chatbotModal = document.getElementById('chatbot-modal');
             const closeChatbot = document.getElementById('close-chatbot');
@@ -1906,7 +1813,7 @@
             const chatInput = document.getElementById('chat-input');
             const sendChat = document.getElementById('send-chat');
 
-            // Initial bot message
+    
             const initialMessage = `
                 <div class="chat-message bot bg-gray-100 p-3 rounded-lg">
                     <p class="text-sm">Halo! Saya Etaloka.id Assistant. Ada yang bisa saya bantu tentang produk UMKM Jawa Barat?</p>
@@ -1914,22 +1821,22 @@
             `;
             chatMessages.innerHTML = initialMessage;
 
-            // Open chatbot
+  
             chatbotBtn.addEventListener('click', () => {
                 chatbotModal.classList.remove('hidden');
             });
 
-            // Close chatbot
+         
             closeChatbot.addEventListener('click', () => {
                 chatbotModal.classList.add('hidden');
             });
 
-            // Send message
+       
             function sendMessage() {
                 const message = chatInput.value.trim();
                 if (!message) return;
 
-                // Add user message
+            
                 const userMessage = `
                     <div class="chat-message user bg-primary text-white p-3 rounded-lg ml-auto">
                         <p class="text-sm">${message}</p>
@@ -1937,10 +1844,10 @@
                 `;
                 chatMessages.insertAdjacentHTML('beforeend', userMessage);
 
-                // Clear input
+          
                 chatInput.value = '';
 
-                // Simulate bot response
+           
                 setTimeout(() => {
                     const botResponse = `
                         <div class="chat-message bot bg-gray-100 p-3 rounded-lg">
@@ -1991,17 +1898,17 @@
                 }
             };
 
-            // Fungsi render produk per daerah di modal
+  
             function renderRegionProducts(regionId) {
                 const container = document.getElementById('modal-region-products');
                 if (!window.products || !container) return;
-                // Filter produk berdasarkan daerah (case-insensitive)
+            
                 const products = window.products.filter(p => (p.daerah||'').toLowerCase() === regionId.toLowerCase());
                 if (products.length === 0) {
                     container.innerHTML = '<div class="text-gray-500 text-sm py-4">Belum ada produk dari daerah ini.</div>';
                     return;
                 }
-                // Swiper wrapper
+         
                 container.innerHTML = `
                     <div class="swiper regionProductSwiper">
                         <div class="swiper-wrapper">
@@ -2024,7 +1931,7 @@
                         <div class="swiper-pagination mt-2"></div>
                     </div>
                 `;
-                // Inisialisasi Swiper (hancurkan dulu jika sudah ada)
+          
                 if (window.regionProductSwiper) {
                     window.regionProductSwiper.destroy(true, true);
                 }
@@ -2044,7 +1951,7 @@
                 }, 10);
             }
 
-            // Map region click handlers
+
             document.querySelectorAll('.map-region').forEach(region => {
                 region.addEventListener('click', (e) => {
                     const regionId = e.target.getAttribute('data-region-id');
@@ -2060,7 +1967,7 @@
                 });
             });
 
-            // Close modal
+      
             closeModalBtn.addEventListener('click', () => {
                 regionModal.classList.add('hidden');
             });
@@ -2076,7 +1983,7 @@
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Loading Screen
+     
         const loadingScreen = document.getElementById('loading-screen');
         const progressBar = document.getElementById('progress-bar');
         const loadingText = document.getElementById('loading-text');
@@ -2107,9 +2014,9 @@
         }, 30);
     });
     </script>
-    <script src="js/data.js"></script>
-   <script src="js/command-palette-new.js"></script>
-   <script src="js/map.js"></script>
+  <script src="js/data.js"></script>
+  <script src="js/command-palette-new.js"></script>
+  <script src="js/map.js"></script>
 
     <script>
     document.addEventListener('DOMContentLoaded', function() {
@@ -2122,7 +2029,7 @@
                     modal.classList.add('hidden');
                     modal.classList.remove('flex');
                 };
-                // Juga tutup jika klik di luar konten modal
+               
                 modal.onclick = function(e) {
                     if (e.target === modal) {
                         modal.classList.add('hidden');

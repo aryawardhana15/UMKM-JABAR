@@ -1,235 +1,281 @@
 # JabarUMKM Hub 🌟
 
-Website edukatif dan eksploratif untuk mendukung digitalisasi produk UMKM dari berbagai kabupaten/kota di Jawa Barat.
+Website edukatif, eksploratif, dan interaktif untuk mendukung digitalisasi produk UMKM dari berbagai kabupaten/kota di Jawa Barat.
+
+---
 
 ## 🎯 Tentang Proyek
 
-JabarUMKM Hub adalah platform frontend-only yang dibangun dengan teknologi modern untuk mempromosikan dan mendukung UMKM Jawa Barat. Website ini menampilkan produk-produk berkualitas dari berbagai daerah dengan fitur interaktif yang menarik.
+JabarUMKM Hub adalah platform web modern yang menampilkan produk-produk UMKM unggulan Jawa Barat, lengkap dengan fitur interaktif seperti peta SVG, sistem badge, chatbot, command palette, keranjang belanja, dan animasi canggih. Website ini sepenuhnya frontend-only dan dapat dijalankan langsung di browser.
+
+---
 
 ## 🛠️ Teknologi yang Digunakan
+- **HTML5** (struktur semantik)
+- **TailwindCSS (CDN)** (utility-first styling)
+- **Vanilla JavaScript** (interaksi, logika, animasi)
+- **Swiper.js** (slider produk)
+- **AOS, GSAP, Vanilla Tilt** (animasi)
+- **localStorage** (tracking user, badge, cart, dsb)
+- **SVG** (peta interaktif)
+- **Lightbox** (galeri gambar)
 
-- **HTML5** - Struktur halaman semantik
-- **TailwindCSS (CDN)** - Styling utility-first tanpa build tool
-- **Vanilla JavaScript** - Interaksi dan logika aplikasi
-- **localStorage** - Penyimpanan data lokal pengguna
-- **SVG** - Peta interaktif Jawa Barat
+---
 
 ## 📁 Struktur Folder
 
 ```
-jabarumkm-hub/
+last_revisi_webdesign/
 │
-├── index.html              # Halaman utama
-├── tentang.html            # Halaman tentang
-├── badge.html              # Halaman galeri badge
-├── daerah-garut.html       # Halaman produk Garut
-├── daerah-bandung.html     # Halaman produk Bandung
-│
-├── css/
-│   └── style.css          # Custom CSS dan animasi
-│
-├── js/
-│   ├── main.js            # JavaScript utama (scroll, navbar, modal)
-│   ├── map.js             # Interaksi peta SVG
-│   ├── chatbot.js         # Logika chatbot
-│   └── badge.js           # Sistem badge dan localStorage
-│
-├── assets/
-│   ├── img/               # Gambar produk dan ilustrasi
-│   └── svg/               # File SVG dan ikon
-│
-└── README.md              # Dokumentasi proyek
+├── public/
+│   ├── index.html            # Halaman utama (landing page)
+│   ├── produk.html           # Daftar & detail produk
+│   ├── badge.html            # Galeri & progress badge
+│   ├── tentang.html          # Tentang platform, tim, FAQ
+│   ├── kontak.html           # Kontak & form
+│   ├── css/
+│   │   └── style.css         # Custom CSS & animasi
+│   ├── js/
+│   │   ├── main.js           # Interaksi utama, animasi, scroll, navbar
+│   │   ├── produk.js         # Logika produk, filter, sort, wishlist, quick view
+│   │   ├── data.js           # Data produk (array lengkap)
+│   │   ├── badge.js          # Sistem badge, tracking, confetti
+│   │   ├── chatbot.js        # AI Assistant, keyword matching
+│   │   ├── cart.js           # Keranjang belanja, checkout
+│   │   ├── map.js            # Interaksi peta SVG
+│   │   ├── command-palette.js# Command Palette (Ctrl+K, search, produk)
+│   │   ├── animations.js     # Efek animasi tambahan
+│   │   └── map.js            # Interaksi peta SVG
+│   ├── assets/
+│   │   ├── img/              # Gambar produk, logo, partner, founder
+│   │   └── svg/              # SVG peta (jabar-map.svg)
+│   └── README.md             # Dokumentasi proyek
 ```
+
+---
 
 ## 🚀 Fitur Utama
 
 ### 🏠 Halaman Utama (index.html)
-- **Hero Section** dengan animasi scroll reveal
-- **Produk Unggulan** dengan 4 produk utama
-- **Peta Interaktif** Jawa Barat dengan navigasi ke halaman daerah
-- **Chatbot** floating button untuk bantuan
-- **Sistem Badge** dengan notifikasi popup
+- Hero section animasi, partikel, CTA
+- Produk unggulan (slider, badge, rating, quick view, wishlist)
+- Peta interaktif SVG Jawa Barat (klik daerah, modal info, produk per daerah)
+- Section partner/logo (logo UMKM & partner, termasuk logo ITS Day)
+- Cerita UMKM (timeline testimoni)
+- Call to Action (CTA) untuk bergabung
+- Footer informatif (tautan, kontak, logo partner)
+- Floating chatbot (AI Assistant)
+- Command Palette (Ctrl+K, search navigasi & produk)
+- Loading screen animasi
 
-### 🗺️ Peta Interaktif
-- SVG peta Jawa Barat dengan 19 kabupaten/kota
-- Hover effects dan klik navigasi
-- Tracking kunjungan daerah
-- Modal informasi produk per daerah
+### 🛒 Produk (produk.html)
+- Daftar produk lengkap (filter daerah, search, sort, pagination/load more)
+- Wishlist produk (localStorage)
+- Quick view produk (modal)
+- Add to cart (keranjang belanja)
+- Badge produk (terlaris, best, diskon, new)
+- Rating, sold, dan detail produk
+- Keranjang belanja (cart modal, checkout, localStorage)
 
-### 🤖 Chatbot
-- Modal interaktif dengan animasi
-- Keyword matching untuk pencarian produk
-- Respons terhadap pertanyaan tentang:
-  - Produk tertentu
-  - Daerah tertentu
-  - Kategori produk (halal, handmade, makanan)
-  - Bantuan dan greeting
+### 🏆 Sistem Badge (badge.html)
+- Galeri badge (unlock otomatis, progress, kategori)
+- Badge spesial, eksplorasi, produk, harian, dsb
+- Confetti animation saat unlock
+- Statistik badge & progress
+- Notifikasi popup badge
 
-### 🏆 Sistem Badge
-- 12 badge berbeda dengan kategori:
-  - Achievement (First Visit, Product Explorer)
-  - Exploration (Eksplorator, Local Supporter)
-  - Craft (Handmade Lover)
-  - Halal (Halal Hunter)
-  - Region (Garut Explorer, Bandung Explorer, dll)
-  - Master (Jabar Master)
-- Animasi confetti saat unlock
-- Progress tracking dan statistik
+### 🤖 Chatbot in Produk Page (chatbot.js)
+- AI Assistant (floating button, modal)
+- Keyword matching: produk, daerah, kategori, bantuan, greeting
+- Tracking penggunaan chatbot (badge)
+- Interaksi responsif (animasi, loading, balasan dinamis)
 
-### 📱 Responsif
-- Mobile-first design
-- Responsif di semua ukuran layar
-- Touch-friendly interactions
+### 🗺️ Peta Interaktif (map.js, jabar-map.svg)
+- SVG peta Jawa Barat (hover, klik, highlight)
+- Modal info daerah & produk
+- Tracking kunjungan daerah (badge, localStorage)
 
-## 🎨 Design System
+### ⚡ Command Palette (command-palette.js)
+- Ctrl+K untuk search cepat (navigasi, produk, fitur)
+- Integrasi data produk dari data.js
+- Trigger desktop & mobile
 
-### Palet Warna
-- **Primary**: `#A05A2C` (Terracotta)
-- **Accent**: `#6B8E23` (Olive)
-- **Highlight**: `#F9C74F` (Kuning cerah)
-- **Background**: `#FAF9F6` (Ivory)
-- **Text**: `#333333` (Netral)
+### 🛍️ Keranjang Belanja (cart.js)
+- Add to cart dari produk/quick view
+- Modal keranjang (lihat, hapus, checkout)
+- Checkout form (simulasi)
+- Badge keranjang (jumlah item, notifikasi)
 
-### Font
-- **Inter** - Font utama untuk body text
-- **Poppins** - Font untuk heading dan emphasis
+### 🎨 Sistem Animasi & UI
+- AOS (Animate On Scroll)
+- GSAP (animasi partikel, timeline, loading)
+- Swiper.js (slider produk, produk per daerah)
+- Lightbox (galeri gambar)
+- Vanilla Tilt (efek tilt pada card)
+- Confetti (badge unlock)
+- Responsive & mobile friendly
 
-### Animasi
-- Scroll reveal dengan Intersection Observer
-- Hover effects pada cards dan buttons
-- Modal transitions
-- Confetti animation untuk badge unlock
+### 📊 Data & Storage
+- Produk didefinisikan di data.js (array lengkap, gambar, harga, rating, dsb)
+- localStorage untuk tracking badge, kunjungan, wishlist, cart, interaksi produk, dsb
 
-## 📊 Data Management
+### 🖼️ Aset Visual
+- Banyak gambar produk, logo, partner, dan SVG peta
+- Logo partner (ITS Day) di footer
 
-### localStorage Structure
-```javascript
+### 📄 Halaman Lain
+- tentang.html: Info platform, tim, visi, FAQ
+- badge.html: Galeri badge & progress
+- kontak.html: Form kontak, info kontak, sosial media
+- daerah-bandung.html, daerah-garut.html: Produk per daerah
+
+---
+
+## 📊 Data Management & Tracking
+
+### Struktur localStorage
+```js
 {
   "visitedRegions": ["garut", "bandung", "cirebon"],
   "productInteractions": [
-    {
-      "region": "garut",
-      "category": "makanan",
-      "isHalal": true,
-      "timestamp": "2024-01-01T00:00:00.000Z"
-    }
+    { "region": "garut", "category": "makanan", "isHalal": true, "timestamp": "2024-01-01T00:00:00.000Z" }
   ],
   "unlockedBadges": ["first_visit", "eksplorator"],
-  "totalVisits": 15
+  "totalVisits": 15,
+  "wishlist": ["id_produk1", "id_produk2"],
+  "cart": [ { id, name, price, qty, ... } ],
+  "chatbotUses": 3,
+  "mapClicks": 2,
+  "dailyVisits": ["2024-06-01", ...]
 }
 ```
 
-### Badge Conditions
+### Badge Conditions (Contoh)
 - **First Visit**: `totalVisits >= 1`
 - **Eksplorator**: `visitedRegions.length >= 3`
-- **Handmade Lover**: `handmade_products >= 5`
-- **Halal Hunter**: `halal_products >= 3`
+- **Handmade Lover**: `produk handmade >= 5`
+- **Halal Hunter**: `produk halal >= 3`
 - **Jabar Master**: `visitedRegions.length >= 10 && totalProducts >= 20`
+- **Chatbot Friend**: `chatbotUses >= 5`
+- **Map Explorer**: `mapClicks >= 5`
+- **Product Reviewer**: `productInteractions.length >= 15`
+- **Daily Visitor**: 7 hari berturut-turut
+
+---
 
 ## 🚀 Cara Menjalankan
 
 1. **Clone repository**
    ```bash
-   git clone https://github.com/username/jabarumkm-hub.git
-   cd jabarumkm-hub
+   git clone <repo-url>
+   cd last_revisi_webdesign
    ```
-
 2. **Buka di browser**
-   - Buka file `index.html` di browser
+   - Buka file `public/index.html` di browser
    - Atau gunakan live server:
    ```bash
    # Dengan Python
    python -m http.server 8000
-   
    # Dengan Node.js
    npx serve .
    ```
-
 3. **Akses website**
    - Buka `http://localhost:8000` di browser
 
-## 📱 Penggunaan
+---
 
-### Navigasi
-- **Beranda**: Lihat produk unggulan dan peta interaktif
-- **Tentang**: Informasi platform dan pembuat
-- **Badge**: Galeri badge dan progress tracking
+## 📱 Penggunaan & Navigasi
+
+- **Beranda**: Produk unggulan, peta interaktif, cerita UMKM, partner
+- **Produk**: Filter, search, sort, wishlist, quick view, add to cart, checkout
+- **Badge**: Galeri badge, progress, statistik, confetti
+- **Tentang**: Info platform, tim, visi, FAQ
+- **Kontak**: Form kontak, sosial media
+- **Command Palette**: Ctrl+K untuk search cepat
+- **Chatbot**: Floating button, AI Assistant
+- **Peta**: Klik daerah, lihat produk lokal
 
 ### Interaksi
-1. **Klik produk** untuk melihat detail dan tracking badge
-2. **Klik daerah di peta** untuk melihat produk lokal
-3. **Gunakan chatbot** untuk mencari produk atau bantuan
-4. **Kumpulkan badge** dengan menjelajahi berbagai fitur
+1. **Klik produk** untuk detail, wishlist, add to cart
+2. **Klik daerah di peta** untuk produk lokal & badge
+3. **Gunakan chatbot** untuk bantuan/cari produk
+4. **Kumpulkan badge** dengan eksplorasi fitur
+5. **Gunakan Command Palette** (Ctrl+K) untuk search cepat
 
-### Badge System
-- Badge akan terbuka otomatis saat syarat terpenuhi
-- Popup notifikasi dengan animasi confetti
-- Progress tracking di halaman badge
+---
 
 ## 🔧 Customization
 
 ### Menambah Produk
-Edit file `js/chatbot.js` dan tambahkan produk baru di `productDatabase`:
-
-```javascript
-const productDatabase = {
-  'produk_baru': {
-    name: 'Nama Produk',
-    region: 'Daerah',
-    description: 'Deskripsi produk',
-    price: 'Rp 10.000 - 50.000',
-    category: 'Kategori',
-    halal: true
-  }
-};
+Edit file `public/js/data.js` dan tambahkan produk baru ke array `products`:
+```js
+{
+  id: 'produk_baru',
+  name: 'Nama Produk',
+  daerah: 'bandung',
+  price: 'Rp 10.000',
+  image: 'assets/img/produk_baru.png',
+  description: 'Deskripsi produk',
+  rating: 4.8,
+  sold: 100,
+  stock: 50
+}
 ```
 
 ### Menambah Badge
-Edit file `js/badge.js` dan tambahkan badge baru di `badgeDefinitions`:
-
-```javascript
-const badgeDefinitions = {
-  'badge_baru': {
-    id: 'badge_baru',
-    name: 'Nama Badge',
-    description: 'Deskripsi badge',
-    icon: '🎯',
-    color: '#FF6B6B',
-    condition: (userData) => userData.someCondition,
-    category: 'achievement'
-  }
-};
+Edit file `public/js/badge.js` dan tambahkan badge baru ke objek `BADGES`:
+```js
+'badge_baru': {
+  id: 'badge_baru',
+  name: 'Nama Badge',
+  description: 'Deskripsi badge',
+  icon: '🎯',
+  category: 'achievement',
+  condition: (userData) => userData.someCondition,
+  progress: (userData) => ({ current: 0, total: 1 })
+}
 ```
-
-### Menambah Daerah
-1. Tambahkan path SVG di `js/map.js`
-2. Buat file HTML daerah baru (contoh: `daerah-cirebon.html`)
-3. Update data daerah di `jabarRegions`
-
-## 🌟 Fitur Opsional yang Bisa Ditambahkan
-
-- **Dark Mode** toggle
-- **Wishlist** produk
-- **Testimoni** UMKM
-- **Mini Map** pada produk
-- **Loader** transisi antar halaman
-- **PWA** (Progressive Web App)
-- **Offline** support
-
-## 📄 Lisensi
-
-Proyek ini dibuat untuk tujuan edukasi dan pengembangan UMKM Jawa Barat.
-
-## 👥 Kontribusi
-
-Kontribusi sangat diterima! Silakan buat pull request atau laporkan issue.
-
-## 📞 Kontak
-
-- Email: info@jabarumkmhub.com
-- Instagram: @jabarumkmhub
-- Facebook: JabarUMKM Hub
 
 ---
 
-**Dibuat dengan ❤️ untuk UMKM Jawa Barat** 
+## 🎨 Design System
+
+### Palet Warna
+- **Primary**: #A05A2C (Terracotta)
+- **Accent**: #6B8E23 (Olive)
+- **Highlight**: #F9C74F (Kuning cerah)
+- **Background**: #FAF9F6 (Ivory)
+- **Text**: #333333 (Netral)
+
+### Font
+- **Inter** (body)
+- **Poppins** (heading)
+
+### Animasi & UI
+- Scroll reveal, hover, modal, confetti, tilt, pulse, timeline, dsb
+- Mobile-first, responsif, touch-friendly
+
+---
+
+## 🤝 Partner & Kontributor
+- Logo partner (ITS Day) di footer
+- Daftar logo UMKM partner di slider
+- Founder: Arya Wardhana
+
+---
+
+## 📢 Catatan
+- Semua data produk, badge, dan interaksi disimpan di localStorage (tidak ada backend)
+- Website dapat dijalankan offline (kecuali CDN & gambar eksternal)
+- Untuk kontribusi, silakan fork & pull request
+
+---
+
+## 📬 Kontak & Bantuan
+- Email: info@Etaloka.id
+- Instagram: @Etaloka.id
+- Website: [Etaloka.id](#)
+
+---
+
+Selamat mengeksplorasi dan mendukung UMKM Jawa Barat! 🚀 

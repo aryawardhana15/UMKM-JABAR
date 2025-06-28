@@ -18,6 +18,20 @@ class CommandPalette {
             { name: 'FAQ', url: 'tentang.html#faq', icon: '❓', category: 'Fitur' }
         ];
         
+        // Integrasi produk dari window.products jika ada
+        if (window.products && Array.isArray(window.products)) {
+            window.products.forEach(product => {
+                this.commands.push({
+                    name: product.name,
+                    url: 'produk.html', // Atau detail produk jika ada
+                    icon: '🛒',
+                    category: product.daerah || 'Produk',
+                    price: product.price,
+                    description: product.description
+                });
+            });
+        }
+        
         this.init();
     }
     

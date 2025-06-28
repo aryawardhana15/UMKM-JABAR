@@ -145,7 +145,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 <!-- Action Buttons -->
                 <div class="flex gap-2">
-                    <button class="flex-1 bg-gradient-to-r from-primary to-secondary hover:from-primary-dark hover:to-secondary-dark text-white py-2 px-4 rounded-lg text-sm font-bold transition-all hover:shadow-lg transform hover:-translate-y-0.5 add-to-cart-btn"
+                    <button class="flex-1 bg-gradient-to-r from-green-600 to-primary hover:from-primary-dark hover:to-secondary-dark text-white py-2 px-4 rounded-lg text-sm font-bold transition-all hover:shadow-lg transform hover:-translate-y-0.5 add-to-cart-btn"
                             data-product-id="${product.id}">
                         <i class="fas fa-shopping-cart mr-2"></i> 
                     </button>

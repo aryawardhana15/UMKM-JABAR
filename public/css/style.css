@@ -867,4 +867,27 @@ section > .absolute svg { display: block; width: 100%; height: 80px; }
 @keyframes bubbleIn { 0%{transform:scale(0.7); opacity:0;} 100%{transform:scale(1); opacity:1;} }
 #bubble-tips:hover { transform: scale(1.08); }
 /* Parallax hero layer */
-.parallax-hero-layer { z-index: 1; pointer-events: none; } 
+.parallax-hero-layer { z-index: 1; pointer-events: none; }
+
+footer {
+  background: linear-gradient(135deg, #A05A2C, #6B8E23) !important;
+  color: #fff !important;
+}
+footer a, footer p, footer span, footer h4, footer li {
+  color: #fff !important;
+}
+
+/* Override tombol keranjang produk agar hijau gradasi */
+.deals-card .btn-primary,
+.deals-card .btn-beli,
+.deals-card button:has(.fa-shopping-cart) {
+  background: linear-gradient(90deg, #22c55e 0%, #15803d 100%) !important;
+  color: #fff !important;
+  border: none !important;
+}
+.deals-card .btn-primary:hover,
+.deals-card .btn-beli:hover,
+.deals-card button:has(.fa-shopping-cart):hover {
+  background: linear-gradient(90deg, #16a34a 0%, #166534 100%) !important;
+  color: #fff !important;
+} 
