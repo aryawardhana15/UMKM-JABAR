@@ -1,4 +1,4 @@
-# JabarUMKM Hub 🌟
+# Etaloka.id 🌟
 
 Website edukatif, eksploratif, dan interaktif untuk mendukung digitalisasi produk UMKM dari berbagai kabupaten/kota di Jawa Barat.
 
@@ -6,7 +6,7 @@ Website edukatif, eksploratif, dan interaktif untuk mendukung digitalisasi produ
 
 ## 🎯 Tentang Proyek
 
-JabarUMKM Hub adalah platform web modern yang menampilkan produk-produk UMKM unggulan Jawa Barat, lengkap dengan fitur interaktif seperti peta SVG, sistem badge, chatbot, command palette, keranjang belanja, dan animasi canggih. Website ini sepenuhnya frontend-only dan dapat dijalankan langsung di browser.
+Etaloka.id adalah platform web modern yang menampilkan produk-produk UMKM unggulan Jawa Barat, lengkap dengan fitur interaktif seperti peta SVG, sistem badge, chatbot, command palette, keranjang belanja, dan animasi canggih. Website ini sepenuhnya frontend-only dan dapat dijalankan langsung di browser.
 
 ---
 
