@@ -57,6 +57,7 @@ last_revisi_webdesign/
 ## 🚀 Fitur Utama
 
 ### 🏠 Halaman Utama (index.html)
+<<<<<<< HEAD
 - Hero section animasi, partikel, CTA
 - Produk unggulan (slider, badge, rating, quick view, wishlist)
 - Peta interaktif SVG Jawa Barat (klik daerah, modal info, produk per daerah)
@@ -67,6 +68,12 @@ last_revisi_webdesign/
 - Floating chatbot (AI Assistant)
 - Command Palette (Ctrl+K, search navigasi & produk)
 - Loading screen animasi
+=======
+- **Hero Section** dengan animasi scroll reveal
+- **Produk Unggulan** dengan 4 produk utama
+- **Peta Interaktif** Jawa Barat dengan navigasi ke halaman daerah
+- **Sistem Badge** dengan notifikasi popup
+>>>>>>> fbed42299d90dc553a265449b237072028b5acdb
 
 ### 🛒 Produk (produk.html)
 - Daftar produk lengkap (filter daerah, search, sort, pagination/load more)
@@ -238,6 +245,7 @@ Edit file `public/js/badge.js` dan tambahkan badge baru ke objek `BADGES`:
 
 ---
 
+<<<<<<< HEAD
 ## 🎨 Design System
 
 ### Palet Warna
@@ -279,3 +287,6 @@ Edit file `public/js/badge.js` dan tambahkan badge baru ke objek `BADGES`:
 ---
 
 Selamat mengeksplorasi dan mendukung UMKM Jawa Barat! 🚀 
+=======
+**Dibuat dengan ❤️ untuk UMKM Jawa Barat** 
+>>>>>>> fbed42299d90dc553a265449b237072028b5acdb
