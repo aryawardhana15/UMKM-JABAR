@@ -47,7 +47,6 @@ jabarumkm-hub/
 - **Hero Section** dengan animasi scroll reveal
 - **Produk Unggulan** dengan 4 produk utama
 - **Peta Interaktif** Jawa Barat dengan navigasi ke halaman daerah
-- **Chatbot** floating button untuk bantuan
 - **Sistem Badge** dengan notifikasi popup
 
 ### 🗺️ Peta Interaktif
