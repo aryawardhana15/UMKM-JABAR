@@ -1,4 +1,4 @@
-# JabarUMKM Hub 🌟
+# Etaloka.id 🌟
 
 Website edukatif, eksploratif, dan interaktif untuk mendukung digitalisasi produk UMKM dari berbagai kabupaten/kota di Jawa Barat.
 
@@ -6,7 +6,7 @@ Website edukatif, eksploratif, dan interaktif untuk mendukung digitalisasi produ
 
 ## 🎯 Tentang Proyek
 
-JabarUMKM Hub adalah platform web modern yang menampilkan produk-produk UMKM unggulan Jawa Barat, lengkap dengan fitur interaktif seperti peta SVG, sistem badge, chatbot, command palette, keranjang belanja, dan animasi canggih. Website ini sepenuhnya frontend-only dan dapat dijalankan langsung di browser.
+Etaloka.id adalah platform web modern yang menampilkan produk-produk UMKM unggulan Jawa Barat, lengkap dengan fitur interaktif seperti peta SVG, sistem badge, chatbot, command palette, keranjang belanja, dan animasi canggih. Website ini sepenuhnya frontend-only dan dapat dijalankan langsung di browser.
 
 ---
 
@@ -57,7 +57,7 @@ last_revisi_webdesign/
 ## 🚀 Fitur Utama
 
 ### 🏠 Halaman Utama (index.html)
-<<<<<<< HEAD
+
 - Hero section animasi, partikel, CTA
 - Produk unggulan (slider, badge, rating, quick view, wishlist)
 - Peta interaktif SVG Jawa Barat (klik daerah, modal info, produk per daerah)
@@ -268,7 +268,7 @@ Edit file `public/js/badge.js` dan tambahkan badge baru ke objek `BADGES`:
 ## 🤝 Partner & Kontributor
 - Logo partner (ITS Day) di footer
 - Daftar logo UMKM partner di slider
-- Founder: Arya Wardhana
+
 
 ---
 
@@ -289,4 +289,4 @@ Edit file `public/js/badge.js` dan tambahkan badge baru ke objek `BADGES`:
 Selamat mengeksplorasi dan mendukung UMKM Jawa Barat! 🚀 
 =======
 **Dibuat dengan ❤️ untuk UMKM Jawa Barat** 
->>>>>>> fbed42299d90dc553a265449b237072028b5acdb
+
