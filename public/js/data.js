@@ -311,10 +311,7 @@ const products = [
         stock: 120
     },
 
-    // Bandung (sudah ada 3)
-    // Garut (sudah ada 2)
-    // Cirebon (sudah ada 2)
-    // Sumedang (sudah ada 1)
+
     {
         id: 'Oncom Sumedang',
         name: 'Oncom Sumedang Asli',
@@ -404,7 +401,7 @@ const products = [
         name: 'Opak Ketan Banjar',
         daerah: 'banjar',
         price: 'Rp 15.000',
-        image: 'https://placehold.co/400x300/F9C74F/333333?text=Opak+Banjar',
+        image: 'assets/img/opak ketan.jfif',
         description: 'Opak ketan renyah, camilan tradisional khas Banjar.',
         rating: 4.7,
         sold: 180,
